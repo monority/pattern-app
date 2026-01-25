@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import ScrollToTop from './components/tools/ScrollToTop';
 import Header from './components/ui/Header';
 import Home from './pages/Home';
+import AppContainer from './components/tools/AppContainer';
 
 
 const Root = () => {
@@ -10,9 +11,12 @@ const Root = () => {
 		<BrowserRouter>
 			<ScrollToTop>
 				<Header></Header>
-				<Routes>
-					<Route exact path="/" element={<Home />} />
-				</Routes>
+				<AppContainer>
+
+					<Routes>
+						<Route exact path="/" element={<Home />} />
+					</Routes>
+				</AppContainer>
 			</ScrollToTop>
 		</BrowserRouter>
 	)
