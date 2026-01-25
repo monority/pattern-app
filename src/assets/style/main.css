@@ -1,4 +1,5 @@
 @import "./_reset.css";
+@import "./_components.css";
 
 #app-container {
     display: flex;
