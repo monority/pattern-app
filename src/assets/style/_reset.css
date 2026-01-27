@@ -65,27 +65,46 @@ textarea {
     --size-xs: 0.5rem;
     --size-sm: 0.75rem;
     --size-md: 1rem;
-    --size-lg: 2rem;
-    --size-xl: 3rem;
-    --size-xxl: 4rem;
+    --size-mdl: 1.25rem;
+    --size-lg: 1.5rem;
+    --size-xl: 2rem;
+    --size-xxl: 2.5rem;
 
 
     --btn-hover-opacity: 0.9;
     /** Colors */
 
-    --background-color-primary: #ffffff;
-    --text-primary: #121212;
-    --scrollbar_color: #c0c0c0 #f0f0f0;
-    --color-accent: #6200ee;
-    --color-accent-variant: #3700b3;
-    --color-error: #b00020;
-    --color-surface: #f5f5f5;
-    --color-surface-variant: #e0e0e0;
+    --background-color-primary: oklch(100% 0.00011 271.152);
+    --text-primary: oklch(18.22% 0.00002 271.152);
+    --text-secondary: oklch(100% 0.00011 271.152);
 
-    --btn-primary-bg: #1f1f1f;
+    --scrollbar_color: #c0c0c0 #f0f0f0;
+
+    --btn-primary-bg: oklch(55.504% 0.19813 259.943);
+    --btn-primary-hover-bg: oklch(60.503% 0.19039 259.819);
+    --btn-primary-active-bg: oklch(45.504% 0.19813 259.943);
     --btn-primary-text: #ffffff;
     --btn-primary-border: #1f1f1f;
+    --btn-secondary-bg: oklch(61.821% 0.11756 260.842);
+    --btn-secondary-hover-bg: oklch(70.937% 0.12845 260.583);
+    --btn-secondary-active-bg: oklch(73.949% 0.10981 260.974);
+    --btn-secondary-text: #1f1f1f;
+    --btn-success-bg: oklch(70.466% 0.13983 168.621);
+    --btn-success-hover-bg: oklch(77.328% 0.1486 169.68);
+    --btn-success-active-bg: oklch(84.634% 0.16339 169.475);
+    --btn-danger-bg: oklch(62.625% 0.2079 29.319);
+    --btn-danger-hover-bg: oklch(66.894% 0.18938 28.413);
+    --btn-danger-active-bg: oklch(71.642% 0.13945 26.382);
+    --btn-warning-bg: oklch(73.064% 0.16434 64.639);
+    --btn-warning-hover-bg: oklch(78.648% 0.15598 71.064);
+    --btn-warning-active-bg: oklch(81.772% 0.15395 83.282);
+    --btn-ghost-text: oklch(82.736% 0.00109 12.426);
+    --btn-ghost-hover-bg: oklch(90% 0.05 271.152 / 0.1);
+    --btn-outline-text: oklch(18.22% 0.00002 271.152);
+    --btn-outline-border: oklch(79.837% 0.00009 271.152);
     --btn-disabled-bg: #6b6b6b;
+
+
 
     /** Fonts */
     --font-default: 'Inter', sans-serif;
