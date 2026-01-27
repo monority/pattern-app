@@ -99,7 +99,7 @@ textarea {
     --btn-warning-hover-bg: oklch(78.648% 0.15598 71.064);
     --btn-warning-active-bg: oklch(81.772% 0.15395 83.282);
     --btn-ghost-text: oklch(82.736% 0.00109 12.426);
-    --btn-ghost-hover-bg: oklch(90% 0.05 271.152 / 0.1);
+    --btn-ghost-hover-bg: oklch(89.997% 0.04831 271.243 / 0.712);
     --btn-outline-text: oklch(18.22% 0.00002 271.152);
     --btn-outline-border: oklch(79.837% 0.00009 271.152);
     --btn-disabled-bg: #6b6b6b;
