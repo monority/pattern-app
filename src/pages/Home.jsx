@@ -6,7 +6,76 @@ const Home = () => {
     return (
         <>
             <>
-                <Input placeholder="Email" />
+                <div className="element">
+                    <h2>Input Variants</h2>
+                    <Input
+                        label="Default Input"
+                        placeholder="Enter text..."
+                        variant="default"
+                    />
+                    <Input
+                        label="Outlined Input"
+                        placeholder="Enter text..."
+                        variant="outlined"
+                    />
+                    <Input
+                        label="Filled Input"
+                        placeholder="Enter text..."
+                        variant="filled"
+                    />
+                </div>
+
+                <div className="element">
+                    <h2>Input Sizes</h2>
+                    <Input
+                        label="Small"
+                        placeholder="Small input"
+                        size="sm"
+                    />
+                    <Input
+                        label="Medium"
+                        placeholder="Medium input"
+                        size="md"
+                    />
+                    <Input
+                        label="Large"
+                        placeholder="Large input"
+                        size="lg"
+                    />
+                </div>
+
+                <div className="element">
+                    <h2>Input States</h2>
+                    <Input
+                        label="Required Field"
+                        placeholder="Enter required data"
+                        required
+                    />
+                    <Input
+                        label="Disabled Input"
+                        placeholder="Disabled"
+                        disabled
+                    />
+                    <Input
+                        label="With Error"
+                        placeholder="Enter email"
+                        error="This field is required"
+                    />
+                    <Input
+                        label="With Hint"
+                        placeholder="Password"
+                        hint="Must be at least 8 characters"
+                    />
+                </div>
+
+                <div className="element">
+                    <h2>Full Width Input</h2>
+                    <Input
+                        label="Email Address"
+                        placeholder="your.email@example.com"
+                        fullWidth
+                    />
+                </div>
 
                 <div className="element">
                     <h2>Button Variants</h2>
