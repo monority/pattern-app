@@ -6,7 +6,12 @@ const Home = () => {
     return (
         <>
             <Input placeholder="Email" />
-            <Button>Submit</Button>
+
+            <div className="element">
+                <Button>Submit</Button>
+                <Button variant="disabled">Submit</Button>
+
+            </div>
 
         </>
     )

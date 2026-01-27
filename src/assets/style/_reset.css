@@ -61,13 +61,16 @@ textarea {
 
 :root {
     /** Size */
+    --size-xxs: 0.25rem;
     --size-xs: 0.5rem;
-    --size-sm: 1rem;
-    --size-md: 1.5rem;
+    --size-sm: 0.75rem;
+    --size-md: 1rem;
     --size-lg: 2rem;
     --size-xl: 3rem;
     --size-xxl: 4rem;
 
+
+    --btn-hover-opacity: 0.9;
     /** Colors */
 
     --background-color-primary: #ffffff;
@@ -82,6 +85,7 @@ textarea {
     --btn-primary-bg: #1f1f1f;
     --btn-primary-text: #ffffff;
     --btn-primary-border: #1f1f1f;
+    --btn-disabled-bg: #6b6b6b;
 
     /** Fonts */
     --font-default: 'Inter', sans-serif;
