@@ -1,0 +1,14 @@
+.btn {
+    border-radius: var(--size-xs);
+    padding: var(--size-xs);
+    display: inline-flex;
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: var(--size-xs) solid var(--btn-primary-border);
+
+}
+
+.btn-disabled {}
