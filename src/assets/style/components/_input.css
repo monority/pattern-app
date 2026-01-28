@@ -1,43 +1,25 @@
-.input {
-    display: flex;
-    flex-direction: column;
-    gap: var(--size-xs);
-    position: relative;
-}
-
-.input-full-width {
-    width: 100%;
-}
-
-.input-disabled {
-    opacity: 0.9;
-    cursor: not-allowed;
-}
-
-/* Label styles */
 .input label {
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
     font-weight: 500;
     color: var(--text-primary);
 }
 
 .input label span {
-    color: var(--btn-danger-bg);
+    color: var(--color-danger);
     margin-left: 0.25rem;
 }
 
-/* Input element base styles */
 .input-element {
     padding: 0.5rem 0.75rem;
-    border: 1px solid var(--btn-outline-border);
+    border: 1px solid var(--color-outline-border);
     border-radius: 0.375rem;
-    font-size: 1rem;
+    font-size: var(--font-size-md);
     transition: all 0.2s;
     outline: none;
 }
 
 .input-element:focus {
-    border-color: var(--btn-primary-bg);
+    border-color: var(--color-primary);
     box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
@@ -46,23 +28,21 @@
     cursor: not-allowed;
 }
 
-/* Size variants */
 .input-sm {
     padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
 }
 
 .input-md {
     padding: 0.5rem 0.75rem;
-    font-size: 1rem;
+    font-size: var(--font-size-md);
 }
 
 .input-lg {
     padding: 0.75rem 1rem;
-    font-size: 1.125rem;
+    font-size: var(--font-size-lg);
 }
 
-/* Variant styles */
 .input-default {
     background-color: #ffffff;
 }

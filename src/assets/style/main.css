@@ -1,5 +1,6 @@
 @import "./_reset.css";
-@import "./_components.css";
+@import "./components/_button.css";
+@import "./components/_input.css";
 
 #app-container {
     display: flex;
