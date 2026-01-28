@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
     scroll-behavior: smooth;
-    scrollbar-color: var(--scrollbar_color);
+    scrollbar-color: var(--scrollbar-color);
     scrollbar-width: thin;
 
 }
@@ -61,7 +61,7 @@ textarea {
 
 :root {
     /** Size */
-    --size-xxs: 0.25rem;
+    --size-xxs: 0.35rem;
     --size-xs: 0.5rem;
     --size-sm: 0.75rem;
     --size-md: 1rem;
@@ -78,17 +78,17 @@ textarea {
     --text-primary: oklch(18.22% 0.00002 271.152);
     --text-secondary: oklch(100% 0.00011 271.152);
 
-    --scrollbar_color: #c0c0c0 #f0f0f0;
-
+    --scrollbar-color: #c0c0c0 #f0f0f0;
+    --color-focus: oklch(74.746% 0.12763 181.267 / 0.288);
     --color-primary: oklch(55.504% 0.19813 259.943);
     --color-primary-hover: oklch(60.503% 0.19039 259.819);
     --color-primary-active: oklch(45.504% 0.19813 259.943);
-    --color-primary-text: #ffffff;
-    --color-primary-border: #1f1f1f;
+    --color-primary-text: oklch(100% 0.00011 271.152);
+    --color-primary-border: oklch(23.929% 0.00003 271.152);
     --color-secondary: oklch(61.821% 0.11756 260.842);
     --color-secondary-hover: oklch(70.937% 0.12845 260.583);
     --color-secondary-active: oklch(73.949% 0.10981 260.974);
-    --color-secondary-text: #1f1f1f;
+    --color-secondary-text: oklch(23.929% 0.00003 271.152);
     --color-success: oklch(70.466% 0.13983 168.621);
     --color-success-hover: oklch(77.328% 0.1486 169.68);
     --color-success-active: oklch(84.634% 0.16339 169.475);
@@ -102,9 +102,10 @@ textarea {
     --color-ghost-hover: oklch(89.997% 0.04831 271.243 / 0.712);
     --color-outline-text: oklch(18.22% 0.00002 271.152);
     --color-outline-border: oklch(79.837% 0.00009 271.152);
-    --color-disabled: #6b6b6b;
-
-
+    --color-disabled: oklch(81.406% 0.00009 271.152 / 0.438);
+    --color-box: oklch(62.31% 0.1881 259.83 / 0.1);
+    --color-filled-bg: oklch(94.912% 0.00011 271.152);
+    --color-hint: oklch(48.55% 0.00006 271.152);
 
     /** Fonts */
     --font-default: 'Inter', sans-serif;
