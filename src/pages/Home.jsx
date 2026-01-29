@@ -64,6 +64,7 @@ const Home = () => {
                     <Input
                         label="With Hint"
                         placeholder="Password"
+                        type="password"
                         hint="Must be at least 8 characters"
                     />
                 </div>

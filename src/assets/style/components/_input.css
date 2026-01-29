@@ -64,19 +64,54 @@
 }
 
 .input-error {
-    border-color: var(--color-danger) !important;
+    border-color: var(--color-danger);
 }
 
 .input-error:focus {
-    box-shadow: 0 0 0 3px var(--color-danger);
+    box-shadow: 0 0 0 1px var(--color-danger);
 }
 
 .input span[id="input-error"] {
     color: var(--color-danger);
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
 }
 
 .input span[id="input-hint"] {
     color: var(--color-hint);
-    font-size: 0.875rem;
+    font-size: var(--font-size-sm);
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+}
+
+.input-wrapper .input-element {
+    width: 100%;
+    padding-right: 2.5rem;
+}
+
+.input-password-toggle {
+    position: absolute;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-hint, #666);
+    z-index: 1;
+}
+
+.input-password-toggle:hover {
+    color: var(--text-primary, #333);
+}
+
+.input-password-toggle:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
 }
