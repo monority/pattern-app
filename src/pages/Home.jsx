@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../components/utils/Input'
 import Button from '../components/utils/Button'
+import Image from '../components/utils/Image'
 
 const Home = () => {
     return (
@@ -104,6 +105,15 @@ const Home = () => {
 
                 <div className="element">
                     <Button fullWidth>Full Width Button</Button>
+                </div>
+                <div className="element">
+                    <Image
+                        src="/images.png"
+                        alt="Description"
+                        aspectRatio="4/3"
+                        loading="lazy"
+                        fallbackSrc="/placeholder.jpg"
+                    />
                 </div>
             </>
         </>
