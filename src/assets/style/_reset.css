@@ -106,6 +106,7 @@ textarea {
     --color-box: oklch(62.31% 0.1881 259.83 / 0.1);
     --color-filled-bg: oklch(94.912% 0.00011 271.152);
     --color-hint: oklch(48.55% 0.00006 271.152);
+    --color-accent: oklch(67.64% 0.00008 271.152);
 
     /** Fonts */
     --font-default: 'Inter', sans-serif;

@@ -56,7 +56,7 @@ figure.image-container {
 }
 
 .image-placeholder svg {
-    color: var(--color-hint, #ccc);
+    color: var(--color-hint, var(--color-accent));
 }
 
 .image-placeholder .spinner {
