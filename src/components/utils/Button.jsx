@@ -48,6 +48,13 @@ const ButtonComponent = forwardRef((props, ref) => {
         .filter(Boolean)
         .join(' ')
 
+    const renderContent = () => {
+        if (typeof children === 'string' || typeof children === 'number') {
+            return <span className="btn-content">{children}</span>
+        }
+        return children
+    }
+
     return (
         <Component
             ref={ref}
@@ -61,7 +68,7 @@ const ButtonComponent = forwardRef((props, ref) => {
         >
             {isLoading && <span className="btn-spinner"><Spinner /></span>}
             {!isLoading && leftIcon && <span className="btn-icon-left">{leftIcon}</span>}
-            <span className="btn-content">{children}</span>
+            {renderContent()}
             {!isLoading && rightIcon && <span className="btn-icon-right">{rightIcon}</span>}
         </Component>
     )
