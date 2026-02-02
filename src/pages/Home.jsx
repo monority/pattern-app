@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Input from '../components/utils/Input'
 import Button from '../components/utils/Button'
 import Image from '../components/utils/Image'
+import { AlertDialog } from '../components/utils/AlertDialog'
 
 const Home = () => {
+    const [deleteDialog, setDeleteDialog] = useState(false)
     return (
         <>
             <>
@@ -113,6 +115,18 @@ const Home = () => {
                         aspectRatio="4/3"
                         loading="lazy"
                         fallbackSrc="/placeholder.jpg"
+                    />
+                </div>
+                <div className="element">
+                    <AlertDialog
+                        isOpen={deleteDialog}
+                        onClose={() => setDeleteDialog(false)}
+                        onConfirm={handleDelete}
+                        variant="danger"
+                        title="Delete Item"
+                        description="Are you sure you want to delete this item? This action cannot be undone."
+                        confirmText="Delete"
+                        cancelText="Cancel"
                     />
                 </div>
             </>

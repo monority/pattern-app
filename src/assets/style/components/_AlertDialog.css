@@ -1,0 +1,116 @@
+/* Overlay */
+.alert-dialog-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+    padding: 1rem;
+    animation: fadeIn 0.2s ease-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* Dialog */
+.alert-dialog {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    max-width: 400px;
+    width: 100%;
+    animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Header */
+.alert-dialog-header {
+    padding: 1.5rem;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+}
+
+.alert-dialog-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert-dialog-danger .alert-dialog-icon {
+    background-color: #fee;
+    color: #dc2626;
+}
+
+.alert-dialog-warning .alert-dialog-icon {
+    background-color: #fef3c7;
+    color: #f59e0b;
+}
+
+.alert-dialog-info .alert-dialog-icon {
+    background-color: #dbeafe;
+    color: #3b82f6;
+}
+
+.alert-dialog-success .alert-dialog-icon {
+    background-color: #d1fae5;
+    color: #10b981;
+}
+
+.alert-dialog-title {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    flex: 1;
+}
+
+/* Body */
+.alert-dialog-body {
+    padding: 0 1.5rem 1.5rem;
+}
+
+.alert-dialog-description {
+    margin: 0;
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Footer */
+.alert-dialog-footer {
+    padding: 1rem 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    justify-content: flex-end;
+    border-top: 1px solid #e5e7eb;
+}
+
+/* Prevent body scroll when dialog is open */
+body:has(.alert-dialog-overlay) {
+    overflow: hidden;
+}
