@@ -6,6 +6,12 @@ import { AlertDialog } from '../components/utils/AlertDialog'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
+
+    const handleDelete = () => {
+        console.log('Item deleted')
+        setDeleteDialog(false)
+    }
+
     return (
         <>
             <>
@@ -108,6 +114,17 @@ const Home = () => {
                 <div className="element">
                     <Button fullWidth>Full Width Button</Button>
                 </div>
+
+                <div className="element">
+                    <h2>Alert Dialog</h2>
+                    <Button
+                        variant="danger"
+                        onClick={() => setDeleteDialog(true)}
+                    >
+                        Open Delete Dialog
+                    </Button>
+                </div>
+
                 <div className="element">
                     <Image
                         src="/images.png"
@@ -117,18 +134,17 @@ const Home = () => {
                         fallbackSrc="/placeholder.jpg"
                     />
                 </div>
-                <div className="element">
-                    <AlertDialog
-                        isOpen={deleteDialog}
-                        onClose={() => setDeleteDialog(false)}
-                        onConfirm={handleDelete}
-                        variant="danger"
-                        title="Delete Item"
-                        description="Are you sure you want to delete this item? This action cannot be undone."
-                        confirmText="Delete"
-                        cancelText="Cancel"
-                    />
-                </div>
+
+                <AlertDialog
+                    isOpen={deleteDialog}
+                    onClose={() => setDeleteDialog(false)}
+                    onConfirm={handleDelete}
+                    variant="danger"
+                    title="Delete Item"
+                    description="Are you sure you want to delete this item? This action cannot be undone."
+                    confirmText="Delete"
+                    cancelText="Cancel"
+                />
             </>
         </>
     )

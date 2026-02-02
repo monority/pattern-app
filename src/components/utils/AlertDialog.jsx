@@ -1,8 +1,7 @@
-import React, { memo, useCallback, useEffect, useMemo } from 'react'
+import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
-import FocusLock from 'react-focus-lock'
 import Button from './Button'
-import { VariantIcons } from './icons'
+import { VariantIcons } from './VariantIcons'
 
 const AlertDialogComponent = ({
     isOpen = false,
@@ -19,6 +18,20 @@ const AlertDialogComponent = ({
     icon,
     children,
 }) => {
+    const firstFocusRef = useRef(null)
+    const lastFocusRef = useRef(null)
+    const previousActiveElement = useRef(null)
+
+    useEffect(() => {
+        if (isOpen) {
+            previousActiveElement.current = document.activeElement
+            firstFocusRef.current?.focus()
+        } else if (previousActiveElement.current) {
+            previousActiveElement.current.focus()
+            previousActiveElement.current = null
+        }
+    }, [isOpen])
+
     useEffect(() => {
         if (!isOpen) return
 
@@ -29,6 +42,22 @@ const AlertDialogComponent = ({
         document.addEventListener('keydown', handleEscape)
         return () => document.removeEventListener('keydown', handleEscape)
     }, [isOpen, onClose])
+
+    const handleKeyDown = useCallback((e) => {
+        if (e.key !== 'Tab') return
+
+        if (e.shiftKey) {
+            if (document.activeElement === firstFocusRef.current) {
+                e.preventDefault()
+                lastFocusRef.current?.focus()
+            }
+        } else {
+            if (document.activeElement === lastFocusRef.current) {
+                e.preventDefault()
+                firstFocusRef.current?.focus()
+            }
+        }
+    }, [])
 
     const handleOverlayClick = useCallback((e) => {
         if (e.target === e.currentTarget && closeOnOverlayClick) {
@@ -49,54 +78,59 @@ const AlertDialogComponent = ({
     if (!isOpen) return null
 
     return createPortal(
-        <FocusLock returnFocus>
+        <div
+            className="alert-dialog-overlay"
+            onClick={handleOverlayClick}
+            onKeyDown={handleKeyDown}
+            role="presentation"
+        >
             <div
-                className="alert-dialog-overlay"
-                onClick={handleOverlayClick}
-                role="presentation"
+                role="alertdialog"
+                aria-modal="true"
+                aria-labelledby="alert-dialog-title"
+                aria-describedby={description ? 'alert-dialog-description' : undefined}
+                className={`alert-dialog alert-dialog-${variant}`}
             >
-                <div
-                    role="alertdialog"
-                    aria-modal="true"
-                    aria-labelledby="alert-dialog-title"
-                    aria-describedby={description ? 'alert-dialog-description' : undefined}
-                    className={`alert-dialog alert-dialog-${variant}`}
-                >
-                    <div className="alert-dialog-header">
-                        {renderedIcon && (
-                            <div className="alert-dialog-icon">{renderedIcon}</div>
-                        )}
-                        <h2 id="alert-dialog-title" className="alert-dialog-title">
-                            {title}
-                        </h2>
-                    </div>
+                <div className="alert-dialog-header">
+                    {renderedIcon && (
+                        <div className="alert-dialog-icon">{renderedIcon}</div>
+                    )}
+                    <h2 id="alert-dialog-title" className="alert-dialog-title">
+                        {title}
+                    </h2>
+                </div>
 
-                    <div className="alert-dialog-body">
-                        {description && (
-                            <p id="alert-dialog-description" className="alert-dialog-description">
-                                {description}
-                            </p>
-                        )}
-                        {children}
-                    </div>
+                <div className="alert-dialog-body">
+                    {description && (
+                        <p id="alert-dialog-description" className="alert-dialog-description">
+                            {description}
+                        </p>
+                    )}
+                    {children}
+                </div>
 
-                    <div className="alert-dialog-footer">
-                        {showCancel && (
-                            <Button variant="secondary" onClick={onClose} disabled={isLoading}>
-                                {cancelText}
-                            </Button>
-                        )}
+                <div className="alert-dialog-footer">
+                    {showCancel && (
                         <Button
-                            variant={variant === 'danger' ? 'danger' : 'primary'}
-                            onClick={handleConfirm}
-                            isLoading={isLoading}
+                            ref={firstFocusRef}
+                            variant="secondary"
+                            onClick={onClose}
+                            disabled={isLoading}
                         >
-                            {confirmText}
+                            {cancelText}
                         </Button>
-                    </div>
+                    )}
+                    <Button
+                        ref={showCancel ? lastFocusRef : firstFocusRef}
+                        variant={variant === 'danger' ? 'danger' : 'primary'}
+                        onClick={handleConfirm}
+                        isLoading={isLoading}
+                    >
+                        {confirmText}
+                    </Button>
                 </div>
             </div>
-        </FocusLock>,
+        </div>,
         document.body
     )
 }
