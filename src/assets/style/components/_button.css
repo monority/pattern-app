@@ -62,7 +62,7 @@
     }
 
     .btn-secondary:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-secondary) 85%, white);
+        background-color: color-mix(in oklch, var(--brand-secondary) 55%, grey);
     }
 
     /* Success variant */
