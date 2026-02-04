@@ -101,7 +101,7 @@
 
     [data-theme="dark"] {
         /* Background colors */
-        --bg-primary: oklch(20.019% 0.00002 271.152);
+        --bg-primary: oklch(15.434% 0.00002 271.152);
         --bg-secondary: oklch(30.118% 0.00003 271.152);
         --bg-elevated: oklch(100% 0 0);
 
@@ -126,11 +126,11 @@
         --focus-ring: oklch(86.686% 0.0001 271.152 / 0.438);
 
         /* Brand - Primary */
-        --brand-primary: oklch(25.197% 0.00003 271.152);
+        --brand-primary: oklch(21.779% 0.00002 271.152);
         --brand-primary-text: oklch(100% 0.00011 271.152);
 
         /* Brand - Secondary */
-        --brand-secondary: oklch(94.912% 0.00011 271.152);
+        --brand-secondary: oklch(92.494% 0.00011 271.152);
         --brand-secondary-text: oklch(31.317% 0.00004 271.152);
 
         /* Status - Success */
@@ -147,11 +147,10 @@
 
         /* Button variants - Ghost */
         --btn-ghost-text: oklch(82.736% 0.00109 12.426);
-        --btn-ghost-hover-bg: oklch(89.997% 0.04831 271.243 / 0.712);
+        --btn-ghost-bg: oklch(25.197% 0.00003 271.152 / 0.712);
 
         /* Button variants - Outline */
         --btn-outline-text: oklch(87.61% 0.0001 271.152);
-        --btn-outline-border: oklch(45.678% 0.00005 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
 
         --input-border: oklch(45.678% 0.00005 271.152);
@@ -209,7 +208,6 @@
 
         /* Button variants - Outline */
         --btn-outline-text: oklch(18.22% 0.00002 271.152);
-        --btn-outline-border: oklch(89.143% 0.0001 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
     }
 
