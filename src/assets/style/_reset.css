@@ -169,8 +169,8 @@
         --text-inverse: oklch(100% 0.00011 271.152);
 
         /* Border colors */
-        --border-primary: oklch(94.007% 0.00011 271.152);
-        --border-secondary: oklch(100% 0.00011 271.152);
+        --border-primary: oklch(60.999% 0.00007 271.152);
+        --border-secondary: oklch(62.675% 0.00007 271.152);
 
         /* Button */
         --btn-border: 1px solid var(--border-primary);
@@ -183,12 +183,12 @@
         --focus-ring: oklch(86.686% 0.0001 271.152 / 0.438);
 
         /* Brand - Primary */
-        --brand-primary: oklch(21.779% 0.00002 271.152);
-        --brand-primary-text: oklch(100% 0.00011 271.152);
+        --brand-primary: oklch(91.887% 0.0001 271.152);
+        --brand-primary-text: oklch(35.233% 0.00004 271.152);
 
         /* Brand - Secondary */
-        --brand-secondary: oklch(92.494% 0.00011 271.152);
-        --brand-secondary-text: oklch(31.317% 0.00004 271.152);
+        --brand-secondary: oklch(30.118% 0.00003 271.152);
+        --brand-secondary-text: oklch(91.279% 0.0001 271.152);
 
         /* Status - Success */
         --status-success: oklch(62.261% 0.12231 168.976);
