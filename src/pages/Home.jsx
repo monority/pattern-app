@@ -1,11 +1,27 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import Input from '../components/utils/Input'
 import Button from '../components/utils/Button'
 import Image from '../components/utils/Image'
 import { AlertDialog } from '../components/utils/AlertDialog'
+import Skeleton from '../components/utils/Skeleton'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
+    const [imageLoading, setImageLoading] = useState(true)
+    const [videoLoading, setVideoLoading] = useState(true)
+    const [iframeLoading, setIframeLoading] = useState(true)
+
+    useEffect(() => {
+        const t1 = setTimeout(() => setImageLoading(false), 900)
+        const t2 = setTimeout(() => setVideoLoading(false), 1200)
+        const t3 = setTimeout(() => setIframeLoading(false), 1000)
+
+        return () => {
+            clearTimeout(t1)
+            clearTimeout(t2)
+            clearTimeout(t3)
+        }
+    }, [])
 
     const handleDelete = () => {
         console.log('Item deleted')
@@ -14,7 +30,7 @@ const Home = () => {
 
     return (
         <>
-            <>
+            <div className="elements-grid">
                 <div className="element">
                     <h2>Input Variants</h2>
                     <Input
@@ -135,17 +151,66 @@ const Home = () => {
                     />
                 </div>
 
-                <AlertDialog
-                    isOpen={deleteDialog}
-                    onClose={() => setDeleteDialog(false)}
-                    onConfirm={handleDelete}
-                    variant="danger"
-                    title="Delete Item"
-                    description="Are you sure you want to delete this item? This action cannot be undone."
-                    confirmText="Delete"
-                    cancelText="Cancel"
-                />
-            </>
+                <div className="element">
+                    <h2>Skeleton (Image)</h2>
+                    {imageLoading ? (
+                        <Skeleton type="image" aspectRatio="4/3" />
+                    ) : (
+                        <img
+                            src="/image-placeholder.png"
+                            alt="Image placeholder"
+                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}
+                        />
+                    )}
+                </div>
+
+                <div className="element">
+                    <h2>Skeleton (Vidéo)</h2>
+                    {videoLoading ? (
+                        <Skeleton type="video" aspectRatio="16/9" />
+                    ) : (
+                        <video
+                            controls
+                            preload="metadata"
+                            poster="/image-placeholder.png"
+                            style={{ width: '100%', aspectRatio: '16/9' }}
+                        >
+                            <source
+                                src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
+                                type="video/mp4"
+                            />
+                            Votre navigateur ne supporte pas la vidéo.
+                        </video>
+                    )}
+                </div>
+
+                <div className="element">
+                    <h2>Skeleton (Iframe)</h2>
+                    {iframeLoading ? (
+                        <Skeleton type="iframe" aspectRatio="16/9" />
+                    ) : (
+                        <iframe
+                            width="100%"
+                            style={{ aspectRatio: '16/9', border: 'none' }}
+                            src="https://www.youtube.com/embed/jNQXAC9IVRw"
+                            title="YouTube video player"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    )}
+                </div>
+
+            </div>
+            <AlertDialog
+                isOpen={deleteDialog}
+                onClose={() => setDeleteDialog(false)}
+                onConfirm={handleDelete}
+                variant="danger"
+                title="Delete Item"
+                description="Are you sure you want to delete this item? This action cannot be undone."
+                confirmText="Delete"
+                cancelText="Cancel"
+            />
         </>
     )
 }

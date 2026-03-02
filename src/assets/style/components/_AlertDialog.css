@@ -4,11 +4,11 @@
     .alert-dialog-overlay {
         position: fixed;
         inset: 0;
-        background-color: oklch(0% 0 0 / 0.5);
+        background-color: color-mix(in oklch, var(--bg-secondary) 10%, black 50%);
         display: flex;
         align-items: center;
         justify-content: center;
-        z-index: 9999;
+        z-index: 2;
         padding: var(--space-md);
         animation: alert-fade-in var(--transition-base);
     }
@@ -25,7 +25,7 @@
 
     /* Dialog */
     .alert-dialog {
-        background: var(--bg-elevated);
+        background: var(--bg-secondary);
         border-radius: var(--radius-lg);
         box-shadow: 0 20px 25px -5px oklch(0% 0 0 / 0.1), 0 10px 10px -5px oklch(0% 0 0 / 0.04);
         max-width: 400px;
