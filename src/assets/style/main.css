@@ -5,6 +5,7 @@
 @import "./components/_alertdialog.css";
 @import "./components/_skeleton.css";
 @import "./components/_accordion.css";
+@import "./components/_avatar.css";
 
 @layer components {
     #app-container {

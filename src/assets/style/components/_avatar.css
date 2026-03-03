@@ -1,0 +1,118 @@
+.avatar {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    background: var(--brand-primary);
+    color: var(--brand-primary-text);
+    font-weight: 600;
+    overflow: hidden;
+    user-select: none;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Sizes */
+.avatar--xs {
+    width: 2.4rem;
+    height: 2.4rem;
+    font-size: 1rem;
+}
+
+.avatar--sm {
+    width: 3.2rem;
+    height: 3.2rem;
+    font-size: 1.1rem;
+}
+
+.avatar--md {
+    width: 4rem;
+    height: 4rem;
+    font-size: 1.4rem;
+}
+
+.avatar--lg {
+    width: 5.6rem;
+    height: 5.6rem;
+    font-size: 2rem;
+}
+
+.avatar--xl {
+    width: 8rem;
+    height: 8rem;
+    font-size: 2.8rem;
+}
+
+/* Shapes */
+.avatar--circle {
+    border-radius: var(--radius-full);
+}
+
+.avatar--square {
+    border-radius: var(--radius-lg);
+}
+
+.avatar--rounded {
+    border-radius: var(--radius-lg);
+}
+
+/* Status dot */
+.avatar__status {
+    position: absolute;
+    bottom: 5%;
+    right: 5%;
+    width: 25%;
+    height: 25%;
+    border-radius: var(--radius-full);
+    border: 2px solid var(--bg-primary);
+}
+
+.avatar--online .avatar__status {
+    background: var(--status-success);
+}
+
+.avatar--offline .avatar__status {
+    background: var(--text-tertiary);
+}
+
+.avatar--busy .avatar__status {
+    background: var(--status-danger);
+}
+
+.avatar--away .avatar__status {
+    background: var(--status-warning);
+}
+
+/* Group */
+.avatar-group {
+    display: flex;
+    flex-direction: row-reverse;
+    width: fit-content;
+}
+
+.avatar-group .avatar {
+    border: 2px solid var(--bg-primary);
+    margin-left: -0.8rem;
+    transition: transform var(--transition-fast), z-index 0s;
+}
+
+.avatar-group .avatar:hover {
+    transform: translateY(-3px);
+    z-index: 1;
+}
+
+.avatar-group .avatar:last-child {
+    margin-left: 0;
+}
+
+.avatar__overflow {
+    background: var(--bg-elevated);
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    filter: brightness(.95);
+}

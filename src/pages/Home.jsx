@@ -5,6 +5,7 @@ import Image from '../components/utils/Image'
 import { AlertDialog } from '../components/utils/AlertDialog'
 import Skeleton from '../components/utils/Skeleton'
 import Accordion from '../components/utils/Accordion'
+import Avatar, { AvatarGroup } from '../components/utils/Avatar'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -243,6 +244,19 @@ const Home = () => {
                     { title: 'Item 2', content: 'Contenu du deuxième item.' },
                     { title: 'Item 3', content: 'Contenu du troisième item.' },
                 ]} />
+            </div>]
+            <div className="avatar-container">
+                <h2>Avatar</h2>
+                <Avatar src="/user.jpg" alt="John Doe" size="lg" status="online" />
+
+                <Avatar name="John Doe" size="md" shape="square" />
+
+                <AvatarGroup max={3}>
+                    <Avatar src="/a.jpg" name="Alice" />
+                    <Avatar src="/b.jpg" name="Bob" />
+                    <Avatar name="Charlie" />
+                    <Avatar name="Diana" />
+                </AvatarGroup>
             </div>
         </>
     )
