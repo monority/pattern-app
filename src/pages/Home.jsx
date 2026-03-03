@@ -4,6 +4,7 @@ import Button from '../components/utils/Button'
 import Image from '../components/utils/Image'
 import { AlertDialog } from '../components/utils/AlertDialog'
 import Skeleton from '../components/utils/Skeleton'
+import Accordion from '../components/utils/Accordion'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -234,6 +235,15 @@ const Home = () => {
                 confirmText="Delete"
                 cancelText="Cancel"
             />
+
+            <div className="accordion-container">
+                <h2>Accordion</h2>
+                <Accordion items={[
+                    { title: 'Item 1', content: 'Contenu du premier item.' },
+                    { title: 'Item 2', content: 'Contenu du deuxième item.' },
+                    { title: 'Item 3', content: 'Contenu du troisième item.' },
+                ]} />
+            </div>
         </>
     )
 }
