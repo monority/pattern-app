@@ -164,7 +164,7 @@
         --btn-outline-text: oklch(87.61% 0.0001 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
 
-        --input-border: oklch(45.678% 0.00005 271.152);
+        --input-border: oklch(29.313% 0.00003 271.152);
     }
 
     [data-theme="light"] {
@@ -191,7 +191,7 @@
         --scrollbar-track: #f0f0f0;
 
         /* System colors */
-        --focus-ring: oklch(86.686% 0.0001 271.152 / 0.438);
+        --focus-ring: oklch(13.441% 0.00002 271.152 / 0.438);
 
         /* Brand - Primary */
         --brand-primary: oklch(91.887% 0.0001 271.152);
@@ -210,7 +210,7 @@
         --status-success-text: oklch(100% 0.00011 271.152);
 
         /* Status - Danger */
-        --status-danger: oklch(65.149% 0.20483 29.016);
+        --status-danger: oklch(64.924% 0.22896 26.4);
         --status-danger-text: oklch(100% 0.00011 271.152);
 
         /* Status - Warning */
@@ -225,7 +225,7 @@
         --btn-outline-text: oklch(87.61% 0.0001 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
 
-        --input-border: oklch(45.678% 0.00005 271.152);
+        --input-border: oklch(82.032% 0.00009 271.152);
     }
 
     [data-theme="blue"] {
@@ -285,6 +285,9 @@
         /* Button variants - Outline */
         --btn-outline-text: oklch(18.22% 0.00002 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
+
+        --input-border: oklch(82.032% 0.00009 271.152);
+
     }
 
     [data-theme="orange"] {

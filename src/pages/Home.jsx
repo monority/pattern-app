@@ -10,26 +10,48 @@ const Home = () => {
     const [imageLoading, setImageLoading] = useState(true)
     const [videoLoading, setVideoLoading] = useState(true)
     const [iframeLoading, setIframeLoading] = useState(true)
+    const [activeMode, setActiveMode] = useState('light')
 
     useEffect(() => {
-        const t1 = setTimeout(() => setImageLoading(false), 900)
-        const t2 = setTimeout(() => setVideoLoading(false), 1200)
-        const t3 = setTimeout(() => setIframeLoading(false), 1000)
+        document.documentElement.setAttribute('data-theme', activeMode)
+    }, [activeMode])
 
-        return () => {
-            clearTimeout(t1)
-            clearTimeout(t2)
-            clearTimeout(t3)
-        }
-    }, [])
+
+
 
     const handleDelete = () => {
         console.log('Item deleted')
         setDeleteDialog(false)
     }
 
+    const DisplayModeToggle = ({ mode, label }) => {
+        const handleToggle = () => {
+            setActiveMode(mode)
+            document.documentElement.setAttribute('data-theme', mode)
+        }
+        return (
+            <button
+                className={`mode-toggle ${activeMode === mode ? 'active' : ''}`}
+                onClick={handleToggle}
+            >
+                {label}
+            </button>
+        )
+    }
     return (
         <>
+            <div className="element">
+                <h1>UI Component Library Showcase</h1>
+                <p>
+                    This page demonstrates the various components available in our UI library, including different states, variants, and responsive behaviors. Explore the inputs, buttons, images, and skeleton loaders to see how they can be used in your projects.
+                </p>
+            </div>
+            <div className="displaymode">
+                <h2>Display Modes</h2>
+                <DisplayModeToggle mode="light" label="Light Mode" />
+                <DisplayModeToggle mode="dark" label="Dark Mode" />
+                <DisplayModeToggle mode="high-contrast" label="High Contrast Mode" />
+            </div>
             <div className="elements-grid">
                 <div className="element">
                     <h2>Input Variants</h2>
@@ -153,27 +175,28 @@ const Home = () => {
 
                 <div className="element">
                     <h2>Skeleton (Image)</h2>
-                    {imageLoading ? (
-                        <Skeleton type="image" aspectRatio="4/3" />
-                    ) : (
+                    <div style={{ position: 'relative' }}>
+                        {imageLoading && <Skeleton type="image" aspectRatio="4/3" />}
                         <img
                             src="/image-placeholder.png"
                             alt="Image placeholder"
-                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}
+                            onLoad={() => setImageLoading(false)}
+                            onError={() => setImageLoading(false)}
+                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: imageLoading ? 'none' : 'block' }}
                         />
-                    )}
+                    </div>
                 </div>
 
                 <div className="element">
                     <h2>Skeleton (Vidéo)</h2>
-                    {videoLoading ? (
-                        <Skeleton type="video" aspectRatio="16/9" />
-                    ) : (
+                    <div style={{ position: 'relative' }}>
+                        {videoLoading && <Skeleton type="video" />}
                         <video
                             controls
                             preload="metadata"
                             poster="/image-placeholder.png"
-                            style={{ width: '100%', aspectRatio: '16/9' }}
+                            onLoadedMetadata={() => setVideoLoading(false)}
+                            style={{ width: '100%', aspectRatio: '16/9', display: videoLoading ? 'none' : 'block' }}
                         >
                             <source
                                 src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
@@ -181,23 +204,23 @@ const Home = () => {
                             />
                             Votre navigateur ne supporte pas la vidéo.
                         </video>
-                    )}
+                    </div>
                 </div>
 
                 <div className="element">
                     <h2>Skeleton (Iframe)</h2>
-                    {iframeLoading ? (
-                        <Skeleton type="iframe" aspectRatio="16/9" />
-                    ) : (
+                    <div style={{ position: 'relative' }}>
+                        {iframeLoading && <Skeleton type="iframe" />}
                         <iframe
                             width="100%"
-                            style={{ aspectRatio: '16/9', border: 'none' }}
+                            onLoad={() => setIframeLoading(false)}
+                            style={{ aspectRatio: '16/9', border: 'none', display: iframeLoading ? 'none' : 'block' }}
                             src="https://www.youtube.com/embed/jNQXAC9IVRw"
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen
                         />
-                    )}
+                    </div>
                 </div>
 
             </div>

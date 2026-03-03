@@ -1,69 +1,49 @@
-/* ============================================
-   Skeleton (theme-driven)
-   ============================================ */
-
 .skeleton {
     display: block;
     position: relative;
     overflow: hidden;
     border-radius: var(--skeleton-radius);
-    background: linear-gradient(90deg,
-            var(--skeleton-base) 0%,
-            var(--skeleton-highlight) 45%,
-            var(--skeleton-base) 100%);
-    background-size: 200% 100%;
+    background: var(--skeleton-base);
 }
 
-@keyframes skeleton-shimmer {
-    0% {
-        background-position: 200% 0;
-    }
-
-    100% {
-        background-position: -200% 0;
+@keyframes sk-shimmer {
+    to {
+        transform: translateX(200%);
     }
 }
 
-@keyframes skeleton-pulse {
-
-    0%,
-    100% {
-        opacity: 1;
-    }
-
+@keyframes sk-pulse {
     50% {
-        opacity: 0.6;
+        opacity: .5;
     }
 }
 
-.skeleton--shimmer {
-    animation: skeleton-shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
-    will-change: background-position;
+.skeleton--shimmer::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(90deg, transparent, var(--skeleton-highlight), transparent);
+    animation: sk-shimmer var(--skeleton-duration) var(--skeleton-easing) infinite;
 }
 
 .skeleton--pulse {
-    animation: skeleton-pulse calc(var(--skeleton-duration) * 1.1) var(--skeleton-easing) infinite;
-    will-change: opacity;
+    animation: sk-pulse calc(var(--skeleton-duration) * 1.1) var(--skeleton-easing) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
 
-    .skeleton--shimmer,
+    .skeleton--shimmer::after,
     .skeleton--pulse {
         animation: none;
     }
 }
-
-/* ============================================
-   Types
-   ============================================ */
 
 .skeleton--block {
     width: 100%;
     min-height: 10rem;
 }
 
-/* Media: image / video / iframe */
 .skeleton--image,
 .skeleton--video,
 .skeleton--iframe {
@@ -76,26 +56,12 @@
     border: 1px solid var(--border-primary);
 }
 
-/* petit hint “play” pour la vidéo */
-.skeleton--video::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at center,
-            color-mix(in oklch, var(--text-tertiary), transparent 70%) 0 2.4rem,
-            transparent 2.5rem);
-    pointer-events: none;
-}
-
-/* Circle (avatar, etc.) */
 .skeleton--circle {
     width: var(--skeleton-circle-size);
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 1;
     border-radius: var(--radius-full);
 }
 
-/* Text line */
 .skeleton--text {
     width: 100%;
     height: 1em;

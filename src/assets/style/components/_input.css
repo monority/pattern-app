@@ -33,7 +33,7 @@
 
     .input-element:focus {
         border-color: var(--focus-ring);
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 10%, transparent);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 20%, transparent);
     }
 
     .input-element:disabled {
