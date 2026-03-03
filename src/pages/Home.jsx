@@ -8,6 +8,7 @@ import Accordion from '../components/utils/Accordion'
 import Avatar, { AvatarGroup } from '../components/utils/Avatar'
 import Card from '../components/utils/Card'
 import Divider from '../components/utils/Divider'
+import Tooltip from '../components/utils/Tooltip'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -293,6 +294,16 @@ const Home = () => {
                     <Divider orientation="vertical" />
                     <span>Droite</span>
                 </div>
+            </div>
+            <div className="tooptip-container">
+                <h2>Tooltip</h2>
+                <Tooltip content="Supprimer l'élément" placement="top">
+                    <Button variant="danger">Delete</Button>
+                </Tooltip>
+
+                <Tooltip content="Copié !" placement="right" delay={0}>
+                    <span>Copier</span>
+                </Tooltip>
             </div>
 
         </>
