@@ -7,6 +7,7 @@
 @import "./components/_accordion.css";
 @import "./components/_avatar.css";
 @import "./components/_card.css";
+@import "./components/_divider.css";
 
 @layer components {
     #app-container {

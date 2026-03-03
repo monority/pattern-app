@@ -7,6 +7,7 @@ import Skeleton from '../components/utils/Skeleton'
 import Accordion from '../components/utils/Accordion'
 import Avatar, { AvatarGroup } from '../components/utils/Avatar'
 import Card from '../components/utils/Card'
+import Divider from '../components/utils/Divider'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -245,7 +246,7 @@ const Home = () => {
                     { title: 'Item 2', content: 'Contenu du deuxième item.' },
                     { title: 'Item 3', content: 'Contenu du troisième item.' },
                 ]} />
-            </div>]
+            </div>
             <div className="avatar-container">
                 <h2>Avatar</h2>
                 <Avatar src="/user.jpg" alt="John Doe" size="lg" status="online" />
@@ -277,6 +278,21 @@ const Home = () => {
                         <Button variant="ghost" size="sm">Cancel</Button>
                     </Card.Footer>
                 </Card>
+            </div>
+            <div className="divider-container">
+                <h2>Divider</h2>
+                <Divider />
+
+                <Divider label="ou" />
+
+                <Divider label="Section" align="start" />
+                <Divider label="fin" align="end" />
+
+                <div style={{ display: 'flex', height: '4rem' }}>
+                    <span>Gauche</span>
+                    <Divider orientation="vertical" />
+                    <span>Droite</span>
+                </div>
             </div>
 
         </>
