@@ -176,28 +176,28 @@ const Home = () => {
 
                 <div className="element">
                     <h2>Skeleton (Image)</h2>
-                    <div style={{ position: 'relative' }}>
-                        {imageLoading && <Skeleton type="image" aspectRatio="4/3" />}
+                    <div className="media-loader" data-loading={String(imageLoading)}>
+                        <Skeleton type="image" aspectRatio="4/3" />
                         <img
                             src="/image-placeholder.png"
                             alt="Image placeholder"
                             onLoad={() => setImageLoading(false)}
                             onError={() => setImageLoading(false)}
-                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover', display: imageLoading ? 'none' : 'block' }}
+                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}
                         />
                     </div>
                 </div>
 
                 <div className="element">
                     <h2>Skeleton (Vidéo)</h2>
-                    <div style={{ position: 'relative' }}>
-                        {videoLoading && <Skeleton type="video" />}
+                    <div className="media-loader" data-loading={String(videoLoading)}>
+                        <Skeleton type="video" />
                         <video
                             controls
                             preload="metadata"
                             poster="/image-placeholder.png"
                             onLoadedMetadata={() => setVideoLoading(false)}
-                            style={{ width: '100%', aspectRatio: '16/9', display: videoLoading ? 'none' : 'block' }}
+                            style={{ width: '100%', aspectRatio: '16/9' }}
                         >
                             <source
                                 src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
@@ -210,12 +210,12 @@ const Home = () => {
 
                 <div className="element">
                     <h2>Skeleton (Iframe)</h2>
-                    <div style={{ position: 'relative' }}>
-                        {iframeLoading && <Skeleton type="iframe" />}
+                    <div className="media-loader" data-loading={String(iframeLoading)}>
+                        <Skeleton type="iframe" />
                         <iframe
                             width="100%"
                             onLoad={() => setIframeLoading(false)}
-                            style={{ aspectRatio: '16/9', border: 'none', display: iframeLoading ? 'none' : 'block' }}
+                            style={{ aspectRatio: '16/9', border: 'none' }}
                             src="https://www.youtube.com/embed/jNQXAC9IVRw"
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
