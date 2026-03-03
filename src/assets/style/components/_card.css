@@ -1,0 +1,111 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--radius-lg);
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-primary);
+    overflow: hidden;
+    transition: box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.card--hover:hover,
+.card--clickable:hover {
+    box-shadow: 0 4px 24px color-mix(in oklch, var(--text-primary), transparent 88%);
+    transform: translateY(-2px);
+}
+
+.card--clickable {
+    cursor: pointer;
+}
+
+.card--clickable:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* Variants */
+.card--elevated {
+    box-shadow: 0 2px 12px color-mix(in oklch, var(--text-primary), transparent 92%);
+    border-color: transparent;
+}
+
+.card--outlined {
+    background: transparent;
+    border: 1px solid var(--border-primary);
+}
+
+.card--flat {
+    background: transparent;
+    border: none;
+}
+
+/* Media */
+.card__media {
+    width: 100%;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform var(--transition-slow);
+}
+
+.card--hover:hover .card__media img,
+.card--clickable:hover .card__media img {
+    transform: scale(1.03);
+}
+
+/* Header */
+.card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    padding-bottom: 0;
+}
+
+.card__header-text {
+    flex: 1;
+    min-width: 0;
+}
+
+.card__header-action {
+    flex-shrink: 0;
+}
+
+.card__title {
+    font-size: var(--font-size-md);
+    font-weight: 600;
+    color: var(--text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card__subtitle {
+    font-size: var(--font-size-sm);
+    color: var(--text-secondary);
+    margin-top: var(--space-xxs);
+}
+
+/* Body */
+.card__body {
+    padding: var(--space-lg);
+    flex: 1;
+    font-size: var(--font-size-md);
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Footer */
+.card__footer {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border-secondary);
+}

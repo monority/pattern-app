@@ -6,6 +6,7 @@ import { AlertDialog } from '../components/utils/AlertDialog'
 import Skeleton from '../components/utils/Skeleton'
 import Accordion from '../components/utils/Accordion'
 import Avatar, { AvatarGroup } from '../components/utils/Avatar'
+import Card from '../components/utils/Card'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -258,6 +259,26 @@ const Home = () => {
                     <Avatar name="Diana" />
                 </AvatarGroup>
             </div>
+            <div className="card-container">
+                <h2>Card</h2>
+                <Card variant="elevated" hover>
+                    <Card.Media src="/photo.jpg" alt="Cover" aspectRatio="16/9" />
+                    <Card.Header
+                        title="Card Title"
+                        subtitle="Subtitle text"
+                        action={<Button size="sm">···</Button>}
+                        avatar={<Avatar name="John" size="sm" />}
+                    />
+                    <Card.Body>
+                        Some description content here.
+                    </Card.Body>
+                    <Card.Footer>
+                        <Button variant="primary" size="sm">Action</Button>
+                        <Button variant="ghost" size="sm">Cancel</Button>
+                    </Card.Footer>
+                </Card>
+            </div>
+
         </>
     )
 }
