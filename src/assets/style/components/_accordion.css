@@ -50,10 +50,10 @@
 
 .accordion__content {
     overflow: hidden;
-    padding: 0 var(--space-lg);
     font-size: var(--font-size-md);
     color: var(--text-secondary);
     transition: padding var(--transition-base);
+    background: var(--bg-primary)
 }
 
 .accordion__item--open .accordion__content {

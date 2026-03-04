@@ -5,10 +5,10 @@ import Image from '../components/utils/Image'
 import { AlertDialog } from '../components/utils/AlertDialog'
 import Skeleton from '../components/utils/Skeleton'
 import Accordion from '../components/utils/Accordion'
-import Avatar, { AvatarGroup } from '../components/utils/Avatar'
-import Card from '../components/utils/Card'
-import Divider from '../components/utils/Divider'
-import Tooltip from '../components/utils/Tooltip'
+import Avatar, { AvatarGroup } from '../components/content/Avatar'
+import Card from '../components/content/Card'
+import Divider from '../components/content/Divider'
+import Tooltip from '../components/content/Tooltip'
 
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
@@ -228,84 +228,74 @@ const Home = () => {
                     </div>
                 </div>
 
-            </div>
-            <AlertDialog
-                isOpen={deleteDialog}
-                onClose={() => setDeleteDialog(false)}
-                onConfirm={handleDelete}
-                variant="danger"
-                title="Delete Item"
-                description="Are you sure you want to delete this item? This action cannot be undone."
-                confirmText="Delete"
-                cancelText="Cancel"
-            />
 
-            <div className="accordion-container">
-                <h2>Accordion</h2>
-                <Accordion items={[
-                    { title: 'Item 1', content: 'Contenu du premier item.' },
-                    { title: 'Item 2', content: 'Contenu du deuxième item.' },
-                    { title: 'Item 3', content: 'Contenu du troisième item.' },
-                ]} />
-            </div>
-            <div className="avatar-container">
-                <h2>Avatar</h2>
-                <Avatar src="/user.jpg" alt="John Doe" size="lg" status="online" />
-
-                <Avatar name="John Doe" size="md" shape="square" />
-
-                <AvatarGroup max={3}>
-                    <Avatar src="/a.jpg" name="Alice" />
-                    <Avatar src="/b.jpg" name="Bob" />
-                    <Avatar name="Charlie" />
-                    <Avatar name="Diana" />
-                </AvatarGroup>
-            </div>
-            <div className="card-container">
-                <h2>Card</h2>
-                <Card variant="elevated" hover>
-                    <Card.Media src="/photo.jpg" alt="Cover" aspectRatio="16/9" />
-                    <Card.Header
-                        title="Card Title"
-                        subtitle="Subtitle text"
-                        action={<Button size="sm">···</Button>}
-                        avatar={<Avatar name="John" size="sm" />}
-                    />
-                    <Card.Body>
-                        Some description content here.
-                    </Card.Body>
-                    <Card.Footer>
-                        <Button variant="primary" size="sm">Action</Button>
-                        <Button variant="ghost" size="sm">Cancel</Button>
-                    </Card.Footer>
-                </Card>
-            </div>
-            <div className="divider-container">
-                <h2>Divider</h2>
-                <Divider />
-
-                <Divider label="ou" />
-
-                <Divider label="Section" align="start" />
-                <Divider label="fin" align="end" />
-
-                <div style={{ display: 'flex', height: '4rem' }}>
-                    <span>Gauche</span>
-                    <Divider orientation="vertical" />
-                    <span>Droite</span>
+                <div className="element">
+                    <h2>Accordion</h2>
+                    <Accordion items={[
+                        { title: 'Item 1', content: 'Contenu du premier item.' },
+                        { title: 'Item 2', content: 'Contenu du deuxième item.' },
+                        { title: 'Item 3', content: 'Contenu du troisième item.' },
+                    ]} />
                 </div>
-            </div>
-            <div className="tooptip-container">
-                <h2>Tooltip</h2>
-                <Tooltip content="Supprimer l'élément" placement="top">
-                    <Button variant="danger">Delete</Button>
-                </Tooltip>
+                <div className="element">
+                    <h2>Avatar</h2>
+                    <Avatar src="/user.jpg" alt="John Doe" size="lg" status="online" />
 
-                <Tooltip content="Copié !" placement="right" delay={0}>
-                    <span>Copier</span>
-                </Tooltip>
-            </div>
+                    <Avatar name="John Doe" size="md" shape="square" />
 
+                    <AvatarGroup max={3}>
+                        <Avatar src="/a.jpg" name="Alice" />
+                        <Avatar src="/b.jpg" name="Bob" />
+                        <Avatar name="Charlie" />
+                        <Avatar name="Diana" />
+                    </AvatarGroup>
+                </div>
+                <div className="element">
+                    <h2>Card</h2>
+                    <Card variant="elevated" hover>
+                        <Card.Media src="/photo.jpg" alt="Cover" aspectRatio="16/9" />
+                        <Card.Header
+                            title="Card Title"
+                            subtitle="Subtitle text"
+                            action={<Button size="sm">···</Button>}
+                            avatar={<Avatar name="John" size="sm" />}
+                        />
+                        <Card.Body>
+                            Some description content here.
+                        </Card.Body>
+                        <Card.Footer>
+                            <Button variant="primary" size="sm">Action</Button>
+                            <Button variant="ghost" size="sm">Cancel</Button>
+                        </Card.Footer>
+                    </Card>
+                </div>
+                <div className="element">
+                    <h2>Divider</h2>
+                    <Divider />
+
+                    <Divider label="ou" />
+
+                    <Divider label="Section" align="start" />
+                    <Divider label="fin" align="end" />
+
+                    <div style={{ display: 'flex', height: '4rem' }}>
+                        <span>Gauche</span>
+                        <Divider orientation="vertical" />
+                        <span>Droite</span>
+                    </div>
+                </div>
+                <div className="element">
+                    <h2>Tooltip</h2>
+                    <Tooltip content="Supprimer l'élément" placement="top">
+                        <Button variant="danger">Delete</Button>
+                    </Tooltip>
+
+                    <Tooltip content="Copié !" placement="right" delay={0}>
+                        <span>Copier</span>
+                    </Tooltip>
+                </div>
+
+            </div>
         </>
     )
 }

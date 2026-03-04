@@ -109,8 +109,9 @@
 
     /* Outline variant */
     .btn-outline {
-        background-color: transparent;
-        color: var(--btn-outline-text);
+        background-color: var(--brand-primary);
+        border: var(--);
+        color: var(--brand-primary-text);
     }
 
     .btn-outline:hover:not(:disabled) {

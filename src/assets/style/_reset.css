@@ -170,7 +170,7 @@
     [data-theme="light"] {
         /* Background colors */
         --bg-primary: oklch(100% 0.00011 271.152);
-        --bg-secondary: oklch(97.913% 0.00011 271.152);
+        --bg-secondary: #F0F4F7;
         --bg-elevated: oklch(0% 0 0);
 
         /* Text colors */
@@ -194,7 +194,7 @@
         --focus-ring: oklch(13.441% 0.00002 271.152 / 0.438);
 
         /* Brand - Primary */
-        --brand-primary: oklch(91.887% 0.0001 271.152);
+        --brand-primary: oklch(100% 0.00011 271.152);
         --brand-primary-text: oklch(35.233% 0.00004 271.152);
 
         /* Brand - Secondary */
