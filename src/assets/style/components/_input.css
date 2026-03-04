@@ -57,13 +57,13 @@
         font-size: var(--font-size-md);
     }
 
-    .input-default {
+    .input-default,
+    .input-outlined {
         background-color: var(--bg-primary);
     }
 
     .input-outlined {
-        background-color: transparent;
-        border: 2px solid var(--input-border);
+        box-shadow: var(--box-shadow-elevated);
     }
 
     .input-filled {

@@ -165,6 +165,7 @@
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
 
         --input-border: oklch(29.313% 0.00003 271.152);
+        --box-shadow-elevated: inset 0 0 0 2px var(--input-border);
     }
 
     [data-theme="light"] {
@@ -224,8 +225,9 @@
         /* Button variants - Outline */
         --btn-outline-text: oklch(87.61% 0.0001 271.152);
         --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
+        --box-shadow-elevated: inset 0 0 0 2px var(--input-border);
 
-        --input-border: oklch(82.032% 0.00009 271.152);
+        --input-border: oklch(85.142% 0.0001 271.152);
     }
 
     [data-theme="blue"] {
