@@ -13,6 +13,9 @@ import Breadcrumb from '../components/navigation/Breadcrumb'
 import Pagination from '../components/navigation/Pagination'
 import Tabs from '../components/navigation/Tabs'
 import Drawer from '../components/overlay/Drawer'
+import Modal from '../components/overlay/Modal'
+import Checkbox from '../components/utils/Checkbox'
+import Select from '../components/utils/Select'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -21,6 +24,11 @@ const Home = () => {
     const [activeMode, setActiveMode] = useState('light')
     const [page, setPage] = useState(1)
     const [drawerOpen, setDrawerOpen] = useState(false)
+    const [modalOpen, setModalOpen] = useState(false)
+    const [checkedA, setCheckedA] = useState(false)
+    const [checkedB, setCheckedB] = useState(false)
+    const [indeterminateB, setIndeterminateB] = useState(true)
+    const [country, setCountry] = useState('')
     const [drawerPlacement, setDrawerPlacement] = useState('right')
     const drawerRef = useRef(null)
     const pendingPlacement = useRef(null)
@@ -139,6 +147,38 @@ const Home = () => {
                 </div>
 
                 <div className="element">
+                    <h2>Select</h2>
+                    <Select
+                        label="Country"
+                        value={country}
+                        onChange={(e) => setCountry(e.target.value)}
+                        placeholder="Select a country"
+                        options={[
+                            { label: 'France', value: 'fr' },
+                            { label: 'Belgium', value: 'be' },
+                            { label: 'Canada', value: 'ca' },
+                            { label: 'United States', value: 'us' },
+                        ]}
+                        hint={country ? `Selected: ${country}` : 'Pick one option'}
+                        fullWidth
+                    />
+
+                    <Select
+                        label="Outlined"
+                        variant="outlined"
+                        defaultValue="be"
+                        options={['be', 'fr', 'ca']}
+                    />
+
+                    <Select
+                        label="Disabled"
+                        disabled
+                        defaultValue="fr"
+                        options={['fr', 'be']}
+                    />
+                </div>
+
+                <div className="element">
                     <h2>Full Width Input</h2>
                     <Input
                         label="Email Address"
@@ -173,6 +213,30 @@ const Home = () => {
 
                 <div className="element">
                     <Button fullWidth>Full Width Button</Button>
+                </div>
+
+                <div className="element">
+                    <h2>Checkbox</h2>
+                    <Checkbox
+                        checked={checkedA}
+                        onChange={(e) => {
+                            setCheckedA(e.target.checked)
+                        }}
+                        label={checkedA ? 'Checked' : 'Unchecked'}
+                        hint="Controlled checkbox"
+                    />
+
+                    <Checkbox
+                        checked={checkedB}
+                        indeterminate={indeterminateB}
+                        onChange={(e) => {
+                            setCheckedB(e.target.checked)
+                            setIndeterminateB(false)
+                        }}
+                        label="Indeterminate (click to resolve)"
+                    />
+
+                    <Checkbox disabled defaultChecked label="Disabled" />
                 </div>
 
                 <div className="element">
@@ -378,7 +442,30 @@ const Home = () => {
                         <p>Drawer content goes here. You can put any content inside the drawer.</p>
                     </Drawer>
                 </div>
+
+                <div className="element">
+                    <h2>Modal</h2>
+                    <Button variant="primary" onClick={() => setModalOpen(true)}>
+                        Open Modal
+                    </Button>
+                </div>
             </div>
+
+            <Modal
+                isOpen={modalOpen}
+                onClose={() => setModalOpen(false)}
+                title="Modal Title"
+                description="This is a reusable modal component with keyboard and overlay close behavior."
+                footer={
+                    <>
+                        <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
+                        <Button variant="primary" onClick={() => setModalOpen(false)}>Confirm</Button>
+                    </>
+                }
+            >
+                <p>You can place any content here, including forms, details, or custom actions.</p>
+            </Modal>
+
             <AlertDialog
                 isOpen={deleteDialog}
                 onClose={() => setDeleteDialog(false)}
