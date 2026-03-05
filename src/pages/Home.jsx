@@ -10,12 +10,14 @@ import Card from '../components/content/Card'
 import Divider from '../components/content/Divider'
 import Tooltip from '../components/content/Tooltip'
 import Breadcrumb from '../components/navigation/Breadcrumb'
+import Pagination from '../components/navigation/Pagination'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
     const [videoLoading, setVideoLoading] = useState(true)
     const [iframeLoading, setIframeLoading] = useState(true)
     const [activeMode, setActiveMode] = useState('light')
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', activeMode)
@@ -303,6 +305,14 @@ const Home = () => {
                             { label: 'Page courante' },
                         ]}
                         separator="›"
+                    />
+                </div>
+                <div className="element">
+                    <h2>Pagination</h2>
+                    <Pagination
+                        page={page}
+                        total={10}
+                        onChange={setPage}
                     />
                 </div>
             </div>
