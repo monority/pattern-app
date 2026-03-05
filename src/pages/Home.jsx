@@ -9,7 +9,7 @@ import Avatar, { AvatarGroup } from '../components/content/Avatar'
 import Card from '../components/content/Card'
 import Divider from '../components/content/Divider'
 import Tooltip from '../components/content/Tooltip'
-
+import Breadcrumb from '../components/navigation/Breadcrumb'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -294,7 +294,17 @@ const Home = () => {
                         <span>Copier</span>
                     </Tooltip>
                 </div>
-
+                <div className="element">
+                    <h2>Breadcrumb</h2>
+                    <Breadcrumb
+                        items={[
+                            { label: 'Accueil', href: '/' },
+                            { label: 'Catégorie', href: '/categorie' },
+                            { label: 'Page courante' },
+                        ]}
+                        separator="›"
+                    />
+                </div>
             </div>
         </>
     )
