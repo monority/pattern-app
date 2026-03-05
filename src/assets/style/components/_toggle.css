@@ -1,0 +1,158 @@
+@layer components {
+    .toggle {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .toggle__label {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        color: var(--text-primary);
+        cursor: pointer;
+        user-select: none;
+        width: fit-content;
+    }
+
+    .toggle__input {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        margin: -1px;
+        padding: 0;
+        border: 0;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+    }
+
+    .toggle__track {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        flex-shrink: 0;
+        width: 2.5rem;
+        height: 1.5rem;
+        border-radius: var(--radius-full);
+        border: 1px solid var(--input-border);
+        background: var(--bg-secondary);
+        transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+    }
+
+    .toggle__thumb {
+        position: absolute;
+        left: 0.15rem;
+        width: 1.2rem;
+        height: 1.2rem;
+        border-radius: var(--radius-full);
+        background: var(--bg-primary);
+        box-shadow: 0 6px 18px color-mix(in oklch, var(--text-primary), transparent 85%);
+        transform: translateX(0);
+        transition: transform var(--transition-fast), background var(--transition-fast);
+    }
+
+    .toggle-sm .toggle__track {
+        width: 2.1rem;
+        height: 1.25rem;
+    }
+
+    .toggle-sm .toggle__thumb {
+        width: 1rem;
+        height: 1rem;
+    }
+
+    .toggle-lg .toggle__track {
+        width: 3rem;
+        height: 1.75rem;
+    }
+
+    .toggle-lg .toggle__thumb {
+        width: 1.4rem;
+        height: 1.4rem;
+    }
+
+    .toggle__text {
+        font-size: var(--font-size-sm);
+        line-height: 1.4;
+    }
+
+    .toggle-sm .toggle__text {
+        font-size: var(--font-size-xs);
+    }
+
+    .toggle-lg .toggle__text {
+        font-size: var(--font-size-md);
+    }
+
+    .toggle__required {
+        color: var(--status-danger);
+        margin-left: var(--space-xs);
+    }
+
+    /* Interactions */
+    .toggle__label:hover .toggle__track {
+        border-color: color-mix(in oklch, var(--focus-ring) 55%, var(--input-border));
+        transform: translateY(-0.5px);
+    }
+
+    .toggle__label:active .toggle__track {
+        transform: translateY(0);
+    }
+
+    .toggle__input:focus-visible + .toggle__track {
+        outline: 2px solid var(--focus-ring);
+        outline-offset: 2px;
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 18%, transparent);
+    }
+
+    /* Checked */
+    .toggle__input:checked + .toggle__track {
+        background: var(--brand-primary);
+        border-color: var(--brand-primary);
+    }
+
+    .toggle__input:checked + .toggle__track .toggle__thumb {
+        transform: translateX(1rem);
+        background: var(--brand-primary-text);
+    }
+
+    .toggle-sm .toggle__input:checked + .toggle__track .toggle__thumb {
+        transform: translateX(0.85rem);
+    }
+
+    .toggle-lg .toggle__input:checked + .toggle__track .toggle__thumb {
+        transform: translateX(1.25rem);
+    }
+
+    /* Disabled */
+    .toggle__input:disabled + .toggle__track,
+    .toggle-disabled .toggle__label {
+        opacity: var(--opacity-disabled);
+        cursor: not-allowed;
+    }
+
+    .toggle-disabled .toggle__label:hover .toggle__track {
+        transform: none;
+        border-color: var(--input-border);
+    }
+
+    /* Error */
+    .toggle-error .toggle__track {
+        border-color: var(--status-danger);
+    }
+
+    .toggle-error .toggle__input:checked + .toggle__track {
+        background: color-mix(in oklch, var(--status-danger) 85%, var(--brand-primary));
+        border-color: var(--status-danger);
+    }
+
+    .toggle__hint {
+        color: var(--text-secondary);
+        font-size: var(--font-size-xs);
+    }
+
+    .toggle__error {
+        color: var(--status-danger);
+        font-size: var(--font-size-xs);
+    }
+}

@@ -16,6 +16,8 @@ import Drawer from '../components/overlay/Drawer'
 import Modal from '../components/overlay/Modal'
 import Checkbox from '../components/utils/Checkbox'
 import Select from '../components/utils/Select'
+import Textarea from '../components/utils/Textarea'
+import Toggle from '../components/utils/Toggle'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -29,6 +31,7 @@ const Home = () => {
     const [checkedB, setCheckedB] = useState(false)
     const [indeterminateB, setIndeterminateB] = useState(true)
     const [country, setCountry] = useState('')
+    const [notificationsEnabled, setNotificationsEnabled] = useState(false)
     const [drawerPlacement, setDrawerPlacement] = useState('right')
     const drawerRef = useRef(null)
     const pendingPlacement = useRef(null)
@@ -179,6 +182,30 @@ const Home = () => {
                 </div>
 
                 <div className="element">
+                    <h2>Textarea</h2>
+                    <Textarea
+                        label="Message"
+                        placeholder="Write something..."
+                        hint="This textarea follows Input styles"
+                        rows={4}
+                    />
+
+                    <Textarea
+                        label="Outlined"
+                        variant="outlined"
+                        placeholder="Outlined textarea"
+                        rows={3}
+                    />
+
+                    <Textarea
+                        label="With Error"
+                        placeholder="Try submitting empty"
+                        error="This field is required"
+                        rows={3}
+                    />
+                </div>
+
+                <div className="element">
                     <h2>Full Width Input</h2>
                     <Input
                         label="Email Address"
@@ -237,6 +264,21 @@ const Home = () => {
                     />
 
                     <Checkbox disabled defaultChecked label="Disabled" />
+                </div>
+
+                <div className="element">
+                    <h2>Toggle</h2>
+                    <Toggle
+                        checked={notificationsEnabled}
+                        onChange={(e) => setNotificationsEnabled(e.target.checked)}
+                        label={notificationsEnabled ? 'Notifications: On' : 'Notifications: Off'}
+                        hint="Controlled toggle"
+                    />
+
+                    <Toggle defaultChecked size="sm" label="Small" />
+                    <Toggle size="lg" label="Large" />
+                    <Toggle disabled defaultChecked label="Disabled" />
+                    <Toggle defaultChecked error="Example error state" label="With Error" />
                 </div>
 
                 <div className="element">

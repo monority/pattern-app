@@ -1,0 +1,100 @@
+@layer components {
+    .textarea {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .textarea-full-width {
+        width: 100%;
+    }
+
+    .textarea label {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--text-primary);
+    }
+
+    .textarea label span {
+        color: var(--status-danger);
+        margin-left: var(--space-xs);
+    }
+
+    .textarea-element {
+        width: 100%;
+        padding: var(--space-sm) var(--space-md);
+        border: 1px solid var(--input-border);
+        border-radius: var(--radius-md);
+        font-size: var(--font-size-sm);
+        transition: all var(--transition-base);
+        outline: none;
+        color: var(--text-primary);
+        resize: vertical;
+        min-height: 6rem;
+    }
+
+    .textarea-element::placeholder {
+        color: var(--text-tertiary);
+        opacity: 1;
+    }
+
+    .textarea-element:focus {
+        border-color: var(--focus-ring);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 20%, transparent);
+    }
+
+    .textarea-element:disabled {
+        opacity: var(--opacity-disabled);
+        cursor: not-allowed;
+        pointer-events: none;
+    }
+
+    .textarea-sm {
+        padding: var(--space-xs) var(--space-sm);
+        font-size: var(--font-size-xs);
+        min-height: 5rem;
+    }
+
+    .textarea-md {
+        padding: var(--space-sm) var(--space-md);
+        font-size: var(--font-size-sm);
+    }
+
+    .textarea-lg {
+        padding: var(--space-md) var(--space-lg);
+        font-size: var(--font-size-md);
+        min-height: 7rem;
+    }
+
+    .textarea-default,
+    .textarea-outlined {
+        background-color: var(--bg-primary);
+    }
+
+    .textarea-outlined {
+        box-shadow: var(--box-shadow-elevated);
+    }
+
+    .textarea-filled {
+        background-color: var(--bg-secondary);
+        border: 1px solid transparent;
+    }
+
+    .textarea-error {
+        border-color: var(--status-danger);
+    }
+
+    .textarea-error:focus {
+        box-shadow: 0 0 0 3px color-mix(in oklch, var(--status-danger) 20%, transparent);
+    }
+
+    .textarea span[id$="-error"] {
+        color: var(--status-danger);
+        font-size: var(--font-size-xs);
+    }
+
+    .textarea span[id$="-hint"] {
+        color: var(--text-secondary);
+        font-size: var(--font-size-xs);
+    }
+}
