@@ -56,7 +56,7 @@ const Modal = ({
 
         const focusTimer = window.setTimeout(() => {
             const focusables = getFocusableElements(dialogRef.current)
-            ;(focusables[0] ?? dialogRef.current)?.focus?.()
+                ; (focusables[0] ?? dialogRef.current)?.focus?.()
         }, 0)
 
         return () => {

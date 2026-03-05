@@ -66,7 +66,7 @@ const Drawer = forwardRef((
         const prev = document.activeElement
         const focusTimer = window.setTimeout(() => {
             const focusables = getFocusableElements(nodeRef.current)
-            ;(focusables[0] ?? nodeRef.current)?.focus?.()
+                ; (focusables[0] ?? nodeRef.current)?.focus?.()
         }, 0)
 
         const onKey = (e) => e.key === 'Escape' && close()

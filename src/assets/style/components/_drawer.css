@@ -190,6 +190,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+
     .drawer-root,
     .drawer__overlay,
     .drawer {
