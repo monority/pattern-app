@@ -11,6 +11,7 @@ import Divider from '../components/content/Divider'
 import Tooltip from '../components/content/Tooltip'
 import Breadcrumb from '../components/navigation/Breadcrumb'
 import Pagination from '../components/navigation/Pagination'
+import Tabs from '../components/navigation/Tabs'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -305,6 +306,17 @@ const Home = () => {
                             { label: 'Page courante' },
                         ]}
                         separator="›"
+                    />
+                </div>
+                <div className="element">
+                    <h2>Tabs</h2>
+                    <Tabs
+                        variant="pill"
+                        tabs={[
+                            { value: 'overview', label: 'Overview', content: <p>...</p> },
+                            { value: 'settings', label: 'Settings', content: <p>...</p> },
+                            { value: 'logs', label: 'Logs', content: <p>...</p>, disabled: true },
+                        ]}
                     />
                 </div>
                 <div className="element">
