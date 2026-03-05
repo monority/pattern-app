@@ -12,6 +12,7 @@
 @import "./components/_card.css";
 @import "./components/_divider.css";
 @import "./components/_tooltip.css";
+@import "./components/_drawer.css";
 
 @layer components {
     #app-container {
@@ -44,5 +45,34 @@
     .element h2 {
         font-size: var(--font-size-lg);
         color: var(--text-primary);
+    }
+
+    .divider-row {
+        display: flex;
+        height: 4rem;
+        align-items: center;
+    }
+
+    .media-preview {
+        width: 100%;
+        aspect-ratio: 4/3;
+        object-fit: cover;
+    }
+
+    .video-preview {
+        width: 100%;
+        aspect-ratio: 16/9;
+    }
+
+    .iframe-preview {
+        aspect-ratio: 16/9;
+        border: none;
+        width: 100%;
+    }
+
+    .btn-row {
+        display: flex;
+        gap: var(--space-sm);
+        flex-wrap: wrap;
     }
 }

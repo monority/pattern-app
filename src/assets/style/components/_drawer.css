@@ -1,0 +1,190 @@
+.drawer-root {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    pointer-events: none;
+    visibility: hidden;
+    /* delay hiding until exit animation completes */
+    transition: visibility 0s linear 220ms;
+}
+
+.drawer-root--open {
+    pointer-events: auto;
+    visibility: visible;
+    transition: none;
+}
+
+/* ── Overlay ── */
+.drawer__overlay {
+    position: absolute;
+    inset: 0;
+    background: color-mix(in oklch, var(--text-primary), transparent 60%);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.drawer-root--open .drawer__overlay {
+    opacity: 1;
+}
+
+/* ── Panel base ── */
+.drawer {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-primary);
+    box-shadow: 0 8px 40px color-mix(in oklch, var(--text-primary), transparent 80%);
+    transition: transform var(--transition-base);
+}
+
+/* ── Placements ── */
+.drawer--right {
+    top: 0;
+    right: 0;
+    height: 100%;
+    transform: translateX(100%);
+}
+
+.drawer--right.drawer--open {
+    transform: translateX(0);
+}
+
+.drawer--left {
+    top: 0;
+    left: 0;
+    height: 100%;
+    transform: translateX(-100%);
+}
+
+.drawer--left.drawer--open {
+    transform: translateX(0);
+}
+
+.drawer--top {
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(-100%);
+}
+
+.drawer--top.drawer--open {
+    transform: translateY(0);
+}
+
+.drawer--bottom {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(100%);
+}
+
+.drawer--bottom.drawer--open {
+    transform: translateY(0);
+}
+
+/* ── Sizes (width for left/right, height for top/bottom) ── */
+.drawer--right.drawer--sm,
+.drawer--left.drawer--sm {
+    width: 18rem;
+}
+
+.drawer--right.drawer--md,
+.drawer--left.drawer--md {
+    width: 26rem;
+}
+
+.drawer--right.drawer--lg,
+.drawer--left.drawer--lg {
+    width: 38rem;
+}
+
+.drawer--right.drawer--full,
+.drawer--left.drawer--full {
+    width: 100%;
+}
+
+.drawer--top.drawer--sm,
+.drawer--bottom.drawer--sm {
+    height: 12rem;
+}
+
+.drawer--top.drawer--md,
+.drawer--bottom.drawer--md {
+    height: 20rem;
+}
+
+.drawer--top.drawer--lg,
+.drawer--bottom.drawer--lg {
+    height: 32rem;
+}
+
+.drawer--top.drawer--full,
+.drawer--bottom.drawer--full {
+    height: 100%;
+}
+
+/* ── Header ── */
+.drawer__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    border-bottom: 1px solid var(--border-primary);
+    flex-shrink: 0;
+}
+
+.drawer__title {
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.drawer__close {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: var(--radius-md);
+    border: none;
+    background: transparent;
+    color: var(--text-secondary);
+    cursor: pointer;
+    flex-shrink: 0;
+    margin-left: auto;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.drawer__close:hover {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.drawer__close:focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+}
+
+/* ── Content ── */
+.drawer__content {
+    flex: 1;
+    overflow-y: auto;
+    padding: var(--space-lg);
+    color: var(--text-primary);
+    font-size: var(--font-size-sm);
+}
+
+/* ── Footer ── */
+.drawer__footer {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: var(--space-sm);
+    padding: var(--space-md) var(--space-lg);
+    border-top: 1px solid var(--border-primary);
+    flex-shrink: 0;
+}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import Input from '../components/utils/Input'
 import Button from '../components/utils/Button'
 import Image from '../components/utils/Image'
@@ -12,6 +12,7 @@ import Tooltip from '../components/content/Tooltip'
 import Breadcrumb from '../components/navigation/Breadcrumb'
 import Pagination from '../components/navigation/Pagination'
 import Tabs from '../components/navigation/Tabs'
+import Drawer from '../components/overlay/Drawer'
 const Home = () => {
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
@@ -19,6 +20,19 @@ const Home = () => {
     const [iframeLoading, setIframeLoading] = useState(true)
     const [activeMode, setActiveMode] = useState('light')
     const [page, setPage] = useState(1)
+    const [drawerOpen, setDrawerOpen] = useState(false)
+    const [drawerPlacement, setDrawerPlacement] = useState('right')
+    const drawerRef = useRef(null)
+    const pendingPlacement = useRef(null)
+
+    useEffect(() => {
+        if (!drawerOpen && pendingPlacement.current) {
+            const next = pendingPlacement.current
+            pendingPlacement.current = null
+            setDrawerPlacement(next)
+            setDrawerOpen(true)
+        }
+    }, [drawerOpen])
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', activeMode)
@@ -190,7 +204,7 @@ const Home = () => {
                             alt="Image placeholder"
                             onLoad={() => setImageLoading(false)}
                             onError={() => setImageLoading(false)}
-                            style={{ width: '100%', aspectRatio: '4/3', objectFit: 'cover' }}
+                            className="media-preview"
                         />
                     </div>
                 </div>
@@ -204,7 +218,7 @@ const Home = () => {
                             preload="metadata"
                             poster="/image-placeholder.png"
                             onLoadedMetadata={() => setVideoLoading(false)}
-                            style={{ width: '100%', aspectRatio: '16/9' }}
+                            className="video-preview"
                         >
                             <source
                                 src="https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4"
@@ -222,7 +236,7 @@ const Home = () => {
                         <iframe
                             width="100%"
                             onLoad={() => setIframeLoading(false)}
-                            style={{ aspectRatio: '16/9', border: 'none' }}
+                            className="iframe-preview"
                             src="https://www.youtube.com/embed/jNQXAC9IVRw"
                             title="YouTube video player"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -281,7 +295,7 @@ const Home = () => {
                     <Divider label="Section" align="start" />
                     <Divider label="fin" align="end" />
 
-                    <div style={{ display: 'flex', height: '4rem' }}>
+                    <div className="divider-row">
                         <span>Gauche</span>
                         <Divider orientation="vertical" />
                         <span>Droite</span>
@@ -311,7 +325,7 @@ const Home = () => {
                 <div className="element">
                     <h2>Tabs</h2>
                     <Tabs
-                        variant="pill"
+                        variant="line"
                         tabs={[
                             { value: 'overview', label: 'Overview', content: <p>...</p> },
                             { value: 'settings', label: 'Settings', content: <p>...</p> },
@@ -327,7 +341,54 @@ const Home = () => {
                         onChange={setPage}
                     />
                 </div>
+                <div className="element">
+                    <h2>Drawer</h2>
+                    <div className="btn-row">
+                        {['right', 'left', 'top', 'bottom'].map((p) => (
+                            <Button
+                                key={p}
+                                variant="outline"
+                                onClick={() => {
+                                    if (drawerOpen && drawerPlacement !== p) {
+                                        pendingPlacement.current = p
+                                        drawerRef.current?.close()
+                                    } else {
+                                        setDrawerPlacement(p)
+                                        setDrawerOpen(true)
+                                    }
+                                }}
+                            >
+                                Open {p}
+                            </Button>
+                        ))}
+                    </div>
+                    <Drawer
+                        ref={drawerRef}
+                        open={drawerOpen}
+                        onClose={() => setDrawerOpen(false)}
+                        placement={drawerPlacement}
+                        title="Drawer title"
+                        footer={
+                            <>
+                                <Button variant="secondary" onClick={() => drawerRef.current?.close()}>Cancel</Button>
+                                <Button variant="primary" onClick={() => drawerRef.current?.close()}>Confirm</Button>
+                            </>
+                        }
+                    >
+                        <p>Drawer content goes here. You can put any content inside the drawer.</p>
+                    </Drawer>
+                </div>
             </div>
+            <AlertDialog
+                isOpen={deleteDialog}
+                onClose={() => setDeleteDialog(false)}
+                onConfirm={handleDelete}
+                title="Supprimer l'élément"
+                description="Cette action est irréversible. Voulez-vous vraiment supprimer cet élément ?"
+                confirmText="Supprimer"
+                cancelText="Annuler"
+                variant="danger"
+            />
         </>
     )
 }

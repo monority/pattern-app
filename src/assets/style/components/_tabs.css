@@ -56,12 +56,12 @@
 }
 
 .tabs--line .tabs__tab:hover:not(:disabled) {
-    color: var(--text-primary);
+    color: var(--text-fourth);
 }
 
 .tabs--line .tabs__tab--active {
-    color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
+    color: var(--text-fourth);
+    border-bottom-color: var(--text-fourth);
 }
 
 /* ── Variant: pill ── */
@@ -104,7 +104,7 @@
 }
 
 .tabs--solid .tabs__tab--active {
-    background: var(--color-primary);
+    background: var(--brand-primary);
     color: var(--text-inverse);
 }
 

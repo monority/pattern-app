@@ -16,7 +16,7 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-lg);
-    background: var(--bg-secondary);
+    background: var(--bg-tertiary);
     border: none;
     cursor: pointer;
     font-size: var(--font-size-md);
