@@ -59,3 +59,12 @@
 .accordion__item--open .accordion__content {
     padding: var(--space-lg);
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .accordion__trigger,
+    .accordion__icon,
+    .accordion__body,
+    .accordion__content {
+        transition: none;
+    }
+}

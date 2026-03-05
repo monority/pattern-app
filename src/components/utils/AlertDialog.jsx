@@ -1,7 +1,8 @@
-import React, { memo, useCallback, useEffect, useMemo, useRef } from 'react'
+import React, { memo, useCallback, useEffect, useId, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import Button from './Button'
 import { VariantIcons } from './VariantIcons'
+import { useBodyScrollLock } from '../tools/useBodyScrollLock'
 
 const AlertDialogComponent = ({
     isOpen = false,
@@ -21,11 +22,24 @@ const AlertDialogComponent = ({
     const firstFocusRef = useRef(null)
     const lastFocusRef = useRef(null)
     const previousActiveElement = useRef(null)
+    const titleId = useId()
+    const descriptionId = useId()
+
+    const setConfirmRef = useCallback((node) => {
+        lastFocusRef.current = node
+        if (!showCancel) firstFocusRef.current = node
+    }, [showCancel])
+
+    useBodyScrollLock(isOpen)
 
     useEffect(() => {
         if (isOpen) {
             previousActiveElement.current = document.activeElement
-            firstFocusRef.current?.focus()
+
+            const first = firstFocusRef.current
+            const last = lastFocusRef.current
+            if (first && !first.disabled) first.focus()
+            else last?.focus?.()
         } else if (previousActiveElement.current) {
             previousActiveElement.current.focus()
             previousActiveElement.current = null
@@ -87,22 +101,22 @@ const AlertDialogComponent = ({
             <div
                 role="alertdialog"
                 aria-modal="true"
-                aria-labelledby="alert-dialog-title"
-                aria-describedby={description ? 'alert-dialog-description' : undefined}
+                aria-labelledby={titleId}
+                aria-describedby={description ? descriptionId : undefined}
                 className={`alert-dialog alert-dialog-${variant}`}
             >
                 <div className="alert-dialog-header">
                     {renderedIcon && (
                         <div className="alert-dialog-icon">{renderedIcon}</div>
                     )}
-                    <h2 id="alert-dialog-title" className="alert-dialog-title">
+                    <h2 id={titleId} className="alert-dialog-title">
                         {title}
                     </h2>
                 </div>
 
                 <div className="alert-dialog-body">
                     {description && (
-                        <p id="alert-dialog-description" className="alert-dialog-description">
+                        <p id={descriptionId} className="alert-dialog-description">
                             {description}
                         </p>
                     )}
@@ -121,7 +135,7 @@ const AlertDialogComponent = ({
                         </Button>
                     )}
                     <Button
-                        ref={showCancel ? lastFocusRef : firstFocusRef}
+                        ref={setConfirmRef}
                         variant={variant === 'danger' ? 'danger' : 'primary'}
                         onClick={handleConfirm}
                         isLoading={isLoading}

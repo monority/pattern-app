@@ -18,6 +18,7 @@
 @import "./components/_select.css";
 @import "./components/_textarea.css";
 @import "./components/_toggle.css";
+@import "./components/_toast.css";
 
 @layer components {
     #app-container {

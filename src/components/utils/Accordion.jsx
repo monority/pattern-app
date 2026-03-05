@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 
 const AccordionItem = ({ title, children, isOpen, onToggle }) => (
     <div className={`accordion__item${isOpen ? ' accordion__item--open' : ''}`}>
-        <button className="accordion__trigger" onClick={onToggle} aria-expanded={isOpen}>
+        <button type="button" className="accordion__trigger" onClick={onToggle} aria-expanded={isOpen}>
             <span>{title}</span>
             <svg className="accordion__icon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />

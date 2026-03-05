@@ -18,7 +18,22 @@ import Checkbox from '../components/utils/Checkbox'
 import Select from '../components/utils/Select'
 import Textarea from '../components/utils/Textarea'
 import Toggle from '../components/utils/Toggle'
+import { useToast } from '../components/ui/Toast'
+
+const DisplayModeToggle = ({ mode, label, activeMode, onSelect }) => {
+    return (
+        <button
+            type="button"
+            className={`mode-toggle ${activeMode === mode ? 'active' : ''}`}
+            onClick={() => onSelect(mode)}
+        >
+            {label}
+        </button>
+    )
+}
+
 const Home = () => {
+    const { toast, dismissAll } = useToast()
     const [deleteDialog, setDeleteDialog] = useState(false)
     const [imageLoading, setImageLoading] = useState(true)
     const [videoLoading, setVideoLoading] = useState(true)
@@ -56,21 +71,6 @@ const Home = () => {
         console.log('Item deleted')
         setDeleteDialog(false)
     }
-
-    const DisplayModeToggle = ({ mode, label }) => {
-        const handleToggle = () => {
-            setActiveMode(mode)
-            document.documentElement.setAttribute('data-theme', mode)
-        }
-        return (
-            <button
-                className={`mode-toggle ${activeMode === mode ? 'active' : ''}`}
-                onClick={handleToggle}
-            >
-                {label}
-            </button>
-        )
-    }
     return (
         <>
             <div className="element">
@@ -81,9 +81,9 @@ const Home = () => {
             </div>
             <div className="displaymode">
                 <h2>Display Modes</h2>
-                <DisplayModeToggle mode="light" label="Light Mode" />
-                <DisplayModeToggle mode="dark" label="Dark Mode" />
-                <DisplayModeToggle mode="high-contrast" label="High Contrast Mode" />
+                <DisplayModeToggle mode="light" label="Light Mode" activeMode={activeMode} onSelect={setActiveMode} />
+                <DisplayModeToggle mode="dark" label="Dark Mode" activeMode={activeMode} onSelect={setActiveMode} />
+                <DisplayModeToggle mode="high-contrast" label="High Contrast Mode" activeMode={activeMode} onSelect={setActiveMode} />
             </div>
             <div className="elements-grid">
                 <div className="element">
@@ -279,6 +279,58 @@ const Home = () => {
                     <Toggle size="lg" label="Large" />
                     <Toggle disabled defaultChecked label="Disabled" />
                     <Toggle defaultChecked error="Example error state" label="With Error" />
+                </div>
+
+                <div className="element">
+                    <h2>Toast</h2>
+                    <div className="btn-row">
+                        <Button
+                            variant="primary"
+                            onClick={() => toast({
+                                title: 'Info',
+                                description: 'This is an informational toast.',
+                                variant: 'info',
+                            })}
+                        >
+                            Show info
+                        </Button>
+                        <Button
+                            variant="success"
+                            onClick={() => toast({
+                                title: 'Saved',
+                                description: 'Your changes have been saved.',
+                                variant: 'success',
+                            })}
+                        >
+                            Show success
+                        </Button>
+                        <Button
+                            variant="warning"
+                            onClick={() => toast({
+                                title: 'Warning',
+                                description: 'Please double-check your input.',
+                                variant: 'warning',
+                            })}
+                        >
+                            Show warning
+                        </Button>
+                        <Button
+                            variant="danger"
+                            onClick={() => toast({
+                                title: 'Error',
+                                description: 'Something went wrong.',
+                                variant: 'danger',
+                                actionLabel: 'Retry',
+                                onAction: () => console.log('retry'),
+                                duration: 6000,
+                            })}
+                        >
+                            Show danger
+                        </Button>
+                        <Button variant="secondary" onClick={dismissAll}>
+                            Dismiss all
+                        </Button>
+                    </div>
                 </div>
 
                 <div className="element">

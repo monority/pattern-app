@@ -188,3 +188,11 @@
     border-top: 1px solid var(--border-primary);
     flex-shrink: 0;
 }
+
+@media (prefers-reduced-motion: reduce) {
+    .drawer-root,
+    .drawer__overlay,
+    .drawer {
+        transition: none;
+    }
+}

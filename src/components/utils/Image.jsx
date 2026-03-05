@@ -25,10 +25,12 @@ const ImageComponent = ({
     const imgRef = useRef(null)
     const observerRef = useRef(null)
 
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         setCurrentSrc(src)
         setImageState('loading')
     }, [src])
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     useEffect(() => {
         const imgElement = imgRef.current

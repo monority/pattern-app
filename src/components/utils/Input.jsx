@@ -1,7 +1,8 @@
-import React, { forwardRef, memo, useState } from 'react'
+import React, { forwardRef, memo, useId, useState } from 'react'
 
 const InputComponent = forwardRef((props, ref) => {
     const {
+        id,
         label,
         error,
         hint,
@@ -20,6 +21,11 @@ const InputComponent = forwardRef((props, ref) => {
         type,
         ...rest
     } = props
+
+    const generatedId = useId()
+    const inputId = id ?? `input-${generatedId}`
+    const errorId = error ? `${inputId}-error` : undefined
+    const hintId = hint ? `${inputId}-hint` : undefined
 
     const [showPassword, setShowPassword] = useState(false)
     const isPasswordInput = type === 'password'
@@ -47,7 +53,7 @@ const InputComponent = forwardRef((props, ref) => {
     return (
         <div className={wrapperClasses}>
             {label && (
-                <label className={labelClassName}>
+                <label htmlFor={inputId} className={labelClassName}>
                     {label}
                     {required && <span>*</span>}
                 </label>
@@ -56,11 +62,12 @@ const InputComponent = forwardRef((props, ref) => {
                 {leftIcon}
                 <input
                     ref={ref}
+                    id={inputId}
                     type={inputType}
                     disabled={disabled}
                     required={required}
                     aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? 'input-error' : hint ? 'input-hint' : undefined}
+                    aria-describedby={error ? errorId : hint ? hintId : undefined}
                     className={inputClassName}
                     {...rest}
                 />
@@ -88,12 +95,12 @@ const InputComponent = forwardRef((props, ref) => {
                 {rightIcon}
             </div>
             {error && (
-                <span id="input-error" className={errorClassName} role="alert">
+                <span id={errorId} className={['input__error', errorClassName].filter(Boolean).join(' ')} role="alert">
                     {error}
                 </span>
             )}
             {hint && !error && (
-                <span id="input-hint" className={hintClassName}>
+                <span id={hintId} className={['input__hint', hintClassName].filter(Boolean).join(' ')}>
                     {hint}
                 </span>
             )}

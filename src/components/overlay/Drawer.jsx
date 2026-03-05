@@ -1,6 +1,29 @@
 import React, { useEffect, useRef, useState, useCallback, forwardRef, useImperativeHandle } from 'react'
+import { useBodyScrollLock } from '../tools/useBodyScrollLock'
 
 const DURATION = 220
+
+const getFocusableElements = (container) => {
+    if (!container) return []
+
+    const selectors = [
+        'a[href]',
+        'button:not([disabled])',
+        'textarea:not([disabled])',
+        'input:not([disabled])',
+        'select:not([disabled])',
+        '[tabindex]:not([tabindex="-1"])',
+    ]
+
+    const elements = Array.from(container.querySelectorAll(selectors.join(',')))
+    return elements.filter((el) => {
+        if (!(el instanceof HTMLElement)) return false
+        if (el.hasAttribute('disabled')) return false
+        if (el.getAttribute('aria-hidden') === 'true') return false
+        if (el.tabIndex < 0) return false
+        return true
+    })
+}
 
 const Drawer = forwardRef((
     { open, onClose, placement = 'right', size = 'md', title, children, footer, closeOnOverlay = true, className = '', ...props },
@@ -12,6 +35,7 @@ const Drawer = forwardRef((
     const timerRef = useRef(null)
 
     // Open: mount → next 2 frames → add --open class
+    /* eslint-disable react-hooks/set-state-in-effect */
     useEffect(() => {
         if (!open) return
         setShown(true)
@@ -19,6 +43,7 @@ const Drawer = forwardRef((
             requestAnimationFrame(() => setAnimated(true))
         )
     }, [open])
+    /* eslint-enable react-hooks/set-state-in-effect */
 
     // Close: remove --open → wait → unmount → notify parent
     const close = useCallback(() => {
@@ -31,19 +56,56 @@ const Drawer = forwardRef((
 
     useImperativeHandle(ref, () => ({ close }), [close])
 
+    useBodyScrollLock(shown)
+
     useEffect(() => () => clearTimeout(timerRef.current), [])
 
     // Focus trap + keyboard
     useEffect(() => {
         if (!shown) return
         const prev = document.activeElement
-        nodeRef.current?.focus()
+        const focusTimer = window.setTimeout(() => {
+            const focusables = getFocusableElements(nodeRef.current)
+            ;(focusables[0] ?? nodeRef.current)?.focus?.()
+        }, 0)
+
         const onKey = (e) => e.key === 'Escape' && close()
         document.addEventListener('keydown', onKey)
-        document.body.style.overflow = 'hidden'
+
+        const node = nodeRef.current
+        const onTrapTab = (event) => {
+            if (event.key !== 'Tab') return
+            if (!node) return
+
+            const focusables = getFocusableElements(node)
+            if (!focusables.length) {
+                event.preventDefault()
+                node.focus()
+                return
+            }
+
+            const first = focusables[0]
+            const last = focusables[focusables.length - 1]
+            const active = document.activeElement
+
+            if (event.shiftKey) {
+                if (active === first || active === node) {
+                    event.preventDefault()
+                    last.focus()
+                }
+            } else {
+                if (active === last) {
+                    event.preventDefault()
+                    first.focus()
+                }
+            }
+        }
+
+        node?.addEventListener('keydown', onTrapTab)
         return () => {
+            window.clearTimeout(focusTimer)
             document.removeEventListener('keydown', onKey)
-            document.body.style.overflow = ''
+            node?.removeEventListener('keydown', onTrapTab)
             prev?.focus()
         }
     }, [shown, close])
@@ -67,7 +129,7 @@ const Drawer = forwardRef((
             >
                 <div className="drawer__header">
                     {title && <h2 className="drawer__title">{title}</h2>}
-                    <button className="drawer__close" onClick={close} aria-label="Fermer">
+                    <button type="button" className="drawer__close" onClick={close} aria-label="Fermer">
                         <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                             <line x1="18" y1="6" x2="6" y2="18" />
                             <line x1="6" y1="6" x2="18" y2="18" />

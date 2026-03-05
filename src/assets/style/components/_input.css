@@ -79,12 +79,12 @@
         box-shadow: 0 0 0 3px color-mix(in oklch, var(--status-danger) 20%, transparent);
     }
 
-    .input span[id="input-error"] {
+    .input__error {
         color: var(--status-danger);
         font-size: var(--font-size-xs);
     }
 
-    .input span[id="input-hint"] {
+    .input__hint {
         color: var(--text-secondary);
         font-size: var(--font-size-xs);
     }
