@@ -19,6 +19,7 @@
 @import "./components/_textarea.css";
 @import "./components/_toggle.css";
 @import "./components/_toast.css";
+@import "./components/_spinner.css";
 
 @layer components {
     #app-container {

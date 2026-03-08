@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef, memo } from 'react'
 
+import Spinner from '../ui/Spinner'
+
 const ImageComponent = ({
     src,
     alt = '',
@@ -114,18 +116,7 @@ const ImageComponent = ({
             {placeholder !== 'none' && (
                 <div className={placeholderClasses}>
                     {imageState === 'loading' && (
-                        <svg
-                            className="spinner"
-                            width="40"
-                            height="40"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                        >
-                            <circle cx="12" cy="12" r="10" opacity="0.25" />
-                            <path d="M12 2a10 10 0 0 1 10 10" strokeLinecap="round" />
-                        </svg>
+                        <Spinner decorative style={{ '--spinner-size': '40px' }} />
                     )}
                     {imageState === 'error' && !fallbackSrc && (
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
