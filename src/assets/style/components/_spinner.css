@@ -30,6 +30,10 @@
         --spinner-size: var(--font-size-xl);
     }
 
+    .spinner-40 {
+        --spinner-size: 40px;
+    }
+
     @media (prefers-reduced-motion: reduce) {
         .spinner {
             animation: none;

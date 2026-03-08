@@ -116,7 +116,7 @@ const ImageComponent = ({
             {placeholder !== 'none' && (
                 <div className={placeholderClasses}>
                     {imageState === 'loading' && (
-                        <Spinner decorative style={{ '--spinner-size': '40px' }} />
+                        <Spinner decorative className="spinner-40" />
                     )}
                     {imageState === 'error' && !fallbackSrc && (
                         <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
