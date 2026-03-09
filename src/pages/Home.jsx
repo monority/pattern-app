@@ -15,6 +15,7 @@ import Tabs from '../components/navigation/Tabs'
 import Drawer from '../components/overlay/Drawer'
 import Modal from '../components/overlay/Modal'
 import Checkbox from '../components/utils/Checkbox'
+import Radio from '../components/utils/Radio'
 import Select from '../components/utils/Select'
 import Textarea from '../components/utils/Textarea'
 import Toggle from '../components/utils/Toggle'
@@ -45,6 +46,7 @@ const Home = () => {
     const [checkedA, setCheckedA] = useState(false)
     const [checkedB, setCheckedB] = useState(false)
     const [indeterminateB, setIndeterminateB] = useState(true)
+    const [selectedRadio, setSelectedRadio] = useState('option-1')
     const [country, setCountry] = useState('')
     const [notificationsEnabled, setNotificationsEnabled] = useState(false)
     const [drawerPlacement, setDrawerPlacement] = useState('right')
@@ -264,6 +266,26 @@ const Home = () => {
                     />
 
                     <Checkbox disabled defaultChecked label="Disabled" />
+                </div>
+
+                <div className="element">
+                    <h2>Radio</h2>
+                    <Radio
+                        name="example-radio"
+                        value="option-1"
+                        checked={selectedRadio === 'option-1'}
+                        onChange={() => setSelectedRadio('option-1')}
+                        label={selectedRadio === 'option-1' ? 'Selected: Option 1' : 'Option 1'}
+                        hint="Controlled radio group"
+                    />
+                    <Radio
+                        name="example-radio"
+                        value="option-2"
+                        checked={selectedRadio === 'option-2'}
+                        onChange={() => setSelectedRadio('option-2')}
+                        label="Option 2"
+                    />
+                    <Radio name="example-radio" value="option-3" defaultChecked={false} disabled label="Disabled" />
                 </div>
 
                 <div className="element">

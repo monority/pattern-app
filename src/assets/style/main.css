@@ -15,6 +15,7 @@
 @import "./components/_drawer.css";
 @import "./components/_modal.css";
 @import "./components/_checkbox.css";
+@import "./components/_radio.css";
 @import "./components/_select.css";
 @import "./components/_textarea.css";
 @import "./components/_toggle.css";
