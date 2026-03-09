@@ -1,7 +1,7 @@
 .drawer-root {
     position: fixed;
     inset: 0;
-    z-index: 200;
+    z-index: 1;
     pointer-events: none;
     visibility: hidden;
     /* delay hiding until exit animation completes */

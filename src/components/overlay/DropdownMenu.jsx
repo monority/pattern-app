@@ -3,55 +3,12 @@ import { createPortal } from 'react-dom'
 
 const DropdownMenuContext = createContext(null)
 
-const clamp = (value, min, max) => Math.min(max, Math.max(min, value))
-
 const composeHandlers = (theirHandler, ourHandler) => {
     return (event) => {
         theirHandler?.(event)
         if (event.defaultPrevented) return
         ourHandler?.(event)
     }
-}
-
-const getAnchoredPosition = ({ anchorRect, panelRect, placement, align, offset, viewportPadding }) => {
-    const vw = window.innerWidth
-    const vh = window.innerHeight
-
-    let top = 0
-    let left = 0
-
-    const alignLeft = () => {
-        if (align === 'start') return anchorRect.left
-        if (align === 'end') return anchorRect.right - panelRect.width
-        return anchorRect.left + anchorRect.width / 2 - panelRect.width / 2
-    }
-
-    switch (placement) {
-        case 'top':
-            top = anchorRect.top - panelRect.height - offset
-            left = alignLeft()
-            break
-        case 'bottom':
-        default:
-            top = anchorRect.bottom + offset
-            left = alignLeft()
-            break
-    }
-
-    top = clamp(top, viewportPadding, vh - panelRect.height - viewportPadding)
-    left = clamp(left, viewportPadding, vw - panelRect.width - viewportPadding)
-
-    return { top, left }
-}
-
-const getMenuItems = (container) => {
-    if (!container) return []
-    return Array.from(container.querySelectorAll('[role="menuitem"]')).filter((el) => {
-        if (!(el instanceof HTMLElement)) return false
-        if (el.getAttribute('aria-disabled') === 'true') return false
-        if (el.hasAttribute('disabled')) return false
-        return true
-    })
 }
 
 const DropdownMenu = ({
@@ -61,18 +18,21 @@ const DropdownMenu = ({
     placement = 'bottom',
     align = 'start',
     offset = 8,
-    viewportPadding = 8,
     closeOnEscape = true,
     closeOnOutsideClick = true,
+    closeOnBlur = true,
+    returnFocusOnClose = true,
+    className = '',
     children,
 }) => {
     const [uncontrolledOpen, setUncontrolledOpen] = useState(defaultOpen)
     const open = typeof openProp === 'boolean' ? openProp : uncontrolledOpen
 
+    const rootRef = useRef(null)
     const triggerNodeRef = useRef(null)
-    const menuNodeRef = useRef(null)
 
     const menuId = useId()
+    const triggerId = useId()
 
     const setOpen = useCallback((next) => {
         const value = typeof next === 'function' ? next(open) : next
@@ -90,82 +50,34 @@ const DropdownMenu = ({
         triggerNodeRef.current = node
     }, [])
 
-    const setMenuNode = useCallback((node) => {
-        menuNodeRef.current = node
-    }, [])
-
-    const [menuStyle, setMenuStyle] = useState(null)
-
-    const updatePosition = useCallback(() => {
-        const triggerNode = triggerNodeRef.current
-        const menuNode = menuNodeRef.current
-        if (!triggerNode || !menuNode) return
-
-        const triggerRect = triggerNode.getBoundingClientRect()
-        const menuRect = menuNode.getBoundingClientRect()
-
-        const pos = getAnchoredPosition({
-            anchorRect: triggerRect,
-            panelRect: menuRect,
-            placement,
-            align,
-            offset,
-            viewportPadding,
-        })
-
-        setMenuStyle({
-            position: 'fixed',
-            top: pos.top,
-            left: pos.left,
-            visibility: 'visible',
-        })
-    }, [placement, align, offset, viewportPadding])
-
     useEffect(() => {
+        if (open) return
+        if (!returnFocusOnClose) return
+        triggerNodeRef.current?.focus?.()
+    }, [open, returnFocusOnClose])
+
+    const onKeyDownCapture = (event) => {
         if (!open) return
+        if (!closeOnEscape) return
+        if (event.key !== 'Escape') return
 
-        const raf = requestAnimationFrame(() => updatePosition())
+        event.preventDefault()
+        close()
+    }
 
-        const onScrollOrResize = () => updatePosition()
-        window.addEventListener('resize', onScrollOrResize)
-        window.addEventListener('scroll', onScrollOrResize, true)
+    const onBlurCapture = (event) => {
+        if (!open) return
+        if (!closeOnBlur) return
 
-        return () => {
-            cancelAnimationFrame(raf)
-            window.removeEventListener('resize', onScrollOrResize)
-            window.removeEventListener('scroll', onScrollOrResize, true)
-        }
-    }, [open, updatePosition])
-
-    useEffect(() => {
-        if (!open || !closeOnOutsideClick) return
-
-        const onPointerDown = (event) => {
-            const target = event.target
-            if (!(target instanceof Node)) return
-
-            if (triggerNodeRef.current?.contains(target)) return
-            if (menuNodeRef.current?.contains(target)) return
-
+        const nextFocused = event.relatedTarget
+        if (!(nextFocused instanceof Node)) {
             close()
+            return
         }
 
-        document.addEventListener('pointerdown', onPointerDown, true)
-        return () => document.removeEventListener('pointerdown', onPointerDown, true)
-    }, [open, closeOnOutsideClick, close])
-
-    useEffect(() => {
-        if (!open || !closeOnEscape) return
-
-        const onKeyDown = (event) => {
-            if (event.key !== 'Escape') return
-            event.preventDefault()
-            close()
-        }
-
-        document.addEventListener('keydown', onKeyDown)
-        return () => document.removeEventListener('keydown', onKeyDown)
-    }, [open, closeOnEscape, close])
+        if (rootRef.current?.contains(nextFocused)) return
+        close()
+    }
 
     const contextValue = useMemo(() => ({
         open,
@@ -173,15 +85,33 @@ const DropdownMenu = ({
         toggle,
         close,
         menuId,
-        menuStyle,
-        updatePosition,
+        triggerId,
+        placement,
+        align,
+        offset,
         setTriggerNode,
-        setMenuNode,
-    }), [open, setOpen, toggle, close, menuId, menuStyle, updatePosition, setTriggerNode, setMenuNode])
+    }), [open, setOpen, toggle, close, menuId, triggerId, placement, align, offset, setTriggerNode])
 
     return (
         <DropdownMenuContext.Provider value={contextValue}>
-            {children}
+            <div
+                ref={rootRef}
+                className={['dropdownmenu-root', className].filter(Boolean).join(' ')}
+                onKeyDownCapture={onKeyDownCapture}
+                onBlurCapture={onBlurCapture}
+            >
+                {children}
+            </div>
+            {open && closeOnOutsideClick && createPortal(
+                <button
+                    type="button"
+                    className="dropdownmenu__backdrop"
+                    aria-hidden="true"
+                    tabIndex={-1}
+                    onClick={close}
+                />,
+                document.body
+            )}
         </DropdownMenuContext.Provider>
     )
 }
@@ -200,6 +130,7 @@ export const DropdownMenuTrigger = React.forwardRef(({ children, className = '',
     if (React.isValidElement(children)) {
         const childProps = children.props ?? {}
         const enhancedChild = React.cloneElement(children, {
+            id: childProps.id ?? ctx.triggerId,
             'aria-haspopup': 'menu',
             'aria-expanded': ctx.open,
             'aria-controls': ctx.open ? ctx.menuId : undefined,
@@ -218,6 +149,7 @@ export const DropdownMenuTrigger = React.forwardRef(({ children, className = '',
             ref={setNode}
             role="button"
             tabIndex={0}
+            id={ctx.triggerId}
             aria-haspopup="menu"
             aria-expanded={ctx.open}
             aria-controls={ctx.open ? ctx.menuId : undefined}
@@ -246,7 +178,6 @@ export const DropdownMenuContent = React.forwardRef(({ children, className = '',
 
     const setNode = (node) => {
         localRef.current = node
-        ctx.setMenuNode(node)
         if (!forwardedRef) return
         if (typeof forwardedRef === 'function') forwardedRef(node)
         else forwardedRef.current = node
@@ -256,71 +187,30 @@ export const DropdownMenuContent = React.forwardRef(({ children, className = '',
         if (!ctx.open || !autoFocus) return
 
         const timer = window.setTimeout(() => {
-            const items = getMenuItems(localRef.current)
-                ; (items[0] ?? localRef.current)?.focus?.()
+            localRef.current?.focus?.()
         }, 0)
 
         return () => window.clearTimeout(timer)
     }, [ctx.open, autoFocus])
 
-    const onKeyDown = (event) => {
-        if (!ctx.open) return
-
-        const items = getMenuItems(localRef.current)
-        if (!items.length) return
-
-        const activeIndex = items.findIndex((el) => el === document.activeElement)
-
-        const focusAt = (index) => {
-            const next = items[clamp(index, 0, items.length - 1)]
-            next?.focus?.()
-        }
-
-        switch (event.key) {
-            case 'ArrowDown':
-                event.preventDefault()
-                focusAt(activeIndex < 0 ? 0 : activeIndex + 1)
-                break
-            case 'ArrowUp':
-                event.preventDefault()
-                focusAt(activeIndex < 0 ? items.length - 1 : activeIndex - 1)
-                break
-            case 'Home':
-                event.preventDefault()
-                focusAt(0)
-                break
-            case 'End':
-                event.preventDefault()
-                focusAt(items.length - 1)
-                break
-            default:
-                break
-        }
-    }
-
     if (!ctx.open) return null
 
-    const positionedStyle = ctx.menuStyle ?? {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        visibility: 'hidden',
-    }
+    const placementClass = `dropdownmenu--${ctx.placement}`
+    const alignClass = `dropdownmenu--${ctx.align}`
 
-    return createPortal(
+    return (
         <div
             id={ctx.menuId}
             ref={setNode}
             role="menu"
+            aria-labelledby={ctx.triggerId}
             tabIndex={-1}
-            className={['dropdownmenu', className].filter(Boolean).join(' ')}
-            style={{ ...positionedStyle, ...style }}
-            onKeyDown={onKeyDown}
+            className={['dropdownmenu', placementClass, alignClass, className].filter(Boolean).join(' ')}
+            style={{ '--dropdownmenu-offset': `${ctx.offset}px`, ...style }}
             {...props}
         >
             {children}
-        </div>,
-        document.body
+        </div>
     )
 })
 
