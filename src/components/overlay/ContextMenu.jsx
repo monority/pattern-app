@@ -203,7 +203,7 @@ export const ContextMenuContent = React.forwardRef(({ children, className = '', 
 
         const timer = window.setTimeout(() => {
             const items = getMenuItems(localRef.current)
-            ;(items[0] ?? localRef.current)?.focus?.()
+                ; (items[0] ?? localRef.current)?.focus?.()
         }, 0)
 
         return () => window.clearTimeout(timer)
