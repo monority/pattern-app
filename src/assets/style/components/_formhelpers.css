@@ -1,0 +1,98 @@
+@layer components {
+    .form-field {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .form-field-full-width {
+        width: 100%;
+    }
+
+    .form-field__label {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--text-primary);
+        width: fit-content;
+    }
+
+    .form-field__required {
+        color: var(--status-danger);
+        margin-left: var(--space-xs);
+    }
+
+    .form-field__control {
+        width: 100%;
+        display: flex;
+        align-items: center;
+    }
+
+    .form-field__hint {
+        color: var(--text-secondary);
+        font-size: var(--font-size-xs);
+    }
+
+    .form-field__error {
+        color: var(--status-danger);
+        font-size: var(--font-size-xs);
+    }
+
+    .form-field-disabled {
+        opacity: var(--opacity-disabled);
+    }
+
+    .form-row {
+        display: flex;
+        gap: var(--space-md);
+        align-items: start;
+        flex-wrap: wrap;
+    }
+
+    .form-row>* {
+        flex: 1 1 16rem;
+        min-width: 12rem;
+    }
+
+    .radio-group {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+        border: 0;
+        padding: 0;
+        margin: 0;
+        min-inline-size: 0;
+    }
+
+    .radio-group__legend {
+        font-size: var(--font-size-sm);
+        font-weight: 500;
+        color: var(--text-primary);
+        padding: 0;
+        margin: 0;
+    }
+
+    .radio-group__required {
+        color: var(--status-danger);
+        margin-left: var(--space-xs);
+    }
+
+    .radio-group__options {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+
+    .radio-group__hint {
+        color: var(--text-secondary);
+        font-size: var(--font-size-xs);
+    }
+
+    .radio-group__error {
+        color: var(--status-danger);
+        font-size: var(--font-size-xs);
+    }
+
+    .radio-group-disabled {
+        opacity: var(--opacity-disabled);
+    }
+}

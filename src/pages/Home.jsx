@@ -17,6 +17,9 @@ import Modal from '../components/overlay/Modal'
 import Checkbox from '../components/utils/Checkbox'
 import Radio from '../components/utils/Radio'
 import DatePicker from '../components/utils/DatePicker'
+import FormField from '../components/utils/FormField'
+import FormRow from '../components/utils/FormRow'
+import RadioGroup from '../components/utils/RadioGroup'
 import Select from '../components/utils/Select'
 import Textarea from '../components/utils/Textarea'
 import Toggle from '../components/utils/Toggle'
@@ -56,6 +59,8 @@ const Home = () => {
         const day = pad2(now.getDate())
         return `${year}-${month}-${day}`
     })
+    const [helperEmail, setHelperEmail] = useState('')
+    const [helperPlan, setHelperPlan] = useState('starter')
     const [country, setCountry] = useState('')
     const [notificationsEnabled, setNotificationsEnabled] = useState(false)
     const [drawerPlacement, setDrawerPlacement] = useState('right')
@@ -308,6 +313,55 @@ const Home = () => {
                     />
 
                     <DatePicker label="Disabled" defaultToNow disabled />
+                </div>
+
+                <div className="element">
+                    <h2>Form Helpers</h2>
+
+                    <FormRow>
+                        <FormField
+                            label="Email"
+                            required
+                            hint="Example usage: pass the control without its own label/hint/error"
+                            fullWidth
+                        >
+                            {({ id, describedBy }) => (
+                                <Input
+                                    id={id}
+                                    value={helperEmail}
+                                    onChange={(e) => setHelperEmail(e.target.value)}
+                                    placeholder="you@example.com"
+                                    aria-describedby={describedBy}
+                                    fullWidth
+                                />
+                            )}
+                        </FormField>
+
+                        <FormField label="Date" fullWidth>
+                            {({ id, describedBy }) => (
+                                <DatePicker
+                                    id={id}
+                                    value={selectedDate}
+                                    onChange={(e) => setSelectedDate(e.target.value)}
+                                    aria-describedby={describedBy}
+                                    fullWidth
+                                />
+                            )}
+                        </FormField>
+                    </FormRow>
+
+                    <RadioGroup
+                        legend="Plan"
+                        name="plan"
+                        value={helperPlan}
+                        onChange={(e) => setHelperPlan(e.target.value)}
+                        options={[
+                            { label: 'Starter', value: 'starter' },
+                            { label: 'Pro', value: 'pro' },
+                            { label: 'Enterprise', value: 'enterprise', disabled: true },
+                        ]}
+                        hint="RadioGroup uses a fieldset/legend for accessibility"
+                    />
                 </div>
 
                 <div className="element">
