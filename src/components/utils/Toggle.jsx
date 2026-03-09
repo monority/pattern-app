@@ -19,6 +19,8 @@ const ToggleComponent = forwardRef((props, ref) => {
         labelClassName = '',
         hintClassName = '',
         errorClassName = '',
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         ...rest
     } = props
 
@@ -41,6 +43,14 @@ const ToggleComponent = forwardRef((props, ref) => {
     const resolvedIconOff = icon ?? iconOff
     const resolvedIconOn = iconOn ?? resolvedIconOff
 
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
+
     return (
         <div className={wrapperClassName}>
             <label htmlFor={inputId} className={['toggle__label', labelClassName].filter(Boolean).join(' ')}>
@@ -51,8 +61,8 @@ const ToggleComponent = forwardRef((props, ref) => {
                     role="switch"
                     disabled={disabled}
                     required={required}
-                    aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? errorId : hint ? hintId : undefined}
+                    aria-invalid={ariaInvalid}
+                    aria-describedby={ariaDescribedBy}
                     className={['toggle__input', className].filter(Boolean).join(' ')}
                     {...rest}
                 />

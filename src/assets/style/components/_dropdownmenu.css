@@ -1,4 +1,10 @@
 @layer components {
+    .dropdownmenu__trigger {
+        display: inline-flex;
+        width: fit-content;
+        align-self: flex-start;
+    }
+
     .dropdownmenu {
         z-index: 180;
         min-width: 12rem;

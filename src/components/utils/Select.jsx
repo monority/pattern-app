@@ -18,6 +18,8 @@ const SelectComponent = forwardRef((props, ref) => {
         labelClassName = '',
         errorClassName = '',
         hintClassName = '',
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         children,
         ...rest
     } = props
@@ -45,6 +47,14 @@ const SelectComponent = forwardRef((props, ref) => {
     ]
         .filter(Boolean)
         .join(' ')
+
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
 
     const renderedOptions = (() => {
         if (children) return children
@@ -93,8 +103,8 @@ const SelectComponent = forwardRef((props, ref) => {
                     id={selectId}
                     disabled={disabled}
                     required={required}
-                    aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? errorId : hint ? hintId : undefined}
+                    aria-invalid={ariaInvalid}
+                    aria-describedby={ariaDescribedBy}
                     className={selectClasses}
                     {...rest}
                 >

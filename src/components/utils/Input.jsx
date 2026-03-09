@@ -19,6 +19,8 @@ const InputComponent = forwardRef((props, ref) => {
         errorClassName = '',
         hintClassName = '',
         type,
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         ...rest
     } = props
 
@@ -30,6 +32,14 @@ const InputComponent = forwardRef((props, ref) => {
     const [showPassword, setShowPassword] = useState(false)
     const isPasswordInput = type === 'password'
     const inputType = isPasswordInput && showPassword ? 'text' : type
+
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
 
     const inputClassName = [
         'input-element',
@@ -66,8 +76,8 @@ const InputComponent = forwardRef((props, ref) => {
                     type={inputType}
                     disabled={disabled}
                     required={required}
-                    aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? errorId : hint ? hintId : undefined}
+                    aria-invalid={ariaInvalid}
+                    aria-describedby={ariaDescribedBy}
                     className={inputClassName}
                     {...rest}
                 />

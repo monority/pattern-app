@@ -1,4 +1,10 @@
 @layer components {
+    .contextmenu__trigger {
+        display: inline-flex;
+        width: fit-content;
+        align-self: flex-start;
+    }
+
     .contextmenu {
         z-index: 180;
         min-width: 12rem;

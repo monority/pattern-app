@@ -16,6 +16,8 @@ const CheckboxComponent = forwardRef((props, ref) => {
         labelClassName = '',
         hintClassName = '',
         errorClassName = '',
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         ...rest
     } = props
 
@@ -45,6 +47,14 @@ const CheckboxComponent = forwardRef((props, ref) => {
 
     const checkboxLabel = children ?? label
 
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
+
     return (
         <div className={wrapperClassName}>
             <label htmlFor={inputId} className={['checkbox__label', labelClassName].filter(Boolean).join(' ')}>
@@ -54,8 +64,8 @@ const CheckboxComponent = forwardRef((props, ref) => {
                     type="checkbox"
                     disabled={disabled}
                     required={required}
-                    aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? errorId : hint ? hintId : undefined}
+                    aria-invalid={ariaInvalid}
+                    aria-describedby={ariaDescribedBy}
                     className={['checkbox__input', className].filter(Boolean).join(' ')}
                     {...rest}
                 />

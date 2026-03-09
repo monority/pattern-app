@@ -1,4 +1,10 @@
 @layer components {
+    .popover__anchor {
+        display: inline-flex;
+        width: fit-content;
+        align-self: flex-start;
+    }
+
     .popover {
         z-index: 180;
         min-width: 14rem;

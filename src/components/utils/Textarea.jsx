@@ -17,6 +17,8 @@ const TextareaComponent = forwardRef((props, ref) => {
         labelClassName = '',
         errorClassName = '',
         hintClassName = '',
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         ...rest
     } = props
 
@@ -44,6 +46,14 @@ const TextareaComponent = forwardRef((props, ref) => {
         .filter(Boolean)
         .join(' ')
 
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
+
     return (
         <div className={wrapperClassName}>
             {label && (
@@ -59,8 +69,8 @@ const TextareaComponent = forwardRef((props, ref) => {
                 rows={rows}
                 disabled={disabled}
                 required={required}
-                aria-invalid={error ? 'true' : 'false'}
-                aria-describedby={error ? errorId : hint ? hintId : undefined}
+                aria-invalid={ariaInvalid}
+                aria-describedby={ariaDescribedBy}
                 className={textareaClassName}
                 {...rest}
             />

@@ -15,6 +15,8 @@ const RadioComponent = forwardRef((props, ref) => {
         labelClassName = '',
         hintClassName = '',
         errorClassName = '',
+        'aria-invalid': ariaInvalidProp,
+        'aria-describedby': ariaDescribedByProp,
         ...rest
     } = props
 
@@ -35,6 +37,14 @@ const RadioComponent = forwardRef((props, ref) => {
 
     const radioLabel = children ?? label
 
+    const ariaInvalid = ariaInvalidProp !== undefined
+        ? ariaInvalidProp
+        : (error ? 'true' : undefined)
+
+    const ariaDescribedBy = ariaDescribedByProp !== undefined
+        ? ariaDescribedByProp
+        : (error ? errorId : hint ? hintId : undefined)
+
     return (
         <div className={wrapperClassName}>
             <label htmlFor={inputId} className={['radio__label', labelClassName].filter(Boolean).join(' ')}>
@@ -44,8 +54,8 @@ const RadioComponent = forwardRef((props, ref) => {
                     type="radio"
                     disabled={disabled}
                     required={required}
-                    aria-invalid={error ? 'true' : 'false'}
-                    aria-describedby={error ? errorId : hint ? hintId : undefined}
+                    aria-invalid={ariaInvalid}
+                    aria-describedby={ariaDescribedBy}
                     className={['radio__input', className].filter(Boolean).join(' ')}
                     {...rest}
                 />
