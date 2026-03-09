@@ -7,8 +7,10 @@ import Skeleton from '../components/utils/Skeleton'
 import Accordion from '../components/utils/Accordion'
 import Avatar, { AvatarGroup } from '../components/content/Avatar'
 import Card from '../components/content/Card'
+import Table from '../components/content/Table'
 import Divider from '../components/content/Divider'
 import Tooltip from '../components/content/Tooltip'
+import List from '../components/content/List'
 import Breadcrumb from '../components/navigation/Breadcrumb'
 import Pagination from '../components/navigation/Pagination'
 import Tabs from '../components/navigation/Tabs'
@@ -24,6 +26,10 @@ import Select from '../components/utils/Select'
 import Textarea from '../components/utils/Textarea'
 import Toggle from '../components/utils/Toggle'
 import { useToast } from '../components/ui/Toast'
+import TagChip from '../components/ui/TagChip'
+import ProgressionBar from '../components/ui/ProgressionBar'
+import CircularProgress from '../components/ui/CircularProgress'
+import EmptyState from '../components/ui/EmptyState'
 
 const DisplayModeToggle = ({ mode, label, activeMode, onSelect }) => {
     return (
@@ -380,6 +386,29 @@ const Home = () => {
                 </div>
 
                 <div className="element">
+                    <h2>Progress</h2>
+                    <ProgressionBar value={66} showValue label="Loading profile" />
+                    <ProgressionBar size="sm" value={24} showValue label="Uploading" />
+                    <ProgressionBar size="lg" label="Indeterminate" />
+
+                    <div className="btn-row">
+                        <CircularProgress value={72} label="Processing" />
+                        <CircularProgress size="sm" value={35} label="Small" />
+                        <CircularProgress size="lg" label="Indeterminate" />
+                    </div>
+                </div>
+
+                <div className="element">
+                    <h2>Empty State</h2>
+                    <EmptyState
+                        icon="search"
+                        title="No results"
+                        description="Try adjusting your search or create a new item."
+                        action={<Button variant="primary" size="sm">Create item</Button>}
+                    />
+                </div>
+
+                <div className="element">
                     <h2>Toast</h2>
                     <div className="btn-row">
                         <Button
@@ -541,6 +570,61 @@ const Home = () => {
                             <Button variant="ghost" size="sm">Cancel</Button>
                         </Card.Footer>
                     </Card>
+                </div>
+
+                <div className="element">
+                    <h2>Table</h2>
+                    <Table
+                        caption="Example table"
+                        striped
+                        columns={[
+                            { key: 'name', header: 'Name' },
+                            { key: 'role', header: 'Role' },
+                            {
+                                key: 'status',
+                                header: 'Status',
+                                render: (row) => (
+                                    <TagChip
+                                        variant={row.status === 'Active' ? 'success' : row.status === 'Paused' ? 'warning' : 'secondary'}
+                                        size="sm"
+                                    >
+                                        {row.status}
+                                    </TagChip>
+                                ),
+                            },
+                            { key: 'lastSeen', header: 'Last Seen', align: 'right' },
+                        ]}
+                        data={[
+                            { id: 1, name: 'Alice', role: 'Admin', status: 'Active', lastSeen: 'Today' },
+                            { id: 2, name: 'Bob', role: 'Editor', status: 'Paused', lastSeen: 'Yesterday' },
+                            { id: 3, name: 'Charlie', role: 'Viewer', status: 'Invited', lastSeen: '—' },
+                        ]}
+                    />
+                </div>
+
+                <div className="element">
+                    <h2>Tag / Chip</h2>
+                    <div className="btn-row">
+                        <TagChip>Default</TagChip>
+                        <TagChip variant="secondary">Secondary</TagChip>
+                        <TagChip variant="primary">Primary</TagChip>
+                        <TagChip variant="success">Success</TagChip>
+                        <TagChip variant="warning">Warning</TagChip>
+                        <TagChip variant="danger">Danger</TagChip>
+                    </div>
+                </div>
+
+                <div className="element">
+                    <h2>List</h2>
+                    <List
+                        divided
+                        items={[
+                            'Clean, token-based styling',
+                            'Optional icon or bullet',
+                            'Divided or dense variants',
+                        ]}
+                    />
+                    <List icon="chevron-right" dense items={['First', 'Second', 'Third']} />
                 </div>
                 <div className="element">
                     <h2>Divider</h2>

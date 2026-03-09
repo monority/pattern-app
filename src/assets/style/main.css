@@ -10,6 +10,9 @@
 @import "./components/_accordion.css";
 @import "./components/_avatar.css";
 @import "./components/_card.css";
+@import "./components/_table.css";
+@import "./components/_list.css";
+@import "./components/_tagchip.css";
 @import "./components/_divider.css";
 @import "./components/_tooltip.css";
 @import "./components/_drawer.css";
@@ -22,6 +25,8 @@
 @import "./components/_toggle.css";
 @import "./components/_toast.css";
 @import "./components/_spinner.css";
+@import "./components/_progress.css";
+@import "./components/_emptystate.css";
 
 @layer components {
     #app-container {

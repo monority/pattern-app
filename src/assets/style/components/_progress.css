@@ -1,0 +1,130 @@
+@layer components {
+
+    /* Linear progress */
+    @keyframes progress-indeterminate {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(250%);
+        }
+    }
+
+    .progress {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-sm);
+        width: 100%;
+        color: var(--text-primary);
+    }
+
+    .progress__track {
+        position: relative;
+        width: 100%;
+        height: var(--progress-height, 0.8rem);
+        background: color-mix(in oklch, var(--bg-secondary) 85%, transparent);
+        border: 1px solid var(--border-primary);
+        border-radius: var(--radius-full);
+        overflow: hidden;
+    }
+
+    .progress__bar {
+        height: 100%;
+        width: 0;
+        background: var(--brand-primary);
+        transition: width var(--transition-base);
+    }
+
+    .progress--indeterminate .progress__bar {
+        width: 40%;
+        animation: progress-indeterminate 1s ease-in-out infinite;
+    }
+
+    .progress__value {
+        font-size: var(--font-size-xs);
+        color: var(--text-secondary);
+        flex-shrink: 0;
+        min-width: 3ch;
+        text-align: right;
+    }
+
+    .progress-sm {
+        --progress-height: 0.6rem;
+    }
+
+    .progress-md {
+        --progress-height: 0.8rem;
+    }
+
+    .progress-lg {
+        --progress-height: 1rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .progress__bar {
+            transition: none;
+        }
+
+        .progress--indeterminate .progress__bar {
+            animation: none;
+        }
+    }
+
+    /* Circular progress */
+    @keyframes circular-rotate {
+        to {
+            transform: rotate(360deg);
+        }
+    }
+
+    .circular-progress {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: var(--circular-size, 2.4rem);
+        height: var(--circular-size, 2.4rem);
+        color: var(--brand-primary);
+    }
+
+    .circular-progress__svg {
+        width: 100%;
+        height: 100%;
+        transform: rotate(-90deg);
+    }
+
+    .circular-progress__track {
+        stroke: color-mix(in oklch, var(--text-primary) 18%, transparent);
+    }
+
+    .circular-progress__indicator {
+        stroke: currentColor;
+        transition: stroke-dashoffset var(--transition-base);
+    }
+
+    .circular-progress--indeterminate {
+        animation: circular-rotate 0.7s linear infinite;
+    }
+
+    .circular-progress-sm {
+        --circular-size: 1.8rem;
+    }
+
+    .circular-progress-md {
+        --circular-size: 2.4rem;
+    }
+
+    .circular-progress-lg {
+        --circular-size: 3.2rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .circular-progress--indeterminate {
+            animation: none;
+        }
+
+        .circular-progress__indicator {
+            transition: none;
+        }
+    }
+}

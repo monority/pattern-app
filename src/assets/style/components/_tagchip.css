@@ -1,0 +1,68 @@
+@layer components {
+    .tagchip {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-xs);
+        border: 1px solid var(--border-primary);
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        user-select: none;
+        white-space: nowrap;
+    }
+
+    .tagchip--pill {
+        border-radius: var(--radius-full);
+    }
+
+    .tagchip--sm {
+        padding: 0.25rem 0.6rem;
+        font-size: var(--font-size-xs);
+    }
+
+    .tagchip--md {
+        padding: 0.35rem 0.75rem;
+        font-size: var(--font-size-sm);
+    }
+
+    .tagchip--lg {
+        padding: 0.45rem 0.9rem;
+        font-size: var(--font-size-md);
+    }
+
+    .tagchip--default {
+        background: var(--bg-primary);
+        border-color: var(--border-primary);
+        color: var(--text-primary);
+    }
+
+    .tagchip--secondary {
+        background: var(--bg-secondary);
+        border-color: var(--border-primary);
+        color: var(--text-primary);
+    }
+
+    .tagchip--primary {
+        background: var(--brand-secondary);
+        border-color: var(--brand-secondary);
+        color: var(--brand-secondary-text);
+    }
+
+    .tagchip--success {
+        background: var(--status-success);
+        border-color: var(--status-success);
+        color: var(--status-success-text);
+    }
+
+    .tagchip--warning {
+        background: var(--status-warning);
+        border-color: var(--status-warning);
+        color: var(--status-warning-text);
+    }
+
+    .tagchip--danger {
+        background: var(--status-danger);
+        border-color: var(--status-danger);
+        color: var(--status-danger-text);
+    }
+}
