@@ -22,6 +22,25 @@ const Icon = ({ type, size = '1em', ...props }) => {
                     <polyline points="9 18 15 12 9 6" />
                 </svg>
             )
+        case 'bookmark':
+            return (
+                <svg {...shared}>
+                    <path d="M6 3h12a1 1 0 0 1 1 1v18l-7-4-7 4V4a1 1 0 0 1 1-1z" />
+                </svg>
+            )
+        case 'bookmark-filled':
+            return (
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width={size}
+                    height={size}
+                    {...props}
+                >
+                    <path d="M7 2h10a2 2 0 0 1 2 2v18l-7-4-7 4V4a2 2 0 0 1 2-2z" />
+                </svg>
+            )
         default: return null
     }
 }

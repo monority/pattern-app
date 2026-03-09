@@ -1,4 +1,5 @@
 import React, { forwardRef, memo, useId } from 'react'
+import Icon from './Icon'
 
 const ToggleComponent = forwardRef((props, ref) => {
     const {
@@ -8,6 +9,9 @@ const ToggleComponent = forwardRef((props, ref) => {
         hint,
         error,
         size = 'md',
+        icon,
+        iconOff = 'bookmark',
+        iconOn = 'bookmark-filled',
         disabled = false,
         required = false,
         className = '',
@@ -34,6 +38,8 @@ const ToggleComponent = forwardRef((props, ref) => {
         .join(' ')
 
     const toggleLabel = children ?? label
+    const resolvedIconOff = icon ?? iconOff
+    const resolvedIconOn = iconOn ?? resolvedIconOff
 
     return (
         <div className={wrapperClassName}>
@@ -50,8 +56,9 @@ const ToggleComponent = forwardRef((props, ref) => {
                     className={['toggle__input', className].filter(Boolean).join(' ')}
                     {...rest}
                 />
-                <span className="toggle__track" aria-hidden="true">
-                    <span className="toggle__thumb" />
+                <span className="toggle__control" aria-hidden="true">
+                    <Icon type={resolvedIconOff} size="100%" className="toggle__icon toggle__icon-outline" aria-hidden="true" focusable="false" />
+                    <Icon type={resolvedIconOn} size="100%" className="toggle__icon toggle__icon-filled" aria-hidden="true" focusable="false" />
                 </span>
                 {toggleLabel && (
                     <span className="toggle__text">

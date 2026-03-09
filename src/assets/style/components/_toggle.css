@@ -26,49 +26,56 @@
         clip: rect(0 0 0 0);
     }
 
-    .toggle__track {
+    .toggle__control {
         position: relative;
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         flex-shrink: 0;
-        width: 2.5rem;
-        height: 1.5rem;
-        border-radius: var(--radius-full);
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: var(--radius-md);
         border: 1px solid var(--input-border);
-        background: var(--bg-secondary);
-        transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
+        background: var(--bg-primary);
+        color: var(--text-secondary);
+        transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
     }
 
-    .toggle__thumb {
+    .toggle__icon {
         position: absolute;
-        left: 0.15rem;
         width: 1.2rem;
         height: 1.2rem;
-        border-radius: var(--radius-full);
-        background: var(--bg-primary);
-        box-shadow: 0 6px 18px color-mix(in oklch, var(--text-primary), transparent 85%);
-        transform: translateX(0);
-        transition: transform var(--transition-fast), background var(--transition-fast);
+        transition: opacity var(--transition-fast), transform var(--transition-fast);
     }
 
-    .toggle-sm .toggle__track {
-        width: 2.1rem;
-        height: 1.25rem;
+    .toggle__icon-outline {
+        opacity: 1;
+        transform: scale(1);
     }
 
-    .toggle-sm .toggle__thumb {
-        width: 1rem;
-        height: 1rem;
+    .toggle__icon-filled {
+        opacity: 0;
+        transform: scale(0.9);
     }
 
-    .toggle-lg .toggle__track {
-        width: 3rem;
-        height: 1.75rem;
+    .toggle-sm .toggle__control {
+        width: 2rem;
+        height: 2rem;
     }
 
-    .toggle-lg .toggle__thumb {
-        width: 1.4rem;
-        height: 1.4rem;
+    .toggle-sm .toggle__icon {
+        width: 1.05rem;
+        height: 1.05rem;
+    }
+
+    .toggle-lg .toggle__control {
+        width: 2.6rem;
+        height: 2.6rem;
+    }
+
+    .toggle-lg .toggle__icon {
+        width: 1.35rem;
+        height: 1.35rem;
     }
 
     .toggle__text {
@@ -90,58 +97,59 @@
     }
 
     /* Interactions */
-    .toggle__label:hover .toggle__track {
+    .toggle__label:hover .toggle__control {
         border-color: color-mix(in oklch, var(--focus-ring) 55%, var(--input-border));
-        transform: translateY(-0.5px);
+        background: var(--bg-secondary);
+        color: var(--text-primary);
     }
 
-    .toggle__label:active .toggle__track {
+    .toggle__label:active .toggle__control {
         transform: translateY(0);
     }
 
-    .toggle__input:focus-visible+.toggle__track {
+    .toggle__input:focus-visible+.toggle__control {
         outline: 2px solid var(--focus-ring);
         outline-offset: 2px;
         box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 18%, transparent);
     }
 
     /* Checked */
-    .toggle__input:checked+.toggle__track {
+    .toggle__input:checked+.toggle__control {
         background: var(--brand-primary);
         border-color: var(--brand-primary);
+        color: var(--brand-primary-text);
     }
 
-    .toggle__input:checked+.toggle__track .toggle__thumb {
-        transform: translateX(1rem);
-        background: var(--brand-primary-text);
+    .toggle__input:checked+.toggle__control .toggle__icon-outline {
+        opacity: 0;
+        transform: scale(0.9);
     }
 
-    .toggle-sm .toggle__input:checked+.toggle__track .toggle__thumb {
-        transform: translateX(0.85rem);
-    }
-
-    .toggle-lg .toggle__input:checked+.toggle__track .toggle__thumb {
-        transform: translateX(1.25rem);
+    .toggle__input:checked+.toggle__control .toggle__icon-filled {
+        opacity: 1;
+        transform: scale(1);
     }
 
     /* Disabled */
-    .toggle__input:disabled+.toggle__track,
+    .toggle__input:disabled+.toggle__control,
     .toggle-disabled .toggle__label {
         opacity: var(--opacity-disabled);
         cursor: not-allowed;
     }
 
-    .toggle-disabled .toggle__label:hover .toggle__track {
+    .toggle-disabled .toggle__label:hover .toggle__control {
         transform: none;
         border-color: var(--input-border);
+        background: var(--bg-primary);
+        color: var(--text-secondary);
     }
 
     /* Error */
-    .toggle-error .toggle__track {
+    .toggle-error .toggle__control {
         border-color: var(--status-danger);
     }
 
-    .toggle-error .toggle__input:checked+.toggle__track {
+    .toggle-error .toggle__input:checked+.toggle__control {
         background: color-mix(in oklch, var(--status-danger) 85%, var(--brand-primary));
         border-color: var(--status-danger);
     }

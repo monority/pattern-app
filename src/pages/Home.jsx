@@ -16,6 +16,7 @@ import Drawer from '../components/overlay/Drawer'
 import Modal from '../components/overlay/Modal'
 import Checkbox from '../components/utils/Checkbox'
 import Radio from '../components/utils/Radio'
+import DatePicker from '../components/utils/DatePicker'
 import Select from '../components/utils/Select'
 import Textarea from '../components/utils/Textarea'
 import Toggle from '../components/utils/Toggle'
@@ -47,6 +48,14 @@ const Home = () => {
     const [checkedB, setCheckedB] = useState(false)
     const [indeterminateB, setIndeterminateB] = useState(true)
     const [selectedRadio, setSelectedRadio] = useState('option-1')
+    const [selectedDate, setSelectedDate] = useState(() => {
+        const now = new Date()
+        const pad2 = (v) => String(v).padStart(2, '0')
+        const year = now.getFullYear()
+        const month = pad2(now.getMonth() + 1)
+        const day = pad2(now.getDate())
+        return `${year}-${month}-${day}`
+    })
     const [country, setCountry] = useState('')
     const [notificationsEnabled, setNotificationsEnabled] = useState(false)
     const [drawerPlacement, setDrawerPlacement] = useState('right')
@@ -289,6 +298,19 @@ const Home = () => {
                 </div>
 
                 <div className="element">
+                    <h2>Date Picker</h2>
+                    <DatePicker
+                        label="Pick a date"
+                        value={selectedDate}
+                        onChange={(e) => setSelectedDate(e.target.value)}
+                        hint={selectedDate ? `Selected: ${selectedDate}` : 'Uses native date input UI'}
+                        fullWidth
+                    />
+
+                    <DatePicker label="Disabled" defaultToNow disabled />
+                </div>
+
+                <div className="element">
                     <h2>Toggle</h2>
                     <Toggle
                         checked={notificationsEnabled}
@@ -297,7 +319,7 @@ const Home = () => {
                         hint="Controlled toggle"
                     />
 
-                    <Toggle defaultChecked size="sm" label="Small" />
+                    <Toggle defaultChecked size="sm" icon="search" label="Small" />
                     <Toggle size="lg" label="Large" />
                     <Toggle disabled defaultChecked label="Disabled" />
                     <Toggle defaultChecked error="Example error state" label="With Error" />
