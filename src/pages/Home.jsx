@@ -16,6 +16,9 @@ import Pagination from '../components/navigation/Pagination'
 import Tabs from '../components/navigation/Tabs'
 import Drawer from '../components/overlay/Drawer'
 import Modal from '../components/overlay/Modal'
+import Popover, { PopoverAnchor, PopoverPanel } from '../components/overlay/Popover'
+import DropdownMenu, { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/overlay/DropdownMenu'
+import ContextMenu, { ContextMenuContent, ContextMenuItem, ContextMenuSeparator, ContextMenuTrigger } from '../components/overlay/ContextMenu'
 import Checkbox from '../components/utils/Checkbox'
 import Radio from '../components/utils/Radio'
 import DatePicker from '../components/utils/DatePicker'
@@ -53,6 +56,7 @@ const Home = () => {
     const [page, setPage] = useState(1)
     const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
+    const [popoverOpen, setPopoverOpen] = useState(false)
     const [checkedA, setCheckedA] = useState(false)
     const [checkedB, setCheckedB] = useState(false)
     const [indeterminateB, setIndeterminateB] = useState(true)
@@ -650,6 +654,68 @@ const Home = () => {
                     <Tooltip content="Copié !" placement="right" delay={0}>
                         <span>Copier</span>
                     </Tooltip>
+                </div>
+
+                <div className="element">
+                    <h2>Popover</h2>
+                    <Popover open={popoverOpen} onOpenChange={setPopoverOpen} placement="bottom" align="start">
+                        <PopoverAnchor>
+                            <Button variant="outline">Toggle popover</Button>
+                        </PopoverAnchor>
+                        <PopoverPanel autoFocus>
+                            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                                Anchored panel that closes on outside click / ESC.
+                            </p>
+                            <div className="btn-row" style={{ marginTop: 'var(--space-md)' }}>
+                                <Button size="sm" variant="secondary" onClick={() => setPopoverOpen(false)}>Close</Button>
+                                <Button
+                                    size="sm"
+                                    variant="primary"
+                                    onClick={() => {
+                                        toast({ title: 'Popover', description: 'Primary action clicked', variant: 'info' })
+                                        setPopoverOpen(false)
+                                    }}
+                                >
+                                    Action
+                                </Button>
+                            </div>
+                        </PopoverPanel>
+                    </Popover>
+                </div>
+
+                <div className="element">
+                    <h2>DropdownMenu</h2>
+                    <DropdownMenu placement="bottom" align="start">
+                        <DropdownMenuTrigger>
+                            <Button variant="outline">Open menu</Button>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent>
+                            <DropdownMenuItem onSelect={() => toast({ title: 'Menu', description: 'Edit clicked', variant: 'info' })}>Edit</DropdownMenuItem>
+                            <DropdownMenuItem onSelect={() => toast({ title: 'Menu', description: 'Duplicate clicked', variant: 'info' })}>Duplicate</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem onSelect={() => toast({ title: 'Menu', description: 'Delete clicked', variant: 'danger' })}>Delete</DropdownMenuItem>
+                        </DropdownMenuContent>
+                    </DropdownMenu>
+                </div>
+
+                <div className="element">
+                    <h2>ContextMenu</h2>
+                    <ContextMenu>
+                        <ContextMenuTrigger>
+                            <Card variant="outlined" style={{ padding: 'var(--space-lg)' }}>
+                                <strong>Right click here</strong>
+                                <p style={{ margin: 'var(--space-sm) 0 0', color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                                    Opens a menu at the cursor position.
+                                </p>
+                            </Card>
+                        </ContextMenuTrigger>
+                        <ContextMenuContent>
+                            <ContextMenuItem onSelect={() => toast({ title: 'Context', description: 'Copy clicked', variant: 'info' })}>Copy</ContextMenuItem>
+                            <ContextMenuItem onSelect={() => toast({ title: 'Context', description: 'Share clicked', variant: 'info' })}>Share</ContextMenuItem>
+                            <ContextMenuSeparator />
+                            <ContextMenuItem onSelect={() => toast({ title: 'Context', description: 'Archive clicked', variant: 'info' })}>Archive</ContextMenuItem>
+                        </ContextMenuContent>
+                    </ContextMenu>
                 </div>
                 <div className="element">
                     <h2>Breadcrumb</h2>
