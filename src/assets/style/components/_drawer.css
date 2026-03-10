@@ -1,90 +1,80 @@
+/* ══════════════════════════════════════════
+   Drawer  (animations gérées par Motion)
+══════════════════════════════════════════ */
+
 .drawer-root {
     position: fixed;
     inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    visibility: hidden;
-    /* delay hiding until exit animation completes */
-    transition: visibility 0s linear 220ms;
+    z-index: 100;
+    isolation: isolate;
 }
 
-.drawer-root--open {
-    pointer-events: auto;
-    visibility: visible;
-    transition: none;
-}
+/* ── Overlay ─────────────────────────────── */
 
-/* ── Overlay ── */
 .drawer__overlay {
     position: absolute;
     inset: 0;
-    background: color-mix(in oklch, var(--text-primary), transparent 60%);
-    opacity: 0;
-    transition: opacity var(--transition-base);
+    background: oklch(0% 0 0 / 0.52);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    cursor: pointer;
 }
 
-.drawer-root--open .drawer__overlay {
-    opacity: 1;
-}
+/* ── Panel base ──────────────────────────── */
 
-/* ── Panel base ── */
 .drawer {
     position: absolute;
     display: flex;
     flex-direction: column;
     background: var(--bg-primary);
-    box-shadow: 0 8px 40px color-mix(in oklch, var(--text-primary), transparent 80%);
-    transition: transform var(--transition-base);
+    overflow: hidden;
+    outline: none;
 }
 
-/* ── Placements ── */
+/* ── Placements ──────────────────────────── */
+
 .drawer--right {
-    top: 0;
+    inset-block: 0;
     right: 0;
-    height: 100%;
-    transform: translateX(100%);
-}
-
-.drawer--right.drawer--open {
-    transform: translateX(0);
+    border-left: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    box-shadow:
+        -12px 0 64px oklch(0% 0 0 / 0.18),
+        -3px 0 12px oklch(0% 0 0 / 0.08);
 }
 
 .drawer--left {
-    top: 0;
+    inset-block: 0;
     left: 0;
-    height: 100%;
-    transform: translateX(-100%);
-}
-
-.drawer--left.drawer--open {
-    transform: translateX(0);
+    border-right: 1px solid var(--border-secondary);
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    box-shadow:
+        12px 0 64px oklch(0% 0 0 / 0.18),
+        3px 0 12px oklch(0% 0 0 / 0.08);
 }
 
 .drawer--top {
+    inset-inline: 0;
     top: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    transform: translateY(-100%);
-}
-
-.drawer--top.drawer--open {
-    transform: translateY(0);
+    border-bottom: 1px solid var(--border-secondary);
+    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    box-shadow:
+        0 12px 64px oklch(0% 0 0 / 0.18),
+        0 3px 12px oklch(0% 0 0 / 0.08);
 }
 
 .drawer--bottom {
+    inset-inline: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    transform: translateY(100%);
+    border-top: 1px solid var(--border-secondary);
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    box-shadow:
+        0 -12px 64px oklch(0% 0 0 / 0.18),
+        0 -3px 12px oklch(0% 0 0 / 0.08);
 }
 
-.drawer--bottom.drawer--open {
-    transform: translateY(0);
-}
+/* ── Sizes ────────────────────────────────── */
 
-/* ── Sizes (width for left/right, height for top/bottom) ── */
 .drawer--right.drawer--sm,
 .drawer--left.drawer--sm {
     width: 18rem;
@@ -92,17 +82,19 @@
 
 .drawer--right.drawer--md,
 .drawer--left.drawer--md {
-    width: 26rem;
+    width: 28rem;
 }
 
 .drawer--right.drawer--lg,
 .drawer--left.drawer--lg {
-    width: 38rem;
+    width: 40rem;
 }
 
 .drawer--right.drawer--full,
 .drawer--left.drawer--full {
     width: 100%;
+    border-radius: 0;
+    border-inline: none;
 }
 
 .drawer--top.drawer--sm,
@@ -112,56 +104,70 @@
 
 .drawer--top.drawer--md,
 .drawer--bottom.drawer--md {
-    height: 20rem;
+    height: 22rem;
 }
 
 .drawer--top.drawer--lg,
 .drawer--bottom.drawer--lg {
-    height: 32rem;
+    height: 36rem;
 }
 
 .drawer--top.drawer--full,
 .drawer--bottom.drawer--full {
     height: 100%;
+    border-radius: 0;
+    border-block: none;
 }
 
-/* ── Header ── */
+/* ── Header ───────────────────────────────── */
+
 .drawer__header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
     gap: var(--space-md);
-    padding: var(--space-lg);
+    padding: 0 var(--space-md) 0 var(--space-xl);
     border-bottom: 1px solid var(--border-primary);
     flex-shrink: 0;
+    min-height: 5.6rem;
 }
 
 .drawer__title {
-    font-size: var(--font-size-lg);
+    flex: 1;
+    font-size: var(--font-size-md);
     font-weight: 600;
     color: var(--text-primary);
     margin: 0;
+    line-height: 1.4;
 }
 
 .drawer__close {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 2rem;
-    height: 2rem;
+    width: 3.2rem;
+    height: 3.2rem;
     border-radius: var(--radius-md);
     border: none;
     background: transparent;
     color: var(--text-secondary);
     cursor: pointer;
     flex-shrink: 0;
-    margin-left: auto;
-    transition: background var(--transition-fast), color var(--transition-fast);
+    font-size: 1.6rem;
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.24s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .drawer__close:hover {
     background: var(--bg-secondary);
     color: var(--text-primary);
+    transform: rotate(90deg);
+}
+
+.drawer__close:active {
+    transform: rotate(90deg) scale(0.84);
+    transition-duration: 0.08s;
 }
 
 .drawer__close:focus-visible {
@@ -169,16 +175,20 @@
     outline-offset: 2px;
 }
 
-/* ── Content ── */
+/* ── Content ──────────────────────────────── */
+
 .drawer__content {
     flex: 1;
     overflow-y: auto;
-    padding: var(--space-lg);
+    padding: var(--space-xl);
     color: var(--text-primary);
     font-size: var(--font-size-sm);
+    line-height: 1.65;
+    overscroll-behavior: contain;
 }
 
-/* ── Footer ── */
+/* ── Footer ───────────────────────────────── */
+
 .drawer__footer {
     display: flex;
     align-items: center;
@@ -186,14 +196,7 @@
     gap: var(--space-sm);
     padding: var(--space-md) var(--space-lg);
     border-top: 1px solid var(--border-primary);
+    background: var(--bg-secondary);
     flex-shrink: 0;
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .drawer-root,
-    .drawer__overlay,
-    .drawer {
-        transition: none;
-    }
+    min-height: 5.6rem;
 }

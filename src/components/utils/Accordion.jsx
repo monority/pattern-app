@@ -1,16 +1,38 @@
 import React, { useState } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 
 const AccordionItem = ({ title, children, isOpen, onToggle }) => (
-    <div className={`accordion__item${isOpen ? ' accordion__item--open' : ''}`}>
+    <div className="accordion__item">
         <button type="button" className="accordion__trigger" onClick={onToggle} aria-expanded={isOpen}>
             <span>{title}</span>
-            <svg className="accordion__icon" width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <motion.svg
+                className="accordion__icon"
+                animate={{ rotate: isOpen ? 180 : 0 }}
+                transition={{ duration: 0.22, ease: 'easeInOut' }}
+                width="1em"
+                height="1em"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+            >
                 <path d="M6 9l6 6 6-6" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            </motion.svg>
         </button>
-        <div className="accordion__body">
-            <div className="accordion__content">{children}</div>
-        </div>
+        <AnimatePresence initial={false}>
+            {isOpen && (
+                <motion.div
+                    className="accordion__body"
+                    initial={{ height: 0 }}
+                    animate={{ height: 'auto' }}
+                    exit={{ height: 0 }}
+                    transition={{ duration: 0.25, ease: [0.4, 0, 0.2, 1] }}
+                    style={{ overflow: 'hidden' }}
+                >
+                    <div className="accordion__content">{children}</div>
+                </motion.div>
+            )}
+        </AnimatePresence>
     </div>
 )
 

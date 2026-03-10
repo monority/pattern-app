@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
 
 const PopoverContext = createContext(null)
 
@@ -128,7 +129,6 @@ const Popover = ({
             position: 'fixed',
             top: pos.top,
             left: pos.left,
-            visibility: 'visible',
         })
     }, [placement, align, offset, viewportPadding])
 
@@ -274,26 +274,27 @@ export const PopoverPanel = React.forwardRef(({ children, className = '', style,
         return () => window.clearTimeout(timer)
     }, [ctx.open, autoFocus])
 
-    if (!ctx.open) return null
-
-    const positionedStyle = ctx.panelStyle ?? {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        visibility: 'hidden',
-    }
+    const positionedStyle = ctx.panelStyle ?? { position: 'fixed', top: 0, left: 0 }
 
     return createPortal(
-        <div
-            id={ctx.panelId}
-            ref={setNode}
-            tabIndex={-1}
-            className={['popover', className].filter(Boolean).join(' ')}
-            style={{ ...positionedStyle, ...style }}
-            {...props}
-        >
-            {children}
-        </div>,
+        <AnimatePresence>
+            {ctx.open && (
+                <motion.div
+                    id={ctx.panelId}
+                    ref={setNode}
+                    tabIndex={-1}
+                    className={['popover', className].filter(Boolean).join(' ')}
+                    style={{ ...positionedStyle, ...style }}
+                    initial={{ opacity: 0, scale: 0.95, y: -4 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -4 }}
+                    transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    {...props}
+                >
+                    {children}
+                </motion.div>
+            )}
+        </AnimatePresence>,
         document.body
     )
 })

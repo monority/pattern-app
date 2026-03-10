@@ -1,5 +1,6 @@
 import React, { memo, useCallback, useEffect, useId, useMemo, useRef } from 'react'
 import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
 import Button from './Button'
 import { VariantIcons } from './VariantIcons'
 import { useBodyScrollLock } from '../tools/useBodyScrollLock'
@@ -19,64 +20,51 @@ const AlertDialogComponent = ({
     icon,
     children,
 }) => {
-    const firstFocusRef = useRef(null)
-    const lastFocusRef = useRef(null)
+    const cancelRef = useRef(null)
+    const confirmRef = useRef(null)
     const previousActiveElement = useRef(null)
     const titleId = useId()
     const descriptionId = useId()
 
     const setConfirmRef = useCallback((node) => {
-        lastFocusRef.current = node
-        if (!showCancel) firstFocusRef.current = node
-    }, [showCancel])
+        confirmRef.current = node
+    }, [])
 
     useBodyScrollLock(isOpen)
 
-    useEffect(() => {
-        if (isOpen) {
-            previousActiveElement.current = document.activeElement
-
-            const first = firstFocusRef.current
-            const last = lastFocusRef.current
-            if (first && !first.disabled) first.focus()
-            else last?.focus?.()
-        } else if (previousActiveElement.current) {
-            previousActiveElement.current.focus()
-            previousActiveElement.current = null
-        }
-    }, [isOpen])
-
+    // Focus management + restore
     useEffect(() => {
         if (!isOpen) return
-
-        const handleEscape = (e) => {
-            if (e.key === 'Escape') onClose?.()
+        previousActiveElement.current = document.activeElement
+        // Focus cancel first (safety for destructive dialogs); fallback to confirm
+        const toFocus = showCancel && cancelRef.current && !cancelRef.current.disabled
+            ? cancelRef.current
+            : confirmRef.current
+        toFocus?.focus?.()
+        return () => {
+            previousActiveElement.current?.focus?.()
+            previousActiveElement.current = null
         }
+    }, [isOpen, showCancel])
 
-        document.addEventListener('keydown', handleEscape)
-        return () => document.removeEventListener('keydown', handleEscape)
-    }, [isOpen, onClose])
-
+    // Tab trap — DOM order: [confirm, cancel]
+    // Shift+Tab from confirm (first) wraps to cancel (last); Tab from cancel (last) wraps to confirm (first)
     const handleKeyDown = useCallback((e) => {
+        if (e.key === 'Escape') { onClose?.(); return }
         if (e.key !== 'Tab') return
-
         if (e.shiftKey) {
-            if (document.activeElement === firstFocusRef.current) {
-                e.preventDefault()
-                lastFocusRef.current?.focus()
+            if (document.activeElement === confirmRef.current) {
+                e.preventDefault(); cancelRef.current?.focus()
             }
         } else {
-            if (document.activeElement === lastFocusRef.current) {
-                e.preventDefault()
-                firstFocusRef.current?.focus()
+            if (document.activeElement === cancelRef.current) {
+                e.preventDefault(); confirmRef.current?.focus()
             }
         }
-    }, [])
+    }, [onClose])
 
     const handleOverlayClick = useCallback((e) => {
-        if (e.target === e.currentTarget && closeOnOverlayClick) {
-            onClose?.()
-        }
+        if (e.target === e.currentTarget && closeOnOverlayClick) onClose?.()
     }, [closeOnOverlayClick, onClose])
 
     const handleConfirm = useCallback(async () => {
@@ -84,67 +72,59 @@ const AlertDialogComponent = ({
         if (!isLoading) onClose?.()
     }, [onConfirm, onClose, isLoading])
 
-    const renderedIcon = useMemo(
-        () => icon ?? VariantIcons[variant],
-        [icon, variant]
-    )
-
-    if (!isOpen) return null
+    const renderedIcon = useMemo(() => icon ?? VariantIcons[variant], [icon, variant])
 
     return createPortal(
-        <div
-            className="alert-dialog-overlay"
-            onClick={handleOverlayClick}
-            onKeyDown={handleKeyDown}
-            role="presentation"
-        >
-            <div
-                role="alertdialog"
-                aria-modal="true"
-                aria-labelledby={titleId}
-                aria-describedby={description ? descriptionId : undefined}
-                className={`alert-dialog alert-dialog-${variant}`}
-            >
-                <div className="alert-dialog-header">
-                    {renderedIcon && (
-                        <div className="alert-dialog-icon">{renderedIcon}</div>
-                    )}
-                    <h2 id={titleId} className="alert-dialog-title">
-                        {title}
-                    </h2>
-                </div>
-
-                <div className="alert-dialog-body">
-                    {description && (
-                        <p id={descriptionId} className="alert-dialog-description">
-                            {description}
-                        </p>
-                    )}
-                    {children}
-                </div>
-
-                <div className="alert-dialog-footer">
-                    {showCancel && (
-                        <Button
-                            ref={firstFocusRef}
-                            variant="secondary"
-                            onClick={onClose}
-                            disabled={isLoading}
-                        >
-                            {cancelText}
-                        </Button>
-                    )}
-                    <Button
-                        ref={setConfirmRef}
-                        variant={variant === 'danger' ? 'danger' : 'primary'}
-                        onClick={handleConfirm}
-                        isLoading={isLoading}
+        <AnimatePresence>
+            {isOpen && (
+                <motion.div
+                    className="alert-dialog-overlay"
+                    onClick={handleOverlayClick}
+                    onKeyDown={handleKeyDown}
+                    role="presentation"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.22, ease: 'easeOut' }}
+                >
+                    <motion.div
+                        role="alertdialog"
+                        aria-modal="true"
+                        aria-labelledby={titleId}
+                        aria-describedby={description ? descriptionId : undefined}
+                        className={`alert-dialog alert-dialog-${variant}`}
+                        initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                        animate={{ opacity: 1, y: 0, scale: 1 }}
+                        exit={{ opacity: 0, y: 10, scale: 0.98 }}
+                        transition={{ type: 'spring', stiffness: 380, damping: 36, mass: 0.8 }}
                     >
-                        {confirmText}
-                    </Button>
-                </div>
-            </div>
-        </div>,
+                        <div className="alert-dialog-header">
+                            {renderedIcon && <div className="alert-dialog-icon">{renderedIcon}</div>}
+                            <h2 id={titleId} className="alert-dialog-title">{title}</h2>
+                        </div>
+                        <div className="alert-dialog-body">
+                            {description && <p id={descriptionId} className="alert-dialog-description">{description}</p>}
+                            {children}
+                        </div>
+                        <div className="alert-dialog-footer">
+                            <Button
+                                ref={setConfirmRef}
+                                variant={variant === 'danger' ? 'danger' : 'primary'}
+                                onClick={handleConfirm}
+                                isLoading={isLoading}
+                            >
+                                {confirmText}
+                            </Button>
+                            {showCancel && (
+                                <Button ref={cancelRef} variant="secondary" onClick={onClose} disabled={isLoading}>
+                                    {cancelText}
+                                </Button>
+                            )}
+                        </div>
+                    </motion.div>
+                </motion.div>
+            )}
+        </AnimatePresence>,
         document.body
     )
 }

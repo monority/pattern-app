@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
 
 const DropdownMenuContext = createContext(null)
 
@@ -193,24 +194,30 @@ export const DropdownMenuContent = React.forwardRef(({ children, className = '',
         return () => window.clearTimeout(timer)
     }, [ctx.open, autoFocus])
 
-    if (!ctx.open) return null
-
     const placementClass = `dropdownmenu--${ctx.placement}`
     const alignClass = `dropdownmenu--${ctx.align}`
 
     return (
-        <div
-            id={ctx.menuId}
-            ref={setNode}
-            role="menu"
-            aria-labelledby={ctx.triggerId}
-            tabIndex={-1}
-            className={['dropdownmenu', placementClass, alignClass, className].filter(Boolean).join(' ')}
-            style={{ '--dropdownmenu-offset': `${ctx.offset}px`, ...style }}
-            {...props}
-        >
-            {children}
-        </div>
+        <AnimatePresence>
+            {ctx.open && (
+                <motion.div
+                    id={ctx.menuId}
+                    ref={setNode}
+                    role="menu"
+                    aria-labelledby={ctx.triggerId}
+                    tabIndex={-1}
+                    className={['dropdownmenu', placementClass, alignClass, className].filter(Boolean).join(' ')}
+                    style={{ '--dropdownmenu-offset': `${ctx.offset}px`, ...style }}
+                    initial={{ opacity: 0, scale: 0.95, y: -6 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.95, y: -4 }}
+                    transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    {...props}
+                >
+                    {children}
+                </motion.div>
+            )}
+        </AnimatePresence>
     )
 })
 

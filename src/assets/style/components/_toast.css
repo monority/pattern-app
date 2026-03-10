@@ -47,19 +47,6 @@
         background: color-mix(in oklch, var(--bg-primary) 85%, var(--bg-secondary));
         color: var(--text-primary);
         box-shadow: 0 16px 40px color-mix(in oklch, var(--text-primary), transparent 84%);
-        animation: toast-enter var(--transition-base);
-    }
-
-    @keyframes toast-enter {
-        from {
-            transform: translateY(var(--space-sm));
-            opacity: 0;
-        }
-
-        to {
-            transform: translateY(0);
-            opacity: 1;
-        }
     }
 
     .toast__content {

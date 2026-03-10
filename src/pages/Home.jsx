@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
+import Drawer from '../components/overlay/Drawer'
 import Input from '../components/utils/Input'
 import Button from '../components/utils/Button'
 import Image from '../components/utils/Image'
@@ -14,7 +15,6 @@ import List from '../components/content/List'
 import Breadcrumb from '../components/navigation/Breadcrumb'
 import Pagination from '../components/navigation/Pagination'
 import Tabs from '../components/navigation/Tabs'
-import Drawer from '../components/overlay/Drawer'
 import Modal from '../components/overlay/Modal'
 import Popover, { PopoverAnchor, PopoverPanel } from '../components/overlay/Popover'
 import DropdownMenu, { DropdownMenuContent, DropdownMenuItem, DropdownMenuSeparator, DropdownMenuTrigger } from '../components/overlay/DropdownMenu'
@@ -54,8 +54,9 @@ const Home = () => {
     const [iframeLoading, setIframeLoading] = useState(true)
     const [activeMode, setActiveMode] = useState('light')
     const [page, setPage] = useState(1)
-    const [drawerOpen, setDrawerOpen] = useState(false)
     const [modalOpen, setModalOpen] = useState(false)
+    const [drawerOpen, setDrawerOpen] = useState(false)
+    const [drawerPlacement, setDrawerPlacement] = useState('right')
     const [popoverOpen, setPopoverOpen] = useState(false)
     const [checkedA, setCheckedA] = useState(false)
     const [checkedB, setCheckedB] = useState(false)
@@ -73,18 +74,9 @@ const Home = () => {
     const [helperPlan, setHelperPlan] = useState('starter')
     const [country, setCountry] = useState('')
     const [notificationsEnabled, setNotificationsEnabled] = useState(false)
-    const [drawerPlacement, setDrawerPlacement] = useState('right')
-    const drawerRef = useRef(null)
     const pendingPlacement = useRef(null)
 
-    useEffect(() => {
-        if (!drawerOpen && pendingPlacement.current) {
-            const next = pendingPlacement.current
-            pendingPlacement.current = null
-            setDrawerPlacement(next)
-            setDrawerOpen(true)
-        }
-    }, [drawerOpen])
+
 
     useEffect(() => {
         document.documentElement.setAttribute('data-theme', activeMode)
@@ -545,15 +537,45 @@ const Home = () => {
                 </div>
                 <div className="element">
                     <h2>Avatar</h2>
-                    <Avatar src="/user.jpg" alt="John Doe" size="lg" status="online" />
 
-                    <Avatar name="John Doe" size="md" shape="square" />
+                    {/* Tailles */}
+                    <div className="btn-row" style={{ alignItems: 'flex-end' }}>
+                        <Avatar name="XS" size="xs" />
+                        <Avatar name="SM" size="sm" />
+                        <Avatar name="MD" size="md" />
+                        <Avatar name="LG" size="lg" />
+                        <Avatar name="XL" size="xl" />
+                    </div>
 
+                    {/* Avec image + fallback */}
+                    <div className="btn-row" style={{ alignItems: 'center' }}>
+                        <Avatar src="/user.jpg" alt="John Doe" size="lg" />
+                        <Avatar name="Jane Smith" size="lg" />
+                        <Avatar size="lg" />
+                    </div>
+
+                    {/* Statuts */}
+                    <div className="btn-row" style={{ alignItems: 'center' }}>
+                        <Avatar name="Online" size="md" status="online" />
+                        <Avatar name="Offline" size="md" status="offline" />
+                        <Avatar name="Busy" size="md" status="busy" />
+                        <Avatar name="Away" size="md" status="away" />
+                    </div>
+
+                    {/* Formes */}
+                    <div className="btn-row" style={{ alignItems: 'center' }}>
+                        <Avatar name="Circle" size="lg" shape="circle" />
+                        <Avatar name="Square" size="lg" shape="square" />
+                        <Avatar name="Rounded" size="lg" shape="rounded" />
+                    </div>
+
+                    {/* Groupe */}
                     <AvatarGroup max={3}>
                         <Avatar src="/a.jpg" name="Alice" />
                         <Avatar src="/b.jpg" name="Bob" />
                         <Avatar name="Charlie" />
                         <Avatar name="Diana" />
+                        <Avatar name="Eve" />
                     </AvatarGroup>
                 </div>
                 <div className="element">
@@ -667,7 +689,6 @@ const Home = () => {
                                 Anchored panel that closes on outside click / ESC.
                             </p>
                             <div className="btn-row" style={{ marginTop: 'var(--space-md)' }}>
-                                <Button size="sm" variant="secondary" onClick={() => setPopoverOpen(false)}>Close</Button>
                                 <Button
                                     size="sm"
                                     variant="primary"
@@ -678,6 +699,7 @@ const Home = () => {
                                 >
                                     Action
                                 </Button>
+                                <Button size="sm" variant="secondary" onClick={() => setPopoverOpen(false)}>Close</Button>
                             </div>
                         </PopoverPanel>
                     </Popover>
@@ -747,6 +769,8 @@ const Home = () => {
                         onChange={setPage}
                     />
                 </div>
+
+
                 <div className="element">
                     <h2>Drawer</h2>
                     <div className="btn-row">
@@ -754,35 +778,12 @@ const Home = () => {
                             <Button
                                 key={p}
                                 variant="outline"
-                                onClick={() => {
-                                    if (drawerOpen && drawerPlacement !== p) {
-                                        pendingPlacement.current = p
-                                        drawerRef.current?.close()
-                                    } else {
-                                        setDrawerPlacement(p)
-                                        setDrawerOpen(true)
-                                    }
-                                }}
+                                onClick={() => { setDrawerPlacement(p); setDrawerOpen(true) }}
                             >
-                                Open {p}
+                                {p.charAt(0).toUpperCase() + p.slice(1)}
                             </Button>
                         ))}
                     </div>
-                    <Drawer
-                        ref={drawerRef}
-                        open={drawerOpen}
-                        onClose={() => setDrawerOpen(false)}
-                        placement={drawerPlacement}
-                        title="Drawer title"
-                        footer={
-                            <>
-                                <Button variant="secondary" onClick={() => drawerRef.current?.close()}>Cancel</Button>
-                                <Button variant="primary" onClick={() => drawerRef.current?.close()}>Confirm</Button>
-                            </>
-                        }
-                    >
-                        <p>Drawer content goes here. You can put any content inside the drawer.</p>
-                    </Drawer>
                 </div>
 
                 <div className="element">
@@ -793,6 +794,25 @@ const Home = () => {
                 </div>
             </div>
 
+            <Drawer
+                open={drawerOpen}
+                onClose={() => setDrawerOpen(false)}
+                placement={drawerPlacement}
+                title={`Drawer — ${drawerPlacement}`}
+                footer={
+                    <>
+                        <Button variant="primary" onClick={() => setDrawerOpen(false)}>Confirm</Button>
+                        <Button variant="secondary" onClick={() => setDrawerOpen(false)}>Cancel</Button>
+                    </>
+                }
+            >
+                <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                    This drawer slides in from the <strong>{drawerPlacement}</strong>. Close it with the button, the overlay, or <kbd>Escape</kbd>.
+                </p>
+                <Input label="Name" placeholder="John Doe" fullWidth />
+                <Input label="Email" placeholder="john@example.com" fullWidth />
+            </Drawer>
+
             <Modal
                 isOpen={modalOpen}
                 onClose={() => setModalOpen(false)}
@@ -800,8 +820,8 @@ const Home = () => {
                 description="This is a reusable modal component with keyboard and overlay close behavior."
                 footer={
                     <>
-                        <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
                         <Button variant="primary" onClick={() => setModalOpen(false)}>Confirm</Button>
+                        <Button variant="secondary" onClick={() => setModalOpen(false)}>Cancel</Button>
                     </>
                 }
             >

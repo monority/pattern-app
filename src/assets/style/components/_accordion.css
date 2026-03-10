@@ -31,41 +31,11 @@
 
 .accordion__icon {
     flex-shrink: 0;
-    transition: transform var(--transition-base);
-}
-
-.accordion__item--open .accordion__icon {
-    transform: rotate(180deg);
-}
-
-.accordion__body {
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows var(--transition-base);
-}
-
-.accordion__item--open .accordion__body {
-    grid-template-rows: 1fr;
 }
 
 .accordion__content {
-    overflow: hidden;
+    padding: var(--space-lg);
     font-size: var(--font-size-md);
     color: var(--text-secondary);
-    transition: padding var(--transition-base);
-    background: var(--bg-primary)
-}
-
-.accordion__item--open .accordion__content {
-    padding: var(--space-lg);
-}
-
-@media (prefers-reduced-motion: reduce) {
-
-    .accordion__trigger,
-    .accordion__icon,
-    .accordion__body,
-    .accordion__content {
-        transition: none;
-    }
+    background: var(--bg-primary);
 }

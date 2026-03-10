@@ -1,5 +1,6 @@
 import React, { createContext, useCallback, useContext, useEffect, useId, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
 
 const ContextMenuContext = createContext(null)
 
@@ -74,7 +75,7 @@ const ContextMenu = ({
         const left = clamp(point.x, viewportPadding, vw - rect.width - viewportPadding)
         const top = clamp(point.y, viewportPadding, vh - rect.height - viewportPadding)
 
-        setMenuStyle({ position: 'fixed', top, left, visibility: 'visible' })
+        setMenuStyle({ position: 'fixed', top, left })
     }, [point.x, point.y, viewportPadding])
 
     useEffect(() => {
@@ -244,28 +245,29 @@ export const ContextMenuContent = React.forwardRef(({ children, className = '', 
         }
     }
 
-    if (!ctx.open) return null
-
-    const positionedStyle = ctx.menuStyle ?? {
-        position: 'fixed',
-        top: 0,
-        left: 0,
-        visibility: 'hidden',
-    }
+    const positionedStyle = ctx.menuStyle ?? { position: 'fixed', top: 0, left: 0 }
 
     return createPortal(
-        <div
-            id={ctx.menuId}
-            ref={setNode}
-            role="menu"
-            tabIndex={-1}
-            className={['contextmenu', className].filter(Boolean).join(' ')}
-            style={{ ...positionedStyle, ...style }}
-            onKeyDown={onKeyDown}
-            {...props}
-        >
-            {children}
-        </div>,
+        <AnimatePresence>
+            {ctx.open && (
+                <motion.div
+                    id={ctx.menuId}
+                    ref={setNode}
+                    role="menu"
+                    tabIndex={-1}
+                    className={['contextmenu', className].filter(Boolean).join(' ')}
+                    style={{ ...positionedStyle, transformOrigin: '0 0', ...style }}
+                    onKeyDown={onKeyDown}
+                    initial={{ opacity: 0, scale: 0.88 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.88 }}
+                    transition={{ duration: 0.15, ease: [0.16, 1, 0.3, 1] }}
+                    {...props}
+                >
+                    {children}
+                </motion.div>
+            )}
+        </AnimatePresence>,
         document.body
     )
 })

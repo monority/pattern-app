@@ -216,7 +216,7 @@
         --status-success-text: oklch(100% 0.00011 271.152);
 
         /* Status - Danger */
-        --status-danger: oklch(64.924% 0.22896 26.4);
+        --status-danger: oklch(58.813% 0.23092 28.282);
         --status-danger-text: oklch(100% 0.00011 271.152);
 
         /* Status - Warning */
@@ -228,8 +228,8 @@
         --btn-ghost-bg: oklch(25.197% 0.00003 271.152 / 0.712);
 
         /* Button variants - Outline */
-        --btn-outline-text: oklch(87.61% 0.0001 271.152);
-        --btn-outline-hover-bg: oklch(94.912% 0.00011 271.152);
+        --btn-outline-text: oklch(26.033% 0.00003 271.152);
+        --btn-outline-hover-bg: oklch(82.344% 0.00009 271.152);
         --box-shadow-elevated: inset 0 0 0 2px var(--input-border);
 
         --input-border: oklch(85.142% 0.0001 271.152);

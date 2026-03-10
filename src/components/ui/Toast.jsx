@@ -1,6 +1,8 @@
 /* eslint-disable react-refresh/only-export-components */
 import React, { createContext, memo, useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { AnimatePresence, motion } from 'motion/react'
+import Icon from '../utils/Icon'
 
 const ToastContext = createContext(null)
 
@@ -23,10 +25,15 @@ const ToastItem = memo(function ToastItem({ toast, onDismiss }) {
     }, [duration, id, onDismiss])
 
     return (
-        <div
+        <motion.div
+            layout
             className={['toast', `toast--${variant}`].join(' ')}
             role={variantToRole(variant)}
             aria-live={variant === 'danger' ? 'assertive' : 'polite'}
+            initial={{ opacity: 0, y: 20, scale: 0.94 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.9, y: 8, transition: { duration: 0.18, ease: 'easeIn' } }}
+            transition={{ type: 'spring', stiffness: 340, damping: 28 }}
         >
             <div className="toast__content">
                 {title && <div className="toast__title">{title}</div>}
@@ -47,24 +54,21 @@ const ToastItem = memo(function ToastItem({ toast, onDismiss }) {
                     </button>
                 )}
                 <button type="button" className="toast__close" onClick={() => onDismiss(id)} aria-label="Dismiss toast">
-                    <svg width="1em" height="1em" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <line x1="18" y1="6" x2="6" y2="18" />
-                        <line x1="6" y1="6" x2="18" y2="18" />
-                    </svg>
+                    <Icon type="x" aria-hidden="true" focusable="false" />
                 </button>
             </div>
-        </div>
+        </motion.div>
     )
 })
 
 const ToastViewport = memo(function ToastViewport({ toasts, position = 'bottom-right', onDismiss }) {
-    if (!toasts.length) return null
-
     return createPortal(
         <div className={['toast-viewport', `toast-viewport--${position}`].join(' ')} aria-label="Notifications">
-            {toasts.map((t) => (
-                <ToastItem key={t.id} toast={t} onDismiss={onDismiss} />
-            ))}
+            <AnimatePresence initial={false}>
+                {toasts.map((t) => (
+                    <ToastItem key={t.id} toast={t} onDismiss={onDismiss} />
+                ))}
+            </AnimatePresence>
         </div>,
         document.body
     )

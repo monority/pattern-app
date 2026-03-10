@@ -1,4 +1,5 @@
 import React, { forwardRef, memo, useEffect, useId, useImperativeHandle, useRef } from 'react'
+import Icon from './Icon'
 
 const CheckboxComponent = forwardRef((props, ref) => {
     const {
@@ -70,12 +71,8 @@ const CheckboxComponent = forwardRef((props, ref) => {
                     {...rest}
                 />
                 <span className={['checkbox__control', indeterminate && 'checkbox__control--indeterminate'].filter(Boolean).join(' ')} aria-hidden="true">
-                    <svg className="checkbox__icon checkbox__icon-check" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                        <polyline points="3.5 8.5 6.8 11.5 12.5 4.8" />
-                    </svg>
-                    <svg className="checkbox__icon checkbox__icon-line" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                        <line x1="4" y1="8" x2="12" y2="8" />
-                    </svg>
+                    <Icon type="check" viewBox="0 0 16 16" className="checkbox__icon checkbox__icon-check" focusable="false" />
+                    <Icon type="minus" viewBox="0 0 16 16" className="checkbox__icon checkbox__icon-line" focusable="false" />
                 </span>
                 {checkboxLabel && (
                     <span className="checkbox__text">

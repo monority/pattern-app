@@ -1,4 +1,5 @@
 import React, { useState, useRef, useId } from 'react'
+import { AnimatePresence, motion } from 'motion/react'
 
 const Tabs = ({
     tabs = [],
@@ -68,16 +69,23 @@ const Tabs = ({
                 })}
             </div>
 
-            {activePanel && (
-                <div
-                    id={`${uid}-panel-${activePanel.value}`}
-                    role="tabpanel"
-                    aria-labelledby={`${uid}-tab-${activePanel.value}`}
-                    className="tabs__panel"
-                >
-                    {activePanel.content}
-                </div>
-            )}
+            <AnimatePresence mode="wait">
+                {activePanel && (
+                    <motion.div
+                        key={activePanel.value}
+                        id={`${uid}-panel-${activePanel.value}`}
+                        role="tabpanel"
+                        aria-labelledby={`${uid}-tab-${activePanel.value}`}
+                        className="tabs__panel"
+                        initial={{ opacity: 0, y: 6 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.18, ease: 'easeOut' }}
+                    >
+                        {activePanel.content}
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </div>
     )
 }

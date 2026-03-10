@@ -39,30 +39,30 @@
 
     /* Primary variant */
     .btn-primary {
-        background-color: var(--brand-primary);
-        color: var(--brand-primary-text);
-    }
-
-    .btn-primary:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-primary) 90%, white);
-    }
-
-    .btn-primary:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-primary) 85%, black);
-    }
-
-    /* Secondary variant */
-    .btn-secondary {
         background-color: var(--brand-secondary);
         color: var(--brand-secondary-text);
     }
 
-    .btn-secondary:hover:not(:disabled) {
+    .btn-primary:hover:not(:disabled) {
         background-color: color-mix(in oklch, var(--brand-secondary) 90%, grey);
     }
 
-    .btn-secondary:active:not(:disabled) {
+    .btn-primary:active:not(:disabled) {
         background-color: color-mix(in oklch, var(--brand-secondary) 55%, grey);
+    }
+
+    /* Secondary variant */
+    .btn-secondary {
+        background-color: var(--brand-primary);
+        color: var(--brand-primary-text);
+    }
+
+    .btn-secondary:hover:not(:disabled) {
+        background-color: color-mix(in oklch, var(--brand-primary) 90%, white);
+    }
+
+    .btn-secondary:active:not(:disabled) {
+        background-color: color-mix(in oklch, var(--brand-primary) 85%, black);
     }
 
     /* Success variant */
