@@ -375,7 +375,7 @@ const Home = () => {
                         hint="Controlled toggle"
                     />
 
-                    <Toggle defaultChecked size="sm" icon="search" label="Small" />
+                    <Toggle defaultChecked size="sm" icon="search" iconOn="search" label="Small" />
                     <Toggle size="lg" label="Large" />
                     <Toggle disabled defaultChecked label="Disabled" />
                     <Toggle defaultChecked error="Example error state" label="With Error" />
