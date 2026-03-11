@@ -173,7 +173,7 @@
     [data-theme="light"] {
         /* Background colors */
         --bg-primary: oklch(100% 0.00011 271.152);
-        --bg-secondary: #F0F4F7;
+        --bg-secondary: #f5f5f5;
         --bg-tertiary: #fcfcfc;
         --bg-elevated: oklch(0% 0 0);
 

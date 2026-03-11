@@ -550,7 +550,7 @@ const Home = () => {
                     {/* Avec image + fallback */}
                     <div className="btn-row" style={{ alignItems: 'center' }}>
                         <Avatar src="/user.jpg" alt="John Doe" size="lg" />
-                        <Avatar name="Jane Smith" size="lg" />
+                        <Avatar name="Lucile Mas" size="lg" />
                         <Avatar size="lg" />
                     </div>
 
