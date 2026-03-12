@@ -9,7 +9,7 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
         cursor: pointer;
         user-select: none;
         width: fit-content;
@@ -35,9 +35,9 @@
         width: 2.25rem;
         height: 2.25rem;
         border-radius: var(--radius-md);
-        border: 1px solid var(--input-border);
-        background: var(--bg-secondary);
-        color: var(--text-secondary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
+        background: var(--secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
     }
 
@@ -92,15 +92,15 @@
     }
 
     .toggle__required {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
     /* Interactions */
     .toggle__label:hover .toggle__control {
-        border-color: color-mix(in oklch, var(--focus-ring) 55%, var(--input-border));
-        background: var(--bg-secondary);
-        color: var(--text-primary);
+        border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
+        background: var(--secondary);
+        color: var(--highlight);
     }
 
     .toggle__label:active .toggle__control {
@@ -108,16 +108,16 @@
     }
 
     .toggle__input:focus-visible+.toggle__control {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 18%, transparent);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--accent) 18%, transparent);
     }
 
     /* Checked */
     .toggle__input:checked+.toggle__control {
-        background: var(--bg-primary);
-        border-color: var(--input-border);
-        color: var(--brand-primary-text);
+        background: var(--primary);
+        border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
+        color: color-mix(in oklch, white 92%, var(--primary));
     }
 
     .toggle__input:checked+.toggle__control .toggle__icon-outline {
@@ -139,28 +139,28 @@
 
     .toggle-disabled .toggle__label:hover .toggle__control {
         transform: none;
-        border-color: var(--input-border);
-        background: var(--bg-primary);
-        color: var(--text-secondary);
+        border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
+        background: var(--primary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     }
 
     /* Error */
     .toggle-error .toggle__control {
-        border-color: var(--status-danger);
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .toggle-error .toggle__input:checked+.toggle__control {
-        background: color-mix(in oklch, var(--status-danger) 85%, var(--brand-primary));
-        border-color: var(--status-danger);
+        background: color-mix(in oklch, var(--danger) 70%, var(--accent));
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .toggle__hint {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .toggle__error {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 }

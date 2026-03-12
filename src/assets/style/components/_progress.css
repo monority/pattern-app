@@ -16,15 +16,15 @@
         align-items: center;
         gap: var(--space-sm);
         width: 100%;
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .progress__track {
         position: relative;
         width: 100%;
         height: var(--progress-height, 0.8rem);
-        background: color-mix(in oklch, var(--bg-secondary) 85%, transparent);
-        border: 1px solid var(--border-primary);
+        background: color-mix(in oklch, var(--secondary) 85%, transparent);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         border-radius: var(--radius-full);
         overflow: hidden;
     }
@@ -32,7 +32,7 @@
     .progress__bar {
         height: 100%;
         width: 0;
-        background: var(--brand-primary);
+        background: color-mix(in oklch, var(--highlight) 38%, var(--secondary));
         transition: width var(--transition-base);
     }
 
@@ -43,7 +43,7 @@
 
     .progress__value {
         font-size: var(--font-size-xs);
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         flex-shrink: 0;
         min-width: 3ch;
         text-align: right;
@@ -84,7 +84,7 @@
         justify-content: center;
         width: var(--circular-size, 2.4rem);
         height: var(--circular-size, 2.4rem);
-        color: var(--brand-primary);
+        color: var(--accent);
     }
 
     .circular-progress__svg {
@@ -94,7 +94,7 @@
     }
 
     .circular-progress__track {
-        stroke: color-mix(in oklch, var(--text-primary) 18%, transparent);
+        stroke: color-mix(in oklch, var(--highlight) 18%, transparent);
     }
 
     .circular-progress__indicator {

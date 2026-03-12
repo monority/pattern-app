@@ -5,7 +5,7 @@
 }
 
 .accordion__item {
-    border: 1px solid var(--border-primary);
+    border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     border-radius: var(--radius-lg);
     overflow: hidden;
 }
@@ -16,17 +16,17 @@
     align-items: center;
     justify-content: space-between;
     padding: var(--space-lg);
-    background: var(--bg-tertiary);
+    background: color-mix(in oklch, var(--secondary) 60%, var(--primary));
     border: none;
     cursor: pointer;
     font-size: var(--font-size-md);
     font-weight: 500;
-    color: var(--text-primary);
+    color: var(--highlight);
     transition: background var(--transition-fast);
 }
 
 .accordion__trigger:hover {
-    background: var(--border-secondary);
+    background: color-mix(in oklch, var(--highlight) 9%, var(--primary));
 }
 
 .accordion__icon {
@@ -36,6 +36,6 @@
 .accordion__content {
     padding: var(--space-lg);
     font-size: var(--font-size-md);
-    color: var(--text-secondary);
-    background: var(--bg-primary);
+    color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
+    background: var(--primary);
 }

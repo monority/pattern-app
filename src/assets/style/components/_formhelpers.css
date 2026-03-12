@@ -12,12 +12,12 @@
     .form-field__label {
         font-size: var(--font-size-sm);
         font-weight: 500;
-        color: var(--text-primary);
+        color: var(--highlight);
         width: fit-content;
     }
 
     .form-field__required {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
@@ -28,12 +28,12 @@
     }
 
     .form-field__hint {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .form-field__error {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 
@@ -66,13 +66,13 @@
     .radio-group__legend {
         font-size: var(--font-size-sm);
         font-weight: 500;
-        color: var(--text-primary);
+        color: var(--highlight);
         padding: 0;
         margin: 0;
     }
 
     .radio-group__required {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
@@ -83,12 +83,12 @@
     }
 
     .radio-group__hint {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .radio-group__error {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 

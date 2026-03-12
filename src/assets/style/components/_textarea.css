@@ -12,35 +12,35 @@
     .textarea label {
         font-size: var(--font-size-sm);
         font-weight: 500;
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .textarea label span {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
     .textarea-element {
         width: 100%;
         padding: var(--space-sm) var(--space-md);
-        border: 1px solid var(--input-border);
+        border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
         border-radius: var(--radius-md);
         font-size: var(--font-size-sm);
         transition: all var(--transition-base);
         outline: none;
-        color: var(--text-primary);
+        color: var(--highlight);
         resize: vertical;
         min-height: 6rem;
     }
 
     .textarea-element::placeholder {
-        color: var(--text-tertiary);
+        color: color-mix(in oklch, var(--highlight) 46%, var(--primary));
         opacity: 1;
     }
 
     .textarea-element:focus {
-        border-color: var(--focus-ring);
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 20%, transparent);
+        border-color: var(--ring);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--accent) 20%, transparent);
     }
 
     .textarea-element:disabled {
@@ -68,33 +68,33 @@
 
     .textarea-default,
     .textarea-outlined {
-        background-color: var(--bg-primary);
+        background-color: var(--primary);
     }
 
     .textarea-outlined {
-        box-shadow: var(--box-shadow-elevated);
+        box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--highlight) 18%, var(--primary));
     }
 
     .textarea-filled {
-        background-color: var(--bg-secondary);
+        background-color: var(--secondary);
         border: 1px solid transparent;
     }
 
     .textarea-error {
-        border-color: var(--status-danger);
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .textarea-error:focus {
-        box-shadow: 0 0 0 3px color-mix(in oklch, var(--status-danger) 20%, transparent);
+        box-shadow: 0 0 0 3px color-mix(in oklch, var(--danger) 20%, transparent);
     }
 
     .textarea span[id$="-error"] {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 
     .textarea span[id$="-hint"] {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 }

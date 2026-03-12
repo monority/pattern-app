@@ -43,10 +43,10 @@
         gap: var(--space-md);
         padding: var(--space-md) var(--space-lg);
         border-radius: var(--radius-lg);
-        border: 1px solid var(--border-primary);
-        background: color-mix(in oklch, var(--bg-primary) 85%, var(--bg-secondary));
-        color: var(--text-primary);
-        box-shadow: 0 16px 40px color-mix(in oklch, var(--text-primary), transparent 84%);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        background: color-mix(in oklch, var(--primary) 85%, var(--secondary));
+        color: var(--highlight);
+        box-shadow: 0 16px 40px color-mix(in oklch, var(--highlight), transparent 84%);
     }
 
     .toast__content {
@@ -63,7 +63,7 @@
     }
 
     .toast__description {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
         line-height: 1.35;
         word-break: break-word;
@@ -77,9 +77,9 @@
     }
 
     .toast__action {
-        border: 1px solid var(--border-primary);
-        background: var(--bg-secondary);
-        color: var(--text-primary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        background: var(--secondary);
+        color: var(--highlight);
         border-radius: var(--radius-md);
         padding: var(--space-xs) var(--space-sm);
         cursor: pointer;
@@ -87,11 +87,11 @@
     }
 
     .toast__action:hover {
-        background: color-mix(in oklch, var(--bg-secondary) 80%, var(--bg-primary));
+        background: color-mix(in oklch, var(--secondary) 80%, var(--primary));
     }
 
     .toast__action:focus-visible {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
     }
 
@@ -100,7 +100,7 @@
         height: 2rem;
         border: none;
         background: transparent;
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -110,29 +110,29 @@
     }
 
     .toast__close:hover {
-        background: var(--bg-secondary);
-        color: var(--text-primary);
+        background: var(--secondary);
+        color: var(--highlight);
     }
 
     .toast__close:focus-visible {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
     }
 
     .toast--success {
-        border-color: color-mix(in oklch, var(--status-success) 40%, var(--border-primary));
+        border-color: color-mix(in oklch, var(--success) 40%, var(--primary));
     }
 
     .toast--danger {
-        border-color: color-mix(in oklch, var(--status-danger) 45%, var(--border-primary));
+        border-color: color-mix(in oklch, var(--danger) 45%, var(--primary));
     }
 
     .toast--warning {
-        border-color: color-mix(in oklch, var(--status-warning) 55%, var(--border-primary));
+        border-color: color-mix(in oklch, var(--warning) 55%, var(--primary));
     }
 
     .toast--info {
-        border-color: color-mix(in oklch, var(--brand-secondary) 25%, var(--border-primary));
+        border-color: color-mix(in oklch, var(--accent) 25%, var(--primary));
     }
 
     @media (prefers-reduced-motion: reduce) {

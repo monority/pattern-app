@@ -4,9 +4,9 @@
         align-items: center;
         justify-content: center;
         gap: var(--space-xs);
-        border: 1px solid var(--border-primary);
-        background: var(--bg-primary);
-        color: var(--text-primary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        background: var(--primary);
+        color: var(--highlight);
         user-select: none;
         white-space: nowrap;
     }
@@ -31,38 +31,38 @@
     }
 
     .tagchip--default {
-        background: var(--bg-primary);
-        border-color: var(--border-primary);
-        color: var(--text-primary);
+        background: var(--primary);
+        border-color: color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        color: var(--highlight);
     }
 
     .tagchip--secondary {
-        background: var(--bg-secondary);
-        border-color: var(--border-primary);
-        color: var(--text-primary);
+        background: var(--secondary);
+        border-color: color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        color: var(--highlight);
     }
 
     .tagchip--primary {
-        background: var(--brand-secondary);
-        border-color: var(--brand-secondary);
-        color: var(--brand-secondary-text);
+        background: color-mix(in oklch, var(--accent) 18%, var(--secondary));
+        border-color: color-mix(in oklch, var(--accent) 18%, var(--secondary));
+        color: var(--highlight);
     }
 
     .tagchip--success {
-        background: var(--status-success);
-        border-color: var(--status-success);
-        color: var(--status-success-text);
+        background: var(--success);
+        border-color: var(--success);
+        color: color-mix(in oklch, white 92%, var(--primary));
     }
 
     .tagchip--warning {
-        background: var(--status-warning);
-        border-color: var(--status-warning);
-        color: var(--status-warning-text);
+        background: var(--warning);
+        border-color: var(--warning);
+        color: color-mix(in oklch, black 72%, var(--warning));
     }
 
     .tagchip--danger {
-        background: var(--status-danger);
-        border-color: var(--status-danger);
-        color: var(--status-danger-text);
+        background: color-mix(in oklch, var(--danger) 82%, var(--accent));
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
+        color: color-mix(in oklch, white 92%, var(--primary));
     }
 }

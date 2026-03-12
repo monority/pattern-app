@@ -9,15 +9,15 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
         cursor: pointer;
         user-select: none;
         width: fit-content;
     }
 
     .checkbox__label:hover .checkbox__control {
-        border-color: color-mix(in oklch, var(--focus-ring) 55%, var(--input-border));
-        background: var(--bg-secondary);
+        border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
+        background: var(--secondary);
     }
 
     .checkbox__label:active .checkbox__control {
@@ -38,14 +38,14 @@
     .checkbox__control {
         width: 1.7rem;
         height: 1.7rem;
-        border: 1px solid var(--input-border);
+        border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
         border-radius: var(--radius-sm);
-        background: var(--bg-primary);
+        background: var(--primary);
         display: inline-flex;
         align-items: center;
         justify-content: center;
         position: relative;
-        color: var(--brand-primary-text);
+        color: color-mix(in oklch, white 92%, var(--primary));
         flex-shrink: 0;
         transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
     }
@@ -79,7 +79,7 @@
     }
 
     .checkbox__required {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
@@ -96,14 +96,14 @@
     }
 
     .checkbox__input:focus-visible+.checkbox__control {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 18%, transparent);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--accent) 18%, transparent);
     }
 
     .checkbox__input:checked+.checkbox__control {
-        background: var(--brand-primary);
-        border-color: var(--input-border);
+        background: var(--accent);
+        border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
     }
 
     .checkbox__input:checked+.checkbox__control .checkbox__icon-check {
@@ -118,8 +118,8 @@
 
     /* Indeterminate state (native) */
     .checkbox__input:indeterminate+.checkbox__control {
-        background: var(--brand-primary);
-        border-color: var(--brand-primary);
+        background: var(--accent);
+        border-color: var(--accent);
     }
 
     .checkbox__input:indeterminate+.checkbox__control .checkbox__icon-check {
@@ -134,8 +134,8 @@
 
     /* Fallback: if indeterminate is only represented via class */
     .checkbox__control--indeterminate {
-        background: var(--brand-primary);
-        border-color: var(--brand-primary);
+        background: var(--accent);
+        border-color: var(--accent);
     }
 
     .checkbox__control--indeterminate .checkbox__icon-check {
@@ -160,22 +160,22 @@
     }
 
     .checkbox-error .checkbox__control {
-        border-color: var(--status-danger);
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .checkbox-error .checkbox__input:checked+.checkbox__control,
     .checkbox-error .checkbox__input:indeterminate+.checkbox__control {
-        background: color-mix(in oklch, var(--status-danger) 85%, var(--brand-primary));
-        border-color: var(--status-danger);
+        background: color-mix(in oklch, var(--danger) 70%, var(--accent));
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .checkbox__hint {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .checkbox__error {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 }

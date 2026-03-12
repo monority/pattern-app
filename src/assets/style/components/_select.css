@@ -8,11 +8,11 @@
     .select label {
         font-size: var(--font-size-sm);
         font-weight: 500;
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .select label span {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
@@ -31,10 +31,10 @@
         width: 100%;
         padding: var(--space-sm) var(--space-md);
         padding-right: var(--space-xxl);
-        border: 1px solid var(--input-border);
+        border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
         border-radius: var(--radius-md);
         font-size: var(--font-size-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
         outline: none;
         transition: all var(--transition-base);
 
@@ -45,8 +45,8 @@
     }
 
     .select-element:focus {
-        border-color: var(--focus-ring);
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 20%, transparent);
+        border-color: var(--ring);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--accent) 20%, transparent);
     }
 
     .select-element:disabled {
@@ -61,7 +61,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         pointer-events: none;
     }
 
@@ -85,33 +85,33 @@
 
     .select-default,
     .select-outlined {
-        background-color: var(--bg-primary);
+        background-color: var(--primary);
     }
 
     .select-outlined {
-        box-shadow: var(--box-shadow-elevated);
+        box-shadow: inset 0 0 0 2px color-mix(in oklch, var(--highlight) 18%, var(--primary));
     }
 
     .select-filled {
-        background-color: var(--bg-secondary);
+        background-color: var(--secondary);
         border: 1px solid transparent;
     }
 
     .select-error {
-        border-color: var(--status-danger);
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .select-error:focus {
-        box-shadow: 0 0 0 3px color-mix(in oklch, var(--status-danger) 20%, transparent);
+        box-shadow: 0 0 0 3px color-mix(in oklch, var(--danger) 20%, transparent);
     }
 
     .select span[id$="-error"] {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 
     .select span[id$="-hint"] {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 }

@@ -19,7 +19,7 @@
     padding: var(--space-sm) var(--space-md);
     background: transparent;
     border: none;
-    color: var(--text-secondary);
+    color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     font-size: var(--font-size-sm);
     font-weight: 500;
     cursor: pointer;
@@ -30,7 +30,7 @@
 }
 
 .tabs__tab:focus-visible {
-    outline: 2px solid var(--focus-ring);
+    outline: 2px solid var(--ring);
     outline-offset: -2px;
     border-radius: var(--radius-sm);
 }
@@ -47,7 +47,7 @@
 
 /* ── Variant: line (default) ── */
 .tabs--line .tabs__list {
-    border-bottom: 1px solid var(--border-primary);
+    border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
 }
 
 .tabs--line .tabs__tab {
@@ -56,19 +56,19 @@
 }
 
 .tabs--line .tabs__tab:hover:not(:disabled) {
-    color: var(--text-fourth);
+    color: var(--highlight);
 }
 
 .tabs--line .tabs__tab--active {
-    color: var(--text-fourth);
-    border-bottom-color: var(--text-fourth);
+    color: var(--highlight);
+    border-bottom-color: var(--highlight);
 }
 
 /* ── Variant: pill ── */
 .tabs--pill .tabs__list {
     gap: var(--space-xs);
     padding: var(--space-xs);
-    background: var(--bg-secondary);
+    background: var(--secondary);
     border-radius: var(--radius-lg);
     width: fit-content;
 }
@@ -78,14 +78,14 @@
 }
 
 .tabs--pill .tabs__tab:hover:not(:disabled) {
-    background: var(--bg-tertiary);
-    color: var(--text-primary);
+    background: color-mix(in oklch, var(--secondary) 60%, var(--primary));
+    color: var(--highlight);
 }
 
 .tabs--pill .tabs__tab--active {
-    background: var(--bg-primary);
-    color: var(--text-primary);
-    box-shadow: 0 1px 4px color-mix(in oklch, var(--text-primary), transparent 88%);
+    background: var(--primary);
+    color: var(--highlight);
+    box-shadow: 0 1px 4px color-mix(in oklch, var(--highlight), transparent 88%);
 }
 
 /* ── Variant: solid ── */
@@ -99,18 +99,18 @@
 }
 
 .tabs--solid .tabs__tab:hover:not(:disabled) {
-    background: var(--bg-secondary);
-    color: var(--text-primary);
+    background: var(--secondary);
+    color: var(--highlight);
 }
 
 .tabs--solid .tabs__tab--active {
-    background: var(--brand-primary);
-    color: var(--text-inverse);
+    background: var(--accent);
+    color: color-mix(in oklch, white 92%, var(--primary));
 }
 
 /* ── Panel ── */
 .tabs__panel {
-    color: var(--text-primary);
+    color: var(--highlight);
     font-size: var(--font-size-sm);
     animation: tabs-fade-in var(--transition-fast) ease;
 }

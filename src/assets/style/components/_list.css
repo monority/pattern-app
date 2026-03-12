@@ -15,14 +15,14 @@
         display: flex;
         align-items: flex-start;
         gap: var(--space-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .list__bullet {
         width: 0.6rem;
         height: 0.6rem;
         border-radius: var(--radius-full);
-        background: var(--text-tertiary);
+        background: color-mix(in oklch, var(--highlight) 46%, var(--primary));
         margin-top: 0.55em;
         flex-shrink: 0;
     }
@@ -31,7 +31,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        color: var(--text-tertiary);
+        color: color-mix(in oklch, var(--highlight) 46%, var(--primary));
         margin-top: 0.25em;
         flex-shrink: 0;
     }
@@ -43,7 +43,7 @@
 
     .list--divided .list__item {
         padding-bottom: var(--space-sm);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     }
 
     .list--divided .list__item:last-child {

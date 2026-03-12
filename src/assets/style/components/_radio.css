@@ -9,7 +9,7 @@
         display: inline-flex;
         align-items: center;
         gap: var(--space-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
         cursor: pointer;
         user-select: none;
         width: fit-content;
@@ -27,7 +27,7 @@
     }
 
     .radio__control {
-        border: 1px solid var(--input-border);
+        border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
         border-radius: var(--radius-full);
         display: inline-flex;
         align-items: center;
@@ -39,10 +39,10 @@
 
     .radio__dot {
         display: block;
-        width: 0.8rem;
-        height: 0.8rem;
+        width: 0.75rem;
+        height: 0.75rem;
         border-radius: var(--radius-full);
-        background: var(--brand-primary-text);
+        background: var(--highlight);
         opacity: 0;
         transform: scale(0.8);
         transition: opacity var(--transition-fast), transform var(--transition-fast);
@@ -87,13 +87,13 @@
     }
 
     .radio__required {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         margin-left: var(--space-xs);
     }
 
     .radio__label:hover .radio__control {
-        border-color: color-mix(in oklch, var(--focus-ring) 55%, var(--input-border));
-        background: var(--bg-secondary);
+        border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
+        background: var(--secondary);
     }
 
     .radio__label:active .radio__control {
@@ -101,14 +101,13 @@
     }
 
     .radio__input:focus-visible+.radio__control {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
-        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--brand-primary) 18%, transparent);
+        box-shadow: 0 0 0 0.2rem color-mix(in oklch, var(--accent) 18%, transparent);
     }
 
     .radio__input:checked+.radio__control {
-        background: var(--brand-primary);
-        border-color: var(--input-border);
+        border-color: color-mix(in oklch, var(--highlight) 32%, var(--primary));
     }
 
     .radio__input:checked+.radio__control .radio__dot {
@@ -128,21 +127,21 @@
     }
 
     .radio-error .radio__control {
-        border-color: var(--status-danger);
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .radio-error .radio__input:checked+.radio__control {
-        background: color-mix(in oklch, var(--status-danger) 85%, var(--brand-primary));
-        border-color: var(--status-danger);
+        background: color-mix(in oklch, var(--danger) 70%, var(--accent));
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .radio__hint {
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .radio__error {
-        color: var(--status-danger);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
         font-size: var(--font-size-xs);
     }
 }

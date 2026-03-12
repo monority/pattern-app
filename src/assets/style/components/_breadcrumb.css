@@ -20,29 +20,29 @@
 }
 
 .breadcrumb__link {
-    color: var(--text-secondary);
+    color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     text-decoration: none;
     transition: color var(--transition-fast);
     border-radius: var(--radius-sm);
 }
 
 .breadcrumb__link:hover {
-    color: var(--text-primary);
+    color: var(--highlight);
     text-decoration: underline;
 }
 
 .breadcrumb__link:focus-visible {
-    outline: 2px solid var(--focus-ring);
+    outline: 2px solid var(--ring);
     outline-offset: 2px;
 }
 
 .breadcrumb__link--current {
-    color: var(--text-primary);
+    color: var(--highlight);
     font-weight: 500;
     pointer-events: none;
 }
 
 .breadcrumb__separator {
-    color: var(--text-tertiary);
+    color: color-mix(in oklch, var(--highlight) 46%, var(--primary));
     user-select: none;
 }

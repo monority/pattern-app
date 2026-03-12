@@ -1,10 +1,10 @@
 @layer components {
     .table {
         width: 100%;
-        border: 1px solid var(--border-primary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         border-radius: var(--radius-lg);
         overflow: hidden;
-        background: var(--bg-primary);
+        background: var(--primary);
     }
 
     .table__table {
@@ -12,18 +12,18 @@
         border-collapse: separate;
         border-spacing: 0;
         font-size: var(--font-size-sm);
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .table__caption {
         text-align: left;
         padding: var(--space-sm) var(--space-md);
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
     }
 
     .table__head {
-        background: var(--bg-secondary);
+        background: var(--secondary);
     }
 
     .table__row {
@@ -32,13 +32,13 @@
 
     .table__cell {
         padding: var(--space-sm) var(--space-md);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         vertical-align: top;
     }
 
     .table__cell--head {
         font-weight: 600;
-        color: var(--text-primary);
+        color: var(--highlight);
         text-align: left;
         font-size: var(--font-size-xs);
         letter-spacing: 0.02em;
@@ -59,7 +59,7 @@
 
     .table__cell--empty {
         padding: var(--space-lg) var(--space-md);
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         text-align: center;
     }
 
@@ -68,10 +68,10 @@
     }
 
     .table--striped .table__body .table__row:nth-child(even) {
-        background: color-mix(in oklch, var(--bg-secondary) 60%, transparent);
+        background: color-mix(in oklch, var(--secondary) 60%, transparent);
     }
 
     .table--hover .table__body .table__row:hover {
-        background: color-mix(in oklch, var(--bg-secondary) 75%, transparent);
+        background: color-mix(in oklch, var(--secondary) 75%, transparent);
     }
 }

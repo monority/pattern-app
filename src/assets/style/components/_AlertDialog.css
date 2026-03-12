@@ -4,7 +4,7 @@
     .alert-dialog-overlay {
         position: fixed;
         inset: 0;
-        background-color: color-mix(in oklch, var(--bg-secondary) 10%, black 50%);
+        background-color: color-mix(in oklch, var(--secondary) 10%, black 50%);
         display: flex;
         align-items: center;
         justify-content: center;
@@ -14,7 +14,7 @@
 
     /* Dialog */
     .alert-dialog {
-        background: var(--bg-secondary);
+        background: var(--secondary);
         border-radius: var(--radius-lg);
         box-shadow: 0 20px 25px -5px oklch(0% 0 0 / 0.1), 0 10px 10px -5px oklch(0% 0 0 / 0.04);
         max-width: 400px;
@@ -40,30 +40,30 @@
     }
 
     .alert-dialog-danger .alert-dialog-icon {
-        background-color: color-mix(in oklch, var(--status-danger) 10%, white);
-        color: var(--status-danger);
+        background-color: color-mix(in oklch, var(--danger) 10%, white);
+        color: color-mix(in oklch, var(--danger) 82%, var(--accent));
     }
 
     .alert-dialog-warning .alert-dialog-icon {
-        background-color: color-mix(in oklch, var(--status-warning) 20%, white);
-        color: var(--status-warning);
+        background-color: color-mix(in oklch, var(--warning) 20%, white);
+        color: var(--warning);
     }
 
     .alert-dialog-info .alert-dialog-icon {
-        background-color: color-mix(in oklch, var(--brand-primary) 10%, white);
-        color: var(--brand-primary);
+        background-color: color-mix(in oklch, var(--accent) 10%, white);
+        color: var(--accent);
     }
 
     .alert-dialog-success .alert-dialog-icon {
-        background-color: color-mix(in oklch, var(--status-success) 15%, white);
-        color: var(--status-success);
+        background-color: color-mix(in oklch, var(--success) 15%, white);
+        color: var(--success);
     }
 
     .alert-dialog-title {
         margin: 0;
         font-size: var(--font-size-md);
         font-weight: 600;
-        color: var(--text-primary);
+        color: var(--highlight);
         flex: 1;
     }
 
@@ -74,7 +74,7 @@
 
     .alert-dialog-description {
         margin: 0;
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-xs);
         line-height: 1.5;
     }
@@ -85,7 +85,7 @@
         display: flex;
         gap: var(--space-sm);
         justify-content: flex-end;
-        border-top: 1px solid var(--border-primary);
+        border-top: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     }
 
     body:has(.alert-dialog-overlay) {

@@ -7,7 +7,7 @@
         align-items: center;
         justify-content: center;
         padding: var(--space-md);
-        background: color-mix(in oklch, var(--text-primary), transparent 62%);
+        background: color-mix(in oklch, var(--highlight), transparent 62%);
     }
 
     .modal {
@@ -16,11 +16,11 @@
         overflow: hidden;
         display: flex;
         flex-direction: column;
-        border: 1px solid var(--border-primary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         border-radius: var(--radius-lg);
-        background: var(--bg-primary);
-        box-shadow: 0 20px 60px color-mix(in oklch, var(--text-primary), transparent 78%);
-        color: var(--text-primary);
+        background: var(--primary);
+        box-shadow: 0 20px 60px color-mix(in oklch, var(--highlight), transparent 78%);
+        color: var(--highlight);
     }
 
     .modal--sm {
@@ -46,7 +46,7 @@
         align-items: center;
         gap: var(--space-sm);
         padding: var(--space-lg);
-        border-bottom: 1px solid var(--border-primary);
+        border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     }
 
     .modal__title {
@@ -62,7 +62,7 @@
         border: none;
         border-radius: var(--radius-md);
         background: transparent;
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -71,12 +71,12 @@
     }
 
     .modal__close:hover {
-        background: var(--bg-secondary);
-        color: var(--text-primary);
+        background: var(--secondary);
+        color: var(--highlight);
     }
 
     .modal__close:focus-visible {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
     }
 
@@ -87,13 +87,13 @@
 
     .modal__description {
         margin: 0 0 var(--space-md);
-        color: var(--text-secondary);
+        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         font-size: var(--font-size-sm);
     }
 
     .modal__footer {
         padding: var(--space-md) var(--space-lg);
-        border-top: 1px solid var(--border-primary);
+        border-top: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         display: flex;
         align-items: center;
         justify-content: flex-end;

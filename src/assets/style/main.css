@@ -54,14 +54,14 @@
         gap: var(--space-md);
         padding: var(--space-lg);
         border-radius: var(--radius-lg);
-        border: 1px solid var(--border-primary);
-        background-color: var(--bg-secondary);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
+        background-color: var(--secondary);
         min-height: 45rem;
     }
 
     .element h2 {
         font-size: var(--font-size-lg);
-        color: var(--text-primary);
+        color: var(--highlight);
     }
 
     .divider-row {

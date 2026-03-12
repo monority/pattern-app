@@ -7,7 +7,7 @@
         font-family: inherit;
         font-weight: 500;
         line-height: 1;
-        border: var(--btn-border);
+        border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         text-align: center;
         border-radius: var(--radius-sm);
         cursor: pointer;
@@ -17,7 +17,7 @@
     }
 
     .btn:focus-visible {
-        outline: 2px solid var(--focus-ring);
+        outline: 2px solid var(--ring);
         outline-offset: 2px;
     }
 
@@ -39,103 +39,105 @@
 
     /* Primary variant */
     .btn-primary {
-        background-color: var(--brand-secondary);
-        color: var(--brand-secondary-text);
+        background-color: var(--highlight);
+        color: var(--primary);
+        border-color: var(--highlight);
     }
 
     .btn-primary:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-secondary) 90%, grey);
+        background-color: color-mix(in oklch, var(--highlight) 92%, var(--primary));
     }
 
     .btn-primary:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-secondary) 55%, grey);
+        background-color: color-mix(in oklch, var(--highlight) 78%, var(--primary));
     }
 
     /* Secondary variant */
     .btn-secondary {
-        background-color: var(--brand-primary);
-        color: var(--brand-primary-text);
+        background-color: var(--primary);
+        color: var(--highlight);
+        border-color: color-mix(in oklch, var(--highlight) 20%, var(--primary));
     }
 
     .btn-secondary:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-primary) 90%, white);
+        background-color: color-mix(in oklch, var(--primary) 88%, var(--highlight));
     }
 
     .btn-secondary:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--brand-primary) 85%, black);
+        background-color: color-mix(in oklch, var(--primary) 74%, var(--highlight));
     }
 
     /* Success variant */
     .btn-success {
-        background-color: var(--status-success);
-        color: var(--status-success-text);
+        background-color: var(--success);
+        color: color-mix(in oklch, var(--highlight) 92%, var(--primary));
     }
 
     .btn-success:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-success) 90%, white);
+        background-color: color-mix(in oklch, var(--success) 90%, var(--highlight));
     }
 
     .btn-success:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-success) 85%, white);
+        background-color: color-mix(in oklch, var(--success) 85%, var(--highlight));
     }
 
     /* Danger variant */
     .btn-danger {
-        background-color: var(--status-danger);
-        color: var(--status-danger-text);
+        background-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
+        color: color-mix(in oklch, var(--highlight) 92%, var(--primary));
     }
 
     .btn-danger:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-danger) 90%, white);
+        background-color: color-mix(in oklch, var(--danger) 74%, var(--highlight));
     }
 
     .btn-danger:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-danger) 85%, white);
+        background-color: color-mix(in oklch, var(--danger) 82%, var(--primary));
     }
 
     /* Warning variant */
     .btn-warning {
-        background-color: var(--status-warning);
-        color: var(--status-warning-text);
+        background-color: var(--warning);
+        color: var(--highlight);
     }
 
     .btn-warning:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-warning) 90%, white);
+        background-color: color-mix(in oklch, var(--warning) 90%, var(--highlight));
     }
 
     .btn-warning:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--status-warning) 85%, white);
+        background-color: color-mix(in oklch, var(--warning) 85%, var(--highlight));
     }
 
     /* Outline variant */
     .btn-outline {
         background-color: transparent;
-        border: 1px solid var(--btn-outline-text);
-        color: var(--btn-outline-text);
+        border: 1px solid color-mix(in oklch, var(--highlight) 78%, var(--accent));
+        color: color-mix(in oklch, var(--highlight) 78%, var(--accent));
     }
 
     .btn-outline:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--btn-outline-hover-bg) 50%, transparent);
+        background-color: color-mix(in oklch, var(--accent) 12%, transparent);
     }
 
     .btn-outline:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--btn-outline-hover-bg) 70%, transparent);
+        background-color: color-mix(in oklch, var(--accent) 20%, transparent);
     }
 
     /* Ghost variant */
     .btn-ghost {
         background-color: transparent;
-        color: var(--btn-ghost-text);
+        color: color-mix(in oklch, var(--highlight) 76%, var(--accent));
         opacity: 0.5;
     }
 
     .btn-ghost:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--btn-ghost-bg) 85%, transparent);
+        background-color: color-mix(in oklch, var(--accent) 14%, transparent);
         opacity: 1;
     }
 
     .btn-ghost:active:not(:disabled) {
-        background-color: color-mix(in oklch, var(--btn-ghost-bg) 90%, transparent);
+        background-color: color-mix(in oklch, var(--accent) 20%, transparent);
     }
 
     /* States */
