@@ -14,7 +14,7 @@
     .progress {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         width: 100%;
         color: var(--highlight);
     }
@@ -25,7 +25,7 @@
         height: var(--progress-height, 0.8rem);
         background: color-mix(in oklch, var(--secondary) 85%, transparent);
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
-        border-radius: var(--radius-full);
+        border-radius: 9999px;
         overflow: hidden;
     }
 

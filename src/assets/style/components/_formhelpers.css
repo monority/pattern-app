@@ -2,7 +2,7 @@
     .form-field {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .form-field-full-width {
@@ -18,7 +18,7 @@
 
     .form-field__required {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .form-field__control {
@@ -43,7 +43,7 @@
 
     .form-row {
         display: flex;
-        gap: var(--space-md);
+        gap: calc(var(--space-unit) * 4);
         align-items: start;
         flex-wrap: wrap;
     }
@@ -56,7 +56,7 @@
     .radio-group {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
         border: 0;
         padding: 0;
         margin: 0;
@@ -73,13 +73,13 @@
 
     .radio-group__required {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .radio-group__options {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .radio-group__hint {

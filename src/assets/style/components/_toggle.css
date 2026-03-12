@@ -2,13 +2,13 @@
     .toggle {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .toggle__label {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         color: var(--highlight);
         cursor: pointer;
         user-select: none;
@@ -34,9 +34,9 @@
         flex-shrink: 0;
         width: 2.25rem;
         height: 2.25rem;
-        border-radius: var(--radius-md);
+        border-radius: calc(var(--radius-unit) * 2);
         border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        background: var(--secondary);
+        background: color-mix(in oklch, var(--secondary) 92%, var(--primary));
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
     }
@@ -93,14 +93,14 @@
 
     .toggle__required {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     /* Interactions */
     .toggle__label:hover .toggle__control {
         border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
-        background: var(--secondary);
-        color: var(--highlight);
+        background: color-mix(in oklch, var(--secondary) 82%, var(--highlight));
+        color: color-mix(in oklch, var(--highlight) 84%, var(--primary));
     }
 
     .toggle__label:active .toggle__control {
@@ -115,9 +115,9 @@
 
     /* Checked */
     .toggle__input:checked+.toggle__control {
-        background: var(--primary);
-        border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        color: color-mix(in oklch, white 92%, var(--primary));
+        background: color-mix(in oklch, var(--accent) 30%, var(--secondary));
+        border-color: color-mix(in oklch, var(--accent) 45%, var(--secondary));
+        color: color-mix(in oklch, var(--highlight) 92%, var(--primary));
     }
 
     .toggle__input:checked+.toggle__control .toggle__icon-outline {
@@ -140,7 +140,7 @@
     .toggle-disabled .toggle__label:hover .toggle__control {
         transform: none;
         border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        background: var(--primary);
+        background: color-mix(in oklch, var(--secondary) 92%, var(--primary));
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     }
 
@@ -150,8 +150,8 @@
     }
 
     .toggle-error .toggle__input:checked+.toggle__control {
-        background: color-mix(in oklch, var(--danger) 70%, var(--accent));
-        border-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
+        background: color-mix(in oklch, var(--danger) 64%, var(--secondary));
+        border-color: color-mix(in oklch, var(--danger) 82%, var(--secondary));
     }
 
     .toggle__hint {

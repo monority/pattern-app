@@ -3,13 +3,13 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
         font-family: inherit;
         font-weight: 500;
         line-height: 1;
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         text-align: center;
-        border-radius: var(--radius-sm);
+        border-radius: calc(var(--radius-unit) * 1.5);
         cursor: pointer;
         transition: all var(--transition-base);
         white-space: nowrap;
@@ -23,17 +23,17 @@
 
     /* Sizes */
     .btn-sm {
-        padding: var(--space-xs) var(--space-sm);
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
         font-size: var(--font-size-xs);
     }
 
     .btn-md {
-        padding: var(--space-sm) var(--space-md);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         font-size: var(--font-size-sm);
     }
 
     .btn-lg {
-        padding: var(--space-md) var(--space-lg);
+        padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
         font-size: var(--font-size-md);
     }
 
@@ -83,12 +83,12 @@
 
     /* Danger variant */
     .btn-danger {
-        background-color: color-mix(in oklch, var(--danger) 82%, var(--accent));
+        background-color: color-mix(in oklch, var(--danger) 88%, var(--primary));
         color: color-mix(in oklch, var(--highlight) 92%, var(--primary));
     }
 
     .btn-danger:hover:not(:disabled) {
-        background-color: color-mix(in oklch, var(--danger) 74%, var(--highlight));
+        background-color: color-mix(in oklch, var(--danger) 78%, var(--primary));
     }
 
     .btn-danger:active:not(:disabled) {
@@ -173,7 +173,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        margin-right: var(--space-xs);
+        margin-right: calc(var(--space-unit) * 2);
     }
 
     .btn-spinner svg {
@@ -183,7 +183,7 @@
     .btn-content {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     @keyframes btn-spin {

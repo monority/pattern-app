@@ -1,12 +1,12 @@
 .accordion {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    gap: calc(var(--space-unit) * 2);
 }
 
 .accordion__item {
     border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-unit) * 3);
     overflow: hidden;
 }
 
@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--space-lg);
+    padding: calc(var(--space-unit) * 6);
     background: color-mix(in oklch, var(--secondary) 60%, var(--primary));
     border: none;
     cursor: pointer;
@@ -34,7 +34,7 @@
 }
 
 .accordion__content {
-    padding: var(--space-lg);
+    padding: calc(var(--space-unit) * 6);
     font-size: var(--font-size-md);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     background: var(--primary);

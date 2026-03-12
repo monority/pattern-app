@@ -8,9 +8,9 @@
     .contextmenu {
         z-index: 1;
         min-width: 12rem;
-        padding: var(--space-xs);
+        padding: calc(var(--space-unit) * 2);
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
-        border-radius: var(--radius-lg);
+        border-radius: calc(var(--radius-unit) * 3);
         background: var(--primary);
         color: var(--highlight);
         box-shadow: 0 12px 36px color-mix(in oklch, var(--highlight), transparent 82%);
@@ -28,10 +28,10 @@
         width: 100%;
         display: flex;
         align-items: center;
-        gap: var(--space-sm);
-        padding: var(--space-sm) var(--space-md);
+        gap: calc(var(--space-unit) * 3);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         border: none;
-        border-radius: var(--radius-md);
+        border-radius: calc(var(--radius-unit) * 2);
         background: transparent;
         color: inherit;
         font: inherit;
@@ -58,6 +58,6 @@
     .contextmenu__separator {
         height: 1px;
         background: color-mix(in oklch, var(--highlight) 14%, var(--primary));
-        margin: var(--space-xs) var(--space-xs);
+        margin: calc(var(--space-unit) * 2) calc(var(--space-unit) * 2);
     }
 }

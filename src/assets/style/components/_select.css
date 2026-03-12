@@ -2,7 +2,7 @@
     .select {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .select label {
@@ -13,7 +13,7 @@
 
     .select label span {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .select-full-width {
@@ -29,10 +29,10 @@
 
     .select-element {
         width: 100%;
-        padding: var(--space-sm) var(--space-md);
-        padding-right: var(--space-xxl);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
+        padding-right: calc(var(--space-unit) * 10);
         border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        border-radius: var(--radius-md);
+        border-radius: calc(var(--radius-unit) * 2);
         font-size: var(--font-size-sm);
         color: var(--highlight);
         outline: none;
@@ -57,7 +57,7 @@
 
     .select-chevron {
         position: absolute;
-        right: var(--space-sm);
+        right: calc(var(--space-unit) * 3);
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -66,20 +66,20 @@
     }
 
     .select-sm {
-        padding: var(--space-xs) var(--space-sm);
-        padding-right: var(--space-xxl);
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
+        padding-right: calc(var(--space-unit) * 10);
         font-size: var(--font-size-xs);
     }
 
     .select-md {
-        padding: var(--space-sm) var(--space-md);
-        padding-right: var(--space-xxl);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
+        padding-right: calc(var(--space-unit) * 10);
         font-size: var(--font-size-sm);
     }
 
     .select-lg {
-        padding: var(--space-md) var(--space-lg);
-        padding-right: var(--space-xxl);
+        padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
+        padding-right: calc(var(--space-unit) * 10);
         font-size: var(--font-size-md);
     }
 

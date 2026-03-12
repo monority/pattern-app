@@ -2,26 +2,26 @@
     .list {
         display: flex;
         flex-direction: column;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         padding: 0;
         margin: 0;
     }
 
     .list--dense {
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .list__item {
         display: flex;
         align-items: flex-start;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         color: var(--highlight);
     }
 
     .list__bullet {
         width: 0.6rem;
         height: 0.6rem;
-        border-radius: var(--radius-full);
+        border-radius: 9999px;
         background: color-mix(in oklch, var(--highlight) 46%, var(--primary));
         margin-top: 0.55em;
         flex-shrink: 0;
@@ -42,7 +42,7 @@
     }
 
     .list--divided .list__item {
-        padding-bottom: var(--space-sm);
+        padding-bottom: calc(var(--space-unit) * 3);
         border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     }
 

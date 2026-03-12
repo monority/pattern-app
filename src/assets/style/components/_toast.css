@@ -4,9 +4,9 @@
         z-index: 1;
         display: flex;
         flex-direction: column;
-        gap: var(--space-sm);
-        padding: var(--space-md);
-        max-width: min(38rem, calc(100vw - 2 * var(--space-md)));
+        gap: calc(var(--space-unit) * 3);
+        padding: calc(var(--space-unit) * 4);
+        max-width: min(38rem, calc(100vw - (var(--space-unit) * 8)));
         pointer-events: none;
     }
 
@@ -40,9 +40,9 @@
         display: flex;
         align-items: flex-start;
         justify-content: space-between;
-        gap: var(--space-md);
-        padding: var(--space-md) var(--space-lg);
-        border-radius: var(--radius-lg);
+        gap: calc(var(--space-unit) * 4);
+        padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
+        border-radius: calc(var(--radius-unit) * 3);
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         background: color-mix(in oklch, var(--primary) 85%, var(--secondary));
         color: var(--highlight);
@@ -52,7 +52,7 @@
     .toast__content {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xxs);
+        gap: calc(var(--space-unit) * 1.5);
         min-width: 0;
     }
 
@@ -72,7 +72,7 @@
     .toast__actions {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
         flex-shrink: 0;
     }
 
@@ -80,8 +80,8 @@
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         background: var(--secondary);
         color: var(--highlight);
-        border-radius: var(--radius-md);
-        padding: var(--space-xs) var(--space-sm);
+        border-radius: calc(var(--radius-unit) * 2);
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
         cursor: pointer;
         transition: background var(--transition-fast), border-color var(--transition-fast), opacity var(--transition-fast);
     }
@@ -104,7 +104,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        border-radius: var(--radius-md);
+        border-radius: calc(var(--radius-unit) * 2);
         cursor: pointer;
         transition: background var(--transition-fast), color var(--transition-fast);
     }

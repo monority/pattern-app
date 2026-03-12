@@ -11,12 +11,12 @@
 
     position: absolute;
     z-index: 1;
-    padding: var(--space-xs) var(--space-sm);
+    padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
     background: color-mix(in oklch, var(--highlight), transparent 8%);
     color: color-mix(in oklch, white 92%, var(--primary));
     font-size: var(--font-size-sm);
     line-height: 1.4;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-unit) * 2);
     white-space: nowrap;
     pointer-events: none;
     opacity: 0;

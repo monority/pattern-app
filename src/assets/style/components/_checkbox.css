@@ -2,13 +2,13 @@
     .checkbox {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .checkbox__label {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         color: var(--highlight);
         cursor: pointer;
         user-select: none;
@@ -17,7 +17,7 @@
 
     .checkbox__label:hover .checkbox__control {
         border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
-        background: var(--secondary);
+        background: color-mix(in oklch, var(--highlight) 5%, var(--primary));
     }
 
     .checkbox__label:active .checkbox__control {
@@ -45,7 +45,7 @@
         align-items: center;
         justify-content: center;
         position: relative;
-        color: color-mix(in oklch, white 92%, var(--primary));
+        color: var(--highlight);
         flex-shrink: 0;
         transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
     }
@@ -80,7 +80,7 @@
 
     .checkbox__required {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .checkbox__icon {
@@ -102,7 +102,6 @@
     }
 
     .checkbox__input:checked+.checkbox__control {
-        background: var(--accent);
         border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
     }
 
@@ -116,11 +115,7 @@
         transform: scale(0.88);
     }
 
-    /* Indeterminate state (native) */
-    .checkbox__input:indeterminate+.checkbox__control {
-        background: var(--accent);
-        border-color: var(--accent);
-    }
+
 
     .checkbox__input:indeterminate+.checkbox__control .checkbox__icon-check {
         opacity: 0;
@@ -133,10 +128,7 @@
     }
 
     /* Fallback: if indeterminate is only represented via class */
-    .checkbox__control--indeterminate {
-        background: var(--accent);
-        border-color: var(--accent);
-    }
+
 
     .checkbox__control--indeterminate .checkbox__icon-check {
         opacity: 0;

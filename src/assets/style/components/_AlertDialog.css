@@ -9,13 +9,13 @@
         align-items: center;
         justify-content: center;
         z-index: 2;
-        padding: var(--space-md);
+        padding: calc(var(--space-unit) * 4);
     }
 
     /* Dialog */
     .alert-dialog {
         background: var(--secondary);
-        border-radius: var(--radius-lg);
+        border-radius: calc(var(--radius-unit) * 3);
         box-shadow: 0 20px 25px -5px oklch(0% 0 0 / 0.1), 0 10px 10px -5px oklch(0% 0 0 / 0.04);
         max-width: 400px;
         width: 100%;
@@ -23,9 +23,9 @@
 
     /* Header */
     .alert-dialog-header {
-        padding: var(--space-lg);
+        padding: calc(var(--space-unit) * 6);
         display: flex;
-        gap: var(--space-md);
+        gap: calc(var(--space-unit) * 4);
         align-items: flex-start;
     }
 
@@ -33,7 +33,7 @@
         flex-shrink: 0;
         width: 48px;
         height: 48px;
-        border-radius: var(--radius-full);
+        border-radius: 9999px;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -69,7 +69,7 @@
 
     /* Body */
     .alert-dialog-body {
-        padding: 0 var(--space-lg) var(--space-lg);
+        padding: 0 calc(var(--space-unit) * 6) calc(var(--space-unit) * 6);
     }
 
     .alert-dialog-description {
@@ -81,9 +81,9 @@
 
     /* Footer */
     .alert-dialog-footer {
-        padding: var(--space-md) var(--space-lg);
+        padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
         display: flex;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         justify-content: flex-end;
         border-top: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     }

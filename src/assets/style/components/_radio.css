@@ -2,13 +2,13 @@
     .radio {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .radio__label {
         display: inline-flex;
         align-items: center;
-        gap: var(--space-sm);
+        gap: calc(var(--space-unit) * 3);
         color: var(--highlight);
         cursor: pointer;
         user-select: none;
@@ -28,7 +28,7 @@
 
     .radio__control {
         border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        border-radius: var(--radius-full);
+        border-radius: calc(var(--space-unit) * 10);
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -41,7 +41,7 @@
         display: block;
         width: 0.75rem;
         height: 0.75rem;
-        border-radius: var(--radius-full);
+        border-radius: calc(var(--space-unit) * 10);
         background: var(--highlight);
         opacity: 0;
         transform: scale(0.8);
@@ -88,7 +88,7 @@
 
     .radio__required {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .radio__label:hover .radio__control {

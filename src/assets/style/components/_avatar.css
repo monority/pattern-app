@@ -50,15 +50,15 @@
 
 /* Shapes */
 .avatar--circle {
-    border-radius: var(--radius-full);
+    border-radius: 9999px;
 }
 
 .avatar--square {
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-unit) * 3);
 }
 
 .avatar--rounded {
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-unit) * 3);
 }
 
 /* Status dot */
@@ -68,7 +68,7 @@
     right: 5%;
     width: 25%;
     height: 25%;
-    border-radius: var(--radius-full);
+    border-radius: 9999px;
     border: 2px solid var(--primary);
 }
 

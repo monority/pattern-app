@@ -37,7 +37,7 @@
     inset-block: 0;
     right: 0;
     border-left: 1px solid color-mix(in oklch, var(--highlight) 9%, var(--primary));
-    border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    border-radius: calc(var(--radius-unit) * 3) 0 0 calc(var(--radius-unit) * 3);
     box-shadow:
         -12px 0 64px oklch(0% 0 0 / 0.18),
         -3px 0 12px oklch(0% 0 0 / 0.08);
@@ -47,7 +47,7 @@
     inset-block: 0;
     left: 0;
     border-right: 1px solid color-mix(in oklch, var(--highlight) 9%, var(--primary));
-    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    border-radius: 0 calc(var(--radius-unit) * 3) calc(var(--radius-unit) * 3) 0;
     box-shadow:
         12px 0 64px oklch(0% 0 0 / 0.18),
         3px 0 12px oklch(0% 0 0 / 0.08);
@@ -57,7 +57,7 @@
     inset-inline: 0;
     top: 0;
     border-bottom: 1px solid color-mix(in oklch, var(--highlight) 9%, var(--primary));
-    border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+    border-radius: 0 0 calc(var(--radius-unit) * 3) calc(var(--radius-unit) * 3);
     box-shadow:
         0 12px 64px oklch(0% 0 0 / 0.18),
         0 3px 12px oklch(0% 0 0 / 0.08);
@@ -67,7 +67,7 @@
     inset-inline: 0;
     bottom: 0;
     border-top: 1px solid color-mix(in oklch, var(--highlight) 9%, var(--primary));
-    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    border-radius: calc(var(--radius-unit) * 3) calc(var(--radius-unit) * 3) 0 0;
     box-shadow:
         0 -12px 64px oklch(0% 0 0 / 0.18),
         0 -3px 12px oklch(0% 0 0 / 0.08);
@@ -124,8 +124,8 @@
 .drawer__header {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    padding: 0 var(--space-md) 0 var(--space-xl);
+    gap: calc(var(--space-unit) * 4);
+    padding: 0 calc(var(--space-unit) * 4) 0 calc(var(--space-unit) * 8);
     border-bottom: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     flex-shrink: 0;
     min-height: 5.6rem;
@@ -146,7 +146,7 @@
     justify-content: center;
     width: 3.2rem;
     height: 3.2rem;
-    border-radius: var(--radius-md);
+    border-radius: calc(var(--radius-unit) * 2);
     border: none;
     background: transparent;
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
@@ -180,7 +180,7 @@
 .drawer__content {
     flex: 1;
     overflow-y: auto;
-    padding: var(--space-xl);
+    padding: calc(var(--space-unit) * 8);
     color: var(--highlight);
     font-size: var(--font-size-sm);
     line-height: 1.65;
@@ -193,8 +193,8 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
+    gap: calc(var(--space-unit) * 3);
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
     border-top: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     background: var(--secondary);
     flex-shrink: 0;

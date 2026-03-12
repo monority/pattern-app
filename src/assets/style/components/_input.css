@@ -8,18 +8,18 @@
     .input {
         display: flex;
         flex-direction: column;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
     }
 
     .input label span {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        margin-left: var(--space-xs);
+        margin-left: calc(var(--space-unit) * 2);
     }
 
     .input-element {
-        padding: var(--space-sm) var(--space-md);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        border-radius: var(--radius-md);
+        border-radius: calc(var(--radius-unit) * 2);
         font-size: var(--font-size-sm);
         transition: all var(--transition-base);
         outline: none;
@@ -42,17 +42,17 @@
     }
 
     .input-sm {
-        padding: var(--space-xs) var(--space-sm);
+        padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
         font-size: var(--font-size-xs);
     }
 
     .input-md {
-        padding: var(--space-sm) var(--space-md);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         font-size: var(--font-size-sm);
     }
 
     .input-lg {
-        padding: var(--space-md) var(--space-lg);
+        padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
         font-size: var(--font-size-md);
     }
 
@@ -97,16 +97,16 @@
 
     .input-wrapper .input-element {
         width: 100%;
-        padding-right: var(--space-xxl);
+        padding-right: calc(var(--space-unit) * 10);
     }
 
     .input-password-toggle {
         position: absolute;
-        right: var(--space-sm);
+        right: calc(var(--space-unit) * 3);
         background: none;
         border: none;
         cursor: pointer;
-        padding: var(--space-xs);
+        padding: calc(var(--space-unit) * 2);
         display: flex;
         align-items: center;
         justify-content: center;

@@ -3,7 +3,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: var(--space-xs);
+        gap: calc(var(--space-unit) * 2);
         border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
         background: var(--primary);
         color: var(--highlight);
@@ -12,7 +12,7 @@
     }
 
     .tagchip--pill {
-        border-radius: var(--radius-full);
+        border-radius: 9999px;
     }
 
     .tagchip--sm {

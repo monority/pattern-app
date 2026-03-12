@@ -85,7 +85,7 @@
     }
 
     figcaption {
-        padding: var(--space-sm) var(--space-xs);
+        padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 2);
         font-size: var(--font-size-xs);
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         text-align: center;

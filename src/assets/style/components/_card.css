@@ -1,7 +1,7 @@
 .card {
     display: flex;
     flex-direction: column;
-    border-radius: var(--radius-lg);
+    border-radius: calc(var(--radius-unit) * 3);
     background: var(--secondary);
     border: 1px solid color-mix(in oklch, var(--highlight) 14%, var(--primary));
     overflow: hidden;
@@ -63,8 +63,8 @@
 .card__header {
     display: flex;
     align-items: center;
-    gap: var(--space-md);
-    padding: var(--space-lg);
+    gap: calc(var(--space-unit) * 4);
+    padding: calc(var(--space-unit) * 6);
     padding-bottom: 0;
 }
 
@@ -89,12 +89,12 @@
 .card__subtitle {
     font-size: var(--font-size-sm);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-    margin-top: var(--space-xxs);
+    margin-top: calc(var(--space-unit) * 1.5);
 }
 
 /* Body */
 .card__body {
-    padding: var(--space-lg);
+    padding: calc(var(--space-unit) * 6);
     flex: 1;
     font-size: var(--font-size-md);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
@@ -105,7 +105,7 @@
 .card__footer {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
-    padding: var(--space-md) var(--space-lg);
+    gap: calc(var(--space-unit) * 3);
+    padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
     border-top: 1px solid color-mix(in oklch, var(--highlight) 9%, var(--primary));
 }
