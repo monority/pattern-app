@@ -18,7 +18,7 @@
         margin: 0;
         padding: 0;
         font-family: var(--font-default);
-        font-size: 1.6rem;
+        font-size: calc(var(--font-size-unit) * 32);
         font-style: normal;
         font-optical-sizing: auto;
         letter-spacing: -0.05rem;
@@ -69,11 +69,7 @@
 
         /* Font tokens */
         --font-default: 'Inter', sans-serif;
-        --font-size-xs: 1.2rem;
-        --font-size-sm: 1.35rem;
-        --font-size-md: 1.5rem;
-        --font-size-lg: 1.8rem;
-        --font-size-xl: 2.4rem;
+        --font-size-unit: 0.05rem;
 
         /* Transition tokens */
         --transition-fast: 0.15s ease-in-out;

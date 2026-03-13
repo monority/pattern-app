@@ -3,6 +3,11 @@
         display: inline-flex;
         width: fit-content;
         align-self: flex-start;
+        cursor: context-menu;
+
+        .card {
+            padding: calc(var(--space-unit) * 10);
+        }
     }
 
     .contextmenu {
@@ -17,6 +22,8 @@
         display: flex;
         flex-direction: column;
         gap: 2px;
+
+
     }
 
     .contextmenu:focus-visible {

@@ -34,6 +34,7 @@
         justify-content: center;
         position: relative;
         flex-shrink: 0;
+        background: var(--primary);
         transition: background var(--transition-fast), border-color var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast);
     }
 
@@ -74,16 +75,16 @@
     }
 
     .radio__text {
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         line-height: 1.4;
     }
 
     .radio-sm .radio__text {
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .radio-lg .radio__text {
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
     }
 
     .radio__required {
@@ -91,10 +92,6 @@
         margin-left: calc(var(--space-unit) * 2);
     }
 
-    .radio__label:hover .radio__control {
-        border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
-        background: var(--secondary);
-    }
 
     .radio__label:active .radio__control {
         transform: translateY(0.5px);
@@ -137,11 +134,11 @@
 
     .radio__hint {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .radio__error {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 }

@@ -6,7 +6,7 @@
     }
 
     .select label {
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         font-weight: 500;
         color: var(--highlight);
     }
@@ -33,7 +33,7 @@
         padding-right: calc(var(--space-unit) * 10);
         border: 1px solid color-mix(in oklch, var(--highlight) 18%, var(--primary));
         border-radius: calc(var(--radius-unit) * 2);
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         color: var(--highlight);
         outline: none;
         transition: all var(--transition-base);
@@ -68,19 +68,19 @@
     .select-sm {
         padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
         padding-right: calc(var(--space-unit) * 10);
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .select-md {
         padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         padding-right: calc(var(--space-unit) * 10);
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
     }
 
     .select-lg {
         padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
         padding-right: calc(var(--space-unit) * 10);
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
     }
 
     .select-default,
@@ -107,11 +107,11 @@
 
     .select span[id$="-error"] {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .select span[id$="-hint"] {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 }

@@ -51,7 +51,7 @@
 
     .modal__title {
         margin: 0;
-        font-size: var(--font-size-lg);
+        font-size: calc(var(--font-size-unit) * 36);
         line-height: 1.2;
     }
 
@@ -88,7 +88,7 @@
     .modal__description {
         margin: 0 0 calc(var(--space-unit) * 4);
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
     }
 
     .modal__footer {

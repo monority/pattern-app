@@ -24,17 +24,17 @@
     /* Sizes */
     .btn-sm {
         padding: calc(var(--space-unit) * 2) calc(var(--space-unit) * 3);
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .btn-md {
         padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
     }
 
     .btn-lg {
         padding: calc(var(--space-unit) * 4) calc(var(--space-unit) * 6);
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
     }
 
     /* Primary variant */

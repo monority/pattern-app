@@ -133,7 +133,7 @@
 
 .drawer__title {
     flex: 1;
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-unit) * 30);
     font-weight: 600;
     color: var(--highlight);
     margin: 0;
@@ -152,7 +152,7 @@
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     cursor: pointer;
     flex-shrink: 0;
-    font-size: 1.6rem;
+    font-size: calc(var(--font-size-unit) * 32);
     transition:
         background 0.15s ease,
         color 0.15s ease,
@@ -182,7 +182,7 @@
     overflow-y: auto;
     padding: calc(var(--space-unit) * 8);
     color: var(--highlight);
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
     line-height: 1.65;
     overscroll-behavior: contain;
 }

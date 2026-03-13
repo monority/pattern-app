@@ -60,7 +60,7 @@
     }
 
     .element h2 {
-        font-size: var(--font-size-lg);
+        font-size: calc(var(--font-size-unit) * 36);
         color: var(--highlight);
     }
 

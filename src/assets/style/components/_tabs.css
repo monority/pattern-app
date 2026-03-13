@@ -20,7 +20,7 @@
     background: transparent;
     border: none;
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
     font-weight: 500;
     cursor: pointer;
     white-space: nowrap;
@@ -42,7 +42,7 @@
 
 .tabs__tab-icon {
     display: inline-flex;
-    font-size: 1em;
+    font-size: calc(var(--font-size-unit) * 27);
 }
 
 /* ── Variant: line (default) ── */
@@ -111,7 +111,7 @@
 /* ── Panel ── */
 .tabs__panel {
     color: var(--highlight);
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
     animation: tabs-fade-in var(--transition-fast) ease;
 }
 

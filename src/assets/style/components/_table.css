@@ -11,7 +11,7 @@
         width: 100%;
         border-collapse: separate;
         border-spacing: 0;
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         color: var(--highlight);
     }
 
@@ -19,7 +19,7 @@
         text-align: left;
         padding: calc(var(--space-unit) * 3) calc(var(--space-unit) * 4);
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .table__head {
@@ -40,7 +40,7 @@
         font-weight: 600;
         color: var(--highlight);
         text-align: left;
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
         letter-spacing: 0.02em;
         text-transform: uppercase;
     }

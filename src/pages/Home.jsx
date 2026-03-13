@@ -685,7 +685,7 @@ const Home = () => {
                             <Button variant="outline">Toggle popover</Button>
                         </PopoverAnchor>
                         <PopoverPanel autoFocus>
-                            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                            <p style={{ margin: 0, color: 'var(--text-secondary)', fontSize: 'calc(var(--font-size-unit) * 27)' }}>
                                 Anchored panel that closes on outside click / ESC.
                             </p>
                             <div className="btn-row" style={{ marginTop: 'var(--space-md)' }}>
@@ -724,9 +724,9 @@ const Home = () => {
                     <h2>ContextMenu</h2>
                     <ContextMenu>
                         <ContextMenuTrigger>
-                            <Card variant="outlined" style={{ padding: 'var(--space-lg)' }}>
+                            <Card variant="outlined">
                                 <strong>Right click here</strong>
-                                <p style={{ margin: 'var(--space-sm) 0 0', color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                                <p style={{ margin: 'var(--space-sm) 0 0', color: 'var(--text-secondary)', fontSize: 'calc(var(--font-size-unit) * 27)' }}>
                                     Opens a menu at the cursor position.
                                 </p>
                             </Card>
@@ -806,7 +806,7 @@ const Home = () => {
                     </>
                 }
             >
-                <p style={{ color: 'var(--text-secondary)', fontSize: 'var(--font-size-sm)' }}>
+                <p style={{ color: 'var(--text-secondary)', fontSize: 'calc(var(--font-size-unit) * 27)' }}>
                     This drawer slides in from the <strong>{drawerPlacement}</strong>. Close it with the button, the overlay, or <kbd>Escape</kbd>.
                 </p>
                 <Input label="Name" placeholder="John Doe" fullWidth />

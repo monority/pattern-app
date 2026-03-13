@@ -10,7 +10,7 @@
     }
 
     .form-field__label {
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         font-weight: 500;
         color: var(--highlight);
         width: fit-content;
@@ -29,12 +29,12 @@
 
     .form-field__hint {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .form-field__error {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .form-field-disabled {
@@ -64,7 +64,7 @@
     }
 
     .radio-group__legend {
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         font-weight: 500;
         color: var(--highlight);
         padding: 0;
@@ -84,12 +84,12 @@
 
     .radio-group__hint {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .radio-group__error {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .radio-group-disabled {

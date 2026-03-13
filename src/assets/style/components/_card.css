@@ -78,7 +78,7 @@
 }
 
 .card__title {
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-unit) * 30);
     font-weight: 600;
     color: var(--highlight);
     white-space: nowrap;
@@ -87,7 +87,7 @@
 }
 
 .card__subtitle {
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     margin-top: calc(var(--space-unit) * 1.5);
 }
@@ -96,7 +96,7 @@
 .card__body {
     padding: calc(var(--space-unit) * 6);
     flex: 1;
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-unit) * 30);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     line-height: 1.6;
 }

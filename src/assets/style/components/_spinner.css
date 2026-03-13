@@ -13,21 +13,21 @@
     }
 
     .spinner {
-        width: var(--spinner-size, var(--font-size-lg));
-        height: var(--spinner-size, var(--font-size-lg));
+        width: var(--spinner-size, calc(var(--font-size-unit) * 36));
+        height: var(--spinner-size, calc(var(--font-size-unit) * 36));
         animation: spinner-rotate 0.7s linear infinite;
     }
 
     .spinner-sm {
-        --spinner-size: var(--font-size-md);
+        --spinner-size: calc(var(--font-size-unit) * 30);
     }
 
     .spinner-md {
-        --spinner-size: var(--font-size-lg);
+        --spinner-size: calc(var(--font-size-unit) * 36);
     }
 
     .spinner-lg {
-        --spinner-size: var(--font-size-xl);
+        --spinner-size: calc(var(--font-size-unit) * 48);
     }
 
     .spinner-40 {

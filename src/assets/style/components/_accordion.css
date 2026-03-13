@@ -19,7 +19,7 @@
     background: color-mix(in oklch, var(--secondary) 60%, var(--primary));
     border: none;
     cursor: pointer;
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-unit) * 30);
     font-weight: 500;
     color: var(--highlight);
     transition: background var(--transition-fast);
@@ -35,7 +35,7 @@
 
 .accordion__content {
     padding: calc(var(--space-unit) * 6);
-    font-size: var(--font-size-md);
+    font-size: calc(var(--font-size-unit) * 30);
     color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
     background: var(--primary);
 }

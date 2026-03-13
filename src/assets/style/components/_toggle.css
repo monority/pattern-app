@@ -79,16 +79,16 @@
     }
 
     .toggle__text {
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         line-height: 1.4;
     }
 
     .toggle-sm .toggle__text {
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .toggle-lg .toggle__text {
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
     }
 
     .toggle__required {
@@ -96,12 +96,6 @@
         margin-left: calc(var(--space-unit) * 2);
     }
 
-    /* Interactions */
-    .toggle__label:hover .toggle__control {
-        border-color: color-mix(in oklch, var(--ring) 55%, var(--primary));
-        background: color-mix(in oklch, var(--secondary) 82%, var(--highlight));
-        color: color-mix(in oklch, var(--highlight) 84%, var(--primary));
-    }
 
     .toggle__label:active .toggle__control {
         transform: translateY(0);
@@ -137,12 +131,7 @@
         cursor: not-allowed;
     }
 
-    .toggle-disabled .toggle__label:hover .toggle__control {
-        transform: none;
-        border-color: color-mix(in oklch, var(--highlight) 18%, var(--primary));
-        background: color-mix(in oklch, var(--secondary) 92%, var(--primary));
-        color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-    }
+
 
     /* Error */
     .toggle-error .toggle__control {
@@ -156,11 +145,11 @@
 
     .toggle__hint {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .toggle__error {
         color: color-mix(in oklch, var(--danger) 82%, var(--accent));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 }

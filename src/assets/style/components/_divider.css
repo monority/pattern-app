@@ -9,7 +9,7 @@
     width: 100%;
     gap: calc(var(--space-unit) * 4);
     color: color-mix(in oklch, var(--highlight) 46%, var(--primary));
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
 }
 
 .divider--horizontal::before,
@@ -28,7 +28,7 @@
     align-self: stretch;
     gap: calc(var(--space-unit) * 4);
     color: color-mix(in oklch, var(--highlight) 46%, var(--primary));
-    font-size: var(--font-size-sm);
+    font-size: calc(var(--font-size-unit) * 27);
 }
 
 .divider--vertical::before,

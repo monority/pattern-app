@@ -58,13 +58,13 @@
 
     .toast__title {
         font-weight: 600;
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
         line-height: 1.2;
     }
 
     .toast__description {
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
         line-height: 1.35;
         word-break: break-word;
     }

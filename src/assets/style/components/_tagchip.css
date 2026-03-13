@@ -17,17 +17,17 @@
 
     .tagchip--sm {
         padding: 0.25rem 0.6rem;
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
     }
 
     .tagchip--md {
         padding: 0.35rem 0.75rem;
-        font-size: var(--font-size-sm);
+        font-size: calc(var(--font-size-unit) * 27);
     }
 
     .tagchip--lg {
         padding: 0.45rem 0.9rem;
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
     }
 
     .tagchip--default {

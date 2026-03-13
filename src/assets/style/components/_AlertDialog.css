@@ -61,7 +61,7 @@
 
     .alert-dialog-title {
         margin: 0;
-        font-size: var(--font-size-md);
+        font-size: calc(var(--font-size-unit) * 30);
         font-weight: 600;
         color: var(--highlight);
         flex: 1;
@@ -75,7 +75,7 @@
     .alert-dialog-description {
         margin: 0;
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
         line-height: 1.5;
     }
 

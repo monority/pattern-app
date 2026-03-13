@@ -42,7 +42,7 @@
     }
 
     .progress__value {
-        font-size: var(--font-size-xs);
+        font-size: calc(var(--font-size-unit) * 24);
         color: color-mix(in oklch, var(--highlight) 66%, var(--primary));
         flex-shrink: 0;
         min-width: 3ch;
